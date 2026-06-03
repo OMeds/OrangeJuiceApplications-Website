@@ -13,10 +13,13 @@ python3 "$ROOT/scripts/process_brand_logo.py"
 python3 "$ROOT/scripts/process_app_icon.py"
 
 rm -rf "$OUT"
-mkdir -p "$OUT/assets" "$OUT/facematch" "$OUT/ycda" "$OUT/start-a-project" \
+mkdir -p "$OUT/assets" "$OUT/facematch" "$OUT/ycda" "$OUT/start-a-project" "$OUT/legal" \
   "$OUT/contact-profile-picture-sync/privacy" \
   "$OUT/contact-profile-picture-sync/terms" \
   "$OUT/contact-profile-picture-sync/support" \
+  "$OUT/contact-profile-picture-sync/subscription-terms" \
+  "$OUT/contact-profile-picture-sync/data-retention" \
+  "$OUT/contact-profile-picture-sync/acceptable-use" \
   "$OUT/facematch/oauth/linkedin"
 
 python3 "$ROOT/scripts/render_legal_html.py" \
@@ -34,6 +37,22 @@ python3 "$ROOT/scripts/render_legal_html.py" \
   "Support information for FaceMatch." \
   "FaceMatch Support" "/contact-profile-picture-sync/support/"
 
+python3 "$ROOT/scripts/render_legal_html.py" \
+  "$LEGAL/subscription-terms.md" "$OUT/contact-profile-picture-sync/subscription-terms/index.html" \
+  "App Purchase and Pricing Terms for FaceMatch." \
+  "FaceMatch App Purchase & Pricing Terms" "/contact-profile-picture-sync/subscription-terms/"
+
+python3 "$ROOT/scripts/render_legal_html.py" \
+  "$LEGAL/data-retention.md" "$OUT/contact-profile-picture-sync/data-retention/index.html" \
+  "Data retention and deletion for FaceMatch." \
+  "FaceMatch Data Retention & Deletion" "/contact-profile-picture-sync/data-retention/"
+
+python3 "$ROOT/scripts/render_legal_html.py" \
+  "$LEGAL/acceptable-use.md" "$OUT/contact-profile-picture-sync/acceptable-use/index.html" \
+  "Acceptable Use Policy for FaceMatch." \
+  "FaceMatch Acceptable Use Policy" "/contact-profile-picture-sync/acceptable-use/"
+
+python3 "$ROOT/scripts/render_legal_hub.py" "$OUT"
 python3 "$ROOT/scripts/render_static_pages.py" "$OUT"
 GUIDES_DIR="$GUIDES" python3 "$ROOT/scripts/render_guides.py" "$OUT"
 python3 "$ROOT/scripts/render_feedback_page.py" "$OUT"

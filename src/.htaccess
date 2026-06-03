@@ -34,8 +34,12 @@ ErrorDocument 500 /500.html
   RewriteRule ^facematch$ /facematch/index.html [L]
   RewriteRule ^ycda$ /ycda/index.html [L]
   RewriteRule ^start-a-project$ /start-a-project/index.html [L]
+  RewriteRule ^legal$ /legal/index.html [L]
 
   # Legal, help & guides (URLs without trailing slash)
+  RewriteRule ^contact-profile-picture-sync/subscription-terms$ /contact-profile-picture-sync/subscription-terms/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/data-retention$ /contact-profile-picture-sync/data-retention/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/acceptable-use$ /contact-profile-picture-sync/acceptable-use/index.html [L]
   RewriteRule ^contact-profile-picture-sync/privacy$ /contact-profile-picture-sync/privacy/index.html [L]
   RewriteRule ^contact-profile-picture-sync/terms$ /contact-profile-picture-sync/terms/index.html [L]
   RewriteRule ^contact-profile-picture-sync/support$ /contact-profile-picture-sync/support/index.html [L]

@@ -123,16 +123,18 @@ def convert(md: str) -> str:
 
 
 def wrap(title: str, page_title: str, body: str, path: str) -> str:
+    nav_home = '<p class="guide-nav"><a href="/legal/">← All legal documents</a></p>\n'
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="oja-site">
 <head>
   {head(page_title, title, path)}
 </head>
 <body>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
   {NAV}
   <main class="legal-page">
     <article class="legal-content">
-      {body}
+      {nav_home}{body}
     </article>
   </main>
   {FOOTER}

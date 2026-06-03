@@ -33,8 +33,8 @@ def head(title: str, description: str, path: str = "/", og_type: str = "website"
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=4">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=1">
+  <link rel="stylesheet" href="/assets/style.css?v=5">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=2">
   <script src="/assets/site.js" defer></script>
   <script src="/assets/oja-interactive.js?v=2" defer></script>"""
 
@@ -49,13 +49,8 @@ NAV = """
     <a href="/ycda/">YCDA</a>
     <a href="/facematch/">FaceMatch</a>
     <a href="/start-a-project/">Start a project</a>
+    <a href="/legal/">Legal</a>
     <a href="/contact-profile-picture-sync/guides/">Guides</a>
-    <a href="/contact-profile-picture-sync/feedback/">Feedback</a>
-    <a href="/contact-profile-picture-sync/support/">Support</a>
-    <a href="/contact-profile-picture-sync/faq/">FAQ</a>
-    <a href="/contact-profile-picture-sync/security/">Security</a>
-    <a href="/contact-profile-picture-sync/privacy/">Privacy</a>
-    <a href="/contact-profile-picture-sync/terms/">Terms</a>
   </div>
 </nav>
 """
@@ -63,20 +58,29 @@ NAV = """
 FOOTER = """
 <footer class="site-footer">
   <p>&copy; Orange Juice Applications. FaceMatch is distributed on the Apple App Store.</p>
-  <p>
-    <a href="/contact-profile-picture-sync/guides/">Guides</a>
+  <p class="footer-legal-row">
+    <a href="/legal/">Legal hub</a>
     &middot;
-    <a href="/contact-profile-picture-sync/feedback/">Feedback</a>
+    <a href="/contact-profile-picture-sync/privacy/">Privacy</a>
+    &middot;
+    <a href="/contact-profile-picture-sync/terms/">Terms</a>
+    &middot;
+    <a href="/contact-profile-picture-sync/subscription-terms/">Pricing</a>
+    &middot;
+    <a href="/contact-profile-picture-sync/data-retention/">Data retention</a>
+    &middot;
+    <a href="/contact-profile-picture-sync/acceptable-use/">Acceptable use</a>
+  </p>
+  <p>
+    <a href="/contact-profile-picture-sync/support/">Support</a>
     &middot;
     <a href="/contact-profile-picture-sync/faq/">FAQ</a>
     &middot;
     <a href="/contact-profile-picture-sync/security/">Security</a>
     &middot;
-    <a href="/contact-profile-picture-sync/privacy/">Privacy Policy</a>
+    <a href="/contact-profile-picture-sync/feedback/">Feedback</a>
     &middot;
-    <a href="/contact-profile-picture-sync/terms/">Terms of Use</a>
-    &middot;
-    <a href="/contact-profile-picture-sync/support/">Support</a>
+    <a href="/contact-profile-picture-sync/guides/">Guides</a>
   </p>
   <p>
     <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
@@ -85,6 +89,9 @@ FOOTER = """
   </p>
 </footer>
 """
+
+# For hand-built marketing pages (index, ycda, facematch, start-a-project)
+MARKETING_FOOTER = FOOTER
 
 
 def wrap_page(title: str, description: str, body: str, path: str = "/") -> str:

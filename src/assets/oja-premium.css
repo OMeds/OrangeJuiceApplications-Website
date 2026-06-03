@@ -642,3 +642,58 @@ html.oja-site body {
   color: var(--muted);
   margin: 1rem 0 0;
 }
+
+/* --- Legal hub --- */
+.legal-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.legal-hub-grid-compact .legal-hub-card h2 {
+  font-size: 1.05rem;
+}
+
+.legal-hub-card {
+  display: block;
+  padding: 1.25rem 1.35rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
+}
+
+.legal-hub-card:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  border-color: var(--orange);
+  box-shadow: var(--oja-shadow-lg);
+}
+
+.legal-hub-card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  font-family: var(--oja-font-display);
+  color: var(--ink);
+}
+
+.legal-hub-card p {
+  margin: 0 0 0.65rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.legal-hub-cta {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.footer-legal-row {
+  font-size: 0.88rem;
+  opacity: 0.95;
+}
