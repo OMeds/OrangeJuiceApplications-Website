@@ -11,7 +11,9 @@ This repository was split from the [FaceMatch](https://github.com/OMeds/FaceMatc
 | `src/` | Editable site source (HTML, CSS, JS, assets) |
 | `dist/` | Build output — upload **contents** to your web host |
 | `Brand/` | Logo SVG sources |
-| `docs/legal/` | Privacy, terms, support (Markdown → HTML) |
+| `docs/legal/` | FaceMatch + website privacy (Markdown → HTML) |
+| `docs/pages/` | About, work, contact (Markdown → HTML) |
+| `docs/updates/` | News posts (Markdown → HTML) |
 | `docs/guides/` | FaceMatch user guides (Markdown → HTML) |
 | `scripts/` | Build and asset generation |
 | `deploy/` | FileZilla site template and FTP notes |
@@ -40,3 +42,16 @@ See [deploy/DEPLOY.md](deploy/DEPLOY.md) for FileZilla setup and FTP upload step
 ## YCDA live URL
 
 Edit `src/ycda/index.html` — `oja-ycda-app-url` meta and `#ycda-open` href — then rebuild.
+
+## Integrations (`src/assets/site-config.js`)
+
+| Key | Purpose |
+|-----|---------|
+| `formspreeIntakeId` | One-click submit on `/start-a-project/` (else mailto fallback) |
+| `calendlyUrl` | Discovery call embed on `/contact/` and intake page |
+| `plausibleDomain` | Privacy-friendly analytics |
+| `facematchAppStoreUrl` / `ycdaAppStoreUrl` | App Store badges when live |
+
+See `deploy/site-config.example.js` for a template.
+
+Guides and legal HTML are **generated only in `dist/`** — do not edit copies under `src/contact-profile-picture-sync/guides/`.

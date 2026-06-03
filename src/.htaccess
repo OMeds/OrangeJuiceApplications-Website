@@ -6,13 +6,12 @@ ErrorDocument 500 /500.html
 # --- Security headers (requires mod_headers on the host) ---
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"
-  Header always set X-Frame-Options "DENY"
+  Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
-  # Static site — no inline scripts; mailto feedback only.
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://plausible.io; style-src 'self' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://formspree.io https://plausible.io; frame-src https://calendly.com; form-action 'self' https://formspree.io mailto:; frame-ancestors 'none'; base-uri 'self'; upgrade-insecure-requests"
 </IfModule>
 
 # Block dotfiles and common secret / build artifact paths
@@ -25,18 +24,20 @@ ErrorDocument 500 /500.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Deny hidden paths and sensitive extensions
   RewriteRule (^|/)\. - [F,L]
   RewriteRule \.(git|env|xcconfig|p12|pem|mobileprovision|keychain|swift|pbxproj)$ - [F,L,NC]
   RewriteRule ^(website-deploy-src|Config|FaceMatch|Scripts|docs)/ - [F,L,NC]
 
-  # Project landing pages (URLs without trailing slash)
+  RewriteRule ^about$ /about/index.html [L]
+  RewriteRule ^work$ /work/index.html [L]
+  RewriteRule ^contact$ /contact/index.html [L]
+  RewriteRule ^updates$ /updates/index.html [L]
   RewriteRule ^facematch$ /facematch/index.html [L]
   RewriteRule ^ycda$ /ycda/index.html [L]
   RewriteRule ^start-a-project$ /start-a-project/index.html [L]
   RewriteRule ^legal$ /legal/index.html [L]
+  RewriteRule ^company/privacy$ /company/privacy/index.html [L]
 
-  # Legal, help & guides (URLs without trailing slash)
   RewriteRule ^contact-profile-picture-sync/subscription-terms$ /contact-profile-picture-sync/subscription-terms/index.html [L]
   RewriteRule ^contact-profile-picture-sync/data-retention$ /contact-profile-picture-sync/data-retention/index.html [L]
   RewriteRule ^contact-profile-picture-sync/acceptable-use$ /contact-profile-picture-sync/acceptable-use/index.html [L]
@@ -58,7 +59,6 @@ ErrorDocument 500 /500.html
   RewriteRule ^contact-profile-picture-sync/guides/two-paths-social-networks$ /contact-profile-picture-sync/guides/two-paths-social-networks/index.html [L]
   RewriteRule ^contact-profile-picture-sync/guides/import-from-files$ /contact-profile-picture-sync/guides/import-from-files/index.html [L]
 
-  # OAuth HTTPS bridges (not linked from public pages)
   RewriteRule ^facematch/oauth/linkedin$ /facematch/oauth/linkedin/index.html [L]
   RewriteRule ^facematch/oauth/facebook$ /facematch/oauth/facebook/index.html [L]
   RewriteRule ^facematch/oauth/instagram$ /facematch/oauth/instagram/index.html [L]

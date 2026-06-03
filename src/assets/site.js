@@ -12,8 +12,57 @@
     }
   }
 
+  function config() {
+    return window.OJA_SITE_CONFIG || {};
+  }
+
+  function loadPlausible() {
+    var domain = (config().plausibleDomain || "").trim();
+    if (!domain) return;
+    var s = document.createElement("script");
+    s.defer = true;
+    s.setAttribute("data-domain", domain);
+    s.src = "https://plausible.io/js/script.js";
+    document.head.appendChild(s);
+  }
+
+  function initCalendly() {
+    var url = (config().calendlyUrl || "").trim();
+    var wrap = document.querySelector("[data-calendly-embed]");
+    var frame = document.querySelector("[data-calendly-frame]");
+    var fallback = document.querySelector("[data-calendly-fallback]");
+    if (!url || !wrap || !frame) return;
+    frame.src = url.replace(/\/$/, "") + "?hide_gdpr_banner=1";
+    wrap.hidden = false;
+    if (fallback) fallback.hidden = true;
+  }
+
+  function initAppStoreBlocks() {
+    var cfg = config();
+    var map = {
+      facematch: cfg.facematchAppStoreUrl,
+      ycda: cfg.ycdaAppStoreUrl,
+    };
+    Object.keys(map).forEach(function (key) {
+      var url = (map[key] || "").trim();
+      document.querySelectorAll('[data-app-store="' + key + '"]').forEach(function (block) {
+        var link = block.querySelector("[data-app-store-link]");
+        var soon = block.querySelector("[data-app-store-soon]");
+        if (url && link) {
+          link.href = url;
+          link.hidden = false;
+          link.classList.remove("is-hidden");
+          if (soon) soon.hidden = true;
+        }
+      });
+    });
+  }
+
   onReady(function () {
-    // Warn if the main stylesheet failed to load (CDN/host misconfiguration).
+    loadPlausible();
+    initCalendly();
+    initAppStoreBlocks();
+
     var stylesheet = document.querySelector('link[rel="stylesheet"][href*="style.css"]');
     if (!stylesheet) return;
 
@@ -39,7 +88,6 @@
       document.body.insertBefore(banner, document.body.firstChild);
     }
 
-    // Broken image fallback for app icon references.
     document.querySelectorAll("img.app-icon-img").forEach(function (img) {
       img.addEventListener("error", function () {
         img.style.display = "none";
@@ -51,7 +99,6 @@
       });
     });
 
-    // External links open safely in a new tab when marked.
     document.querySelectorAll('a[rel~="noopener"]').forEach(function (link) {
       if (!link.target) link.target = "_blank";
     });
@@ -59,6 +106,6 @@
 
   window.addEventListener("error", function (event) {
     if (window.location.pathname.indexOf("/facematch/oauth/") !== -1) return;
-    console.warn("[FaceMatch site]", event.message || "Unhandled page error");
+    console.warn("[OJA site]", event.message || "Unhandled page error");
   });
 })();

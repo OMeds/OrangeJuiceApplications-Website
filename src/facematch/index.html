@@ -23,12 +23,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=5">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=2">
+  <link rel="stylesheet" href="/assets/style.css?v=6">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=3">
+  <script src="/assets/site-config.js" defer></script>
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=2" defer></script>
+  <script src="/assets/oja-interactive.js?v=3" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <canvas id="oja-canvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
   <div class="oja-page-wrap">
@@ -50,14 +52,14 @@
     </button>
     <div class="nav-links" id="fm-nav" data-nav-panel>
       <a href="/">Home</a>
+      <a href="/work/">Work</a>
       <a href="/ycda/">YCDA</a>
-      <a href="/facematch/">FaceMatch</a>
+      <a href="/updates/">Updates</a>
       <a href="/start-a-project/">Start a project</a>
+      <a href="/contact/">Contact</a>
       <a href="/legal/">Legal</a>
       <a href="#preview">Preview</a>
-      <a href="#paths">Two paths</a>
       <a href="/contact-profile-picture-sync/guides/">Guides</a>
-      <a href="/contact-profile-picture-sync/support/">Support</a>
     </div>
   </nav>
 
@@ -78,10 +80,13 @@
         <img class="app-icon-img" src="/assets/app-icon.png" width="88" height="88" alt="FaceMatch app icon">
         <h2>FaceMatch</h2>
         <p>For iPhone and iPad</p>
-        <p class="store-dev" aria-label="Coming soon to the App Store">
-          <span class="store-dev-dot" aria-hidden="true"></span>
-          Coming soon to the App Store
-        </p>
+        <div class="app-store-block" data-app-store="facematch">
+          <a class="app-store-badge is-hidden" data-app-store-link href="#" rel="noopener" hidden aria-label="Download FaceMatch on the App Store">Download on the App Store</a>
+          <p class="store-dev" data-app-store-soon aria-label="Coming soon to the App Store">
+            <span class="store-dev-dot" aria-hidden="true"></span>
+            Coming soon to the App Store
+          </p>
+        </div>
       </div>
 
       <div class="dev-progress-wrap" style="max-width: 20rem; margin: 0 auto 1.5rem; text-align: left;" data-reveal>
@@ -105,7 +110,7 @@
     <a href="#guides">Guides</a>
   </nav>
 
-  <main>
+  <main id="main-content">
     <section class="section-wide" id="preview">
       <div class="section-head" data-reveal>
         <h2>What we're building</h2>
@@ -293,20 +298,22 @@
     <p class="footer-legal-row">
       <a href="/legal/">Legal hub</a>
       &middot;
-      <a href="/contact-profile-picture-sync/privacy/">Privacy</a>
+      <a href="/contact-profile-picture-sync/privacy/">FaceMatch privacy</a>
+      &middot;
+      <a href="/company/privacy/">Website privacy</a>
       &middot;
       <a href="/contact-profile-picture-sync/terms/">Terms</a>
       &middot;
       <a href="/contact-profile-picture-sync/subscription-terms/">Pricing</a>
-      &middot;
-      <a href="/contact-profile-picture-sync/data-retention/">Data retention</a>
-      &middot;
-      <a href="/contact-profile-picture-sync/acceptable-use/">Acceptable use</a>
     </p>
     <p>
       <a href="/">Home</a>
       &middot;
+      <a href="/work/">Work</a>
+      &middot;
       <a href="/ycda/">YCDA</a>
+      &middot;
+      <a href="/contact/">Contact</a>
       &middot;
       <a href="/contact-profile-picture-sync/guides/">Guides</a>
       &middot;

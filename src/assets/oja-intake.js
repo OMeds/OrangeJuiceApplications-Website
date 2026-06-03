@@ -1,14 +1,27 @@
 /**
- * Start a project — multi-step lead intake (mailto, no server storage).
+ * Start a project — multi-step lead intake (Formspree when configured, else mailto).
  */
 (function () {
   "use strict";
 
-  var EMAIL = "support@orangejuiceapplications.com";
   var form = null;
   var steps = [];
   var progressFill = null;
   var current = 0;
+
+  function config() {
+    return window.OJA_SITE_CONFIG || {};
+  }
+
+  function supportEmail() {
+    return config().supportEmail || "support@orangejuiceapplications.com";
+  }
+
+  function formspreeEndpoint() {
+    var id = (config().formspreeIntakeId || "").trim();
+    if (!id) return "";
+    return "https://formspree.io/f/" + encodeURIComponent(id);
+  }
 
   function onReady(fn) {
     if (document.readyState === "loading") {
@@ -124,56 +137,106 @@
     if (box) box.hidden = true;
   }
 
+  function buildPayload() {
+    return {
+      project_type: fieldValue("project_type"),
+      technical_level: fieldValue("technical_level"),
+      github_url: sanitize(fieldValue("github_url"), 200),
+      languages: selectedValues("languages").join(", ") || "Not specified",
+      platforms: selectedValues("platforms").join(", ") || "Not specified",
+      timeline: fieldValue("timeline"),
+      budget: fieldValue("budget"),
+      project_summary: sanitizeMultiline(fieldValue("project_summary"), 2000),
+      contact_name: sanitize(fieldValue("contact_name"), 80),
+      contact_company: sanitize(fieldValue("contact_company"), 120),
+      contact_email: sanitize(fieldValue("contact_email"), 120),
+      contact_phone: sanitize(fieldValue("contact_phone"), 40),
+      page: window.location.href,
+      _subject:
+        "Project inquiry - " +
+        (fieldValue("project_type") || "General") +
+        (sanitize(fieldValue("contact_name"), 80)
+          ? " - " + sanitize(fieldValue("contact_name"), 80)
+          : ""),
+    };
+  }
+
   function buildMailto() {
-    var projectType = fieldValue("project_type");
-    var technical = fieldValue("technical_level");
-    var name = sanitize(fieldValue("contact_name"), 80);
-    var company = sanitize(fieldValue("contact_company"), 120);
-    var email = sanitize(fieldValue("contact_email"), 120);
-    var phone = sanitize(fieldValue("contact_phone"), 40);
-    var github = sanitize(fieldValue("github_url"), 200);
-    var languages = selectedValues("languages").join(", ") || "Not specified";
-    var platforms = selectedValues("platforms").join(", ") || "Not specified";
-    var timeline = fieldValue("timeline");
-    var budget = fieldValue("budget");
-    var summary = sanitizeMultiline(fieldValue("project_summary"), 2000);
-
-    var subject =
-      "Project inquiry - " +
-      (projectType || "General") +
-      (name ? " - " + name : "");
-
+    var p = buildPayload();
     var body = [
       "Orange Juice Applications — project intake",
       "",
-      "Project type: " + projectType,
-      "Technical level: " + technical,
+      "Project type: " + p.project_type,
+      "Technical level: " + p.technical_level,
       "",
-      "GitHub / repo: " + (github || "None provided"),
-      "Languages / stack: " + languages,
-      "Platforms: " + platforms,
-      "Timeline: " + timeline,
-      "Budget band: " + budget,
+      "GitHub / repo: " + (p.github_url || "None provided"),
+      "Languages / stack: " + p.languages,
+      "Platforms: " + p.platforms,
+      "Timeline: " + p.timeline,
+      "Budget band: " + p.budget,
       "",
       "Summary:",
-      summary || "(none)",
+      p.project_summary || "(none)",
       "",
       "---",
-      "Contact: " + name,
-      "Company: " + (company || "—"),
-      "Email: " + email,
-      "Phone: " + (phone || "—"),
-      "Page: " + window.location.href,
+      "Contact: " + p.contact_name,
+      "Company: " + (p.contact_company || "—"),
+      "Email: " + p.contact_email,
+      "Phone: " + (p.contact_phone || "—"),
+      "Page: " + p.page,
     ].join("\n");
 
     return (
       "mailto:" +
-      EMAIL +
+      supportEmail() +
       "?subject=" +
-      encodeURIComponent(subject) +
+      encodeURIComponent(p._subject) +
       "&body=" +
       encodeURIComponent(body)
     );
+  }
+
+  function showSuccess() {
+    var panel = qs(".intake-panel");
+    if (!panel) return;
+    panel.innerHTML =
+      '<div class="intake-success card" role="status">' +
+      "<h2>Thank you</h2>" +
+      "<p>Your inquiry was sent. We typically reply within <strong>two business days</strong>.</p>" +
+      '<p><a class="btn btn-secondary" href="/contact/">Contact page</a> ' +
+      '<a class="btn btn-primary" href="/">Home</a></p>' +
+      "</div>";
+  }
+
+  function submitFormspree() {
+    var endpoint = formspreeEndpoint();
+    var submitBtn = qs("[data-intake-submit]");
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+    }
+    return fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(buildPayload()),
+    })
+      .then(function (res) {
+        if (!res.ok) throw new Error("Form submission failed");
+        showSuccess();
+      })
+      .catch(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send inquiry";
+        }
+        showError(
+          "Could not send online. We opened your mail app as a fallback — please send the message."
+        );
+        window.location.href = buildMailto();
+      });
   }
 
   function toggleTechnicalFields() {
@@ -184,6 +247,22 @@
     var showTech = level === "existing_repo" || level === "existing_team";
     repoBlock.hidden = !showTech;
     if (langBlock) langBlock.hidden = level === "non_technical";
+  }
+
+  function updateSubmitLabel() {
+    var submit = qs("[data-intake-submit]");
+    var footnote = qs("[data-intake-footnote]");
+    var online = !!formspreeEndpoint();
+    if (submit) {
+      submit.textContent = online ? "Send inquiry" : "Send inquiry via email";
+    }
+    if (footnote) {
+      footnote.innerHTML = online
+        ? "Submitting sends your answers securely to our inbox. We never sell your details. See our <a href=\"/company/privacy/\">website privacy policy</a>."
+        : "Submitting opens your mail app with a pre-filled message to <strong>" +
+          supportEmail() +
+          "</strong>. Configure Formspree in <code>site-config.js</code> for one-click submit.";
+    }
   }
 
   function init() {
@@ -198,6 +277,7 @@
       radio.addEventListener("change", toggleTechnicalFields);
     });
     toggleTechnicalFields();
+    updateSubmitLabel();
 
     var nextBtn = qs("[data-intake-next]");
     var backBtn = qs("[data-intake-back]");
@@ -222,7 +302,11 @@
         showError("Please enter a valid email address.");
         return;
       }
-      window.location.href = buildMailto();
+      if (formspreeEndpoint()) {
+        submitFormspree();
+      } else {
+        window.location.href = buildMailto();
+      }
     });
 
     showStep(0);

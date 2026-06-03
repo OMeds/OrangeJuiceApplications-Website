@@ -14,6 +14,7 @@ python3 "$ROOT/scripts/process_app_icon.py"
 
 rm -rf "$OUT"
 mkdir -p "$OUT/assets" "$OUT/facematch" "$OUT/ycda" "$OUT/start-a-project" "$OUT/legal" \
+  "$OUT/about" "$OUT/work" "$OUT/contact" "$OUT/updates" "$OUT/company/privacy" \
   "$OUT/contact-profile-picture-sync/privacy" \
   "$OUT/contact-profile-picture-sync/terms" \
   "$OUT/contact-profile-picture-sync/support" \
@@ -52,20 +53,27 @@ python3 "$ROOT/scripts/render_legal_html.py" \
   "Acceptable Use Policy for FaceMatch." \
   "FaceMatch Acceptable Use Policy" "/contact-profile-picture-sync/acceptable-use/"
 
+python3 "$ROOT/scripts/render_legal_html.py" \
+  "$LEGAL/company-privacy-policy.md" "$OUT/company/privacy/index.html" \
+  "Privacy policy for orangejuiceapplications.com and marketing forms." \
+  "Website Privacy Policy" "/company/privacy/"
+
 python3 "$ROOT/scripts/render_legal_hub.py" "$OUT"
+python3 "$ROOT/scripts/render_company_pages.py" "$OUT"
 python3 "$ROOT/scripts/render_static_pages.py" "$OUT"
 GUIDES_DIR="$GUIDES" python3 "$ROOT/scripts/render_guides.py" "$OUT"
 python3 "$ROOT/scripts/render_feedback_page.py" "$OUT"
 python3 "$ROOT/scripts/render_error_pages.py" "$OUT"
+python3 "$ROOT/scripts/render_sitemap.py" "$OUT"
 
 cp "$SRC/index.html" "$OUT/index.html"
 cp "$SRC/facematch/index.html" "$OUT/facematch/index.html"
 cp "$SRC/ycda/index.html" "$OUT/ycda/index.html"
 cp "$SRC/start-a-project/index.html" "$OUT/start-a-project/index.html"
-cp "$SRC/sitemap.xml" "$OUT/sitemap.xml"
 cp "$SRC/assets/style.css" "$OUT/assets/style.css"
 cp "$SRC/assets/oja-premium.css" "$OUT/assets/oja-premium.css"
 cp "$SRC/assets/site.js" "$OUT/assets/site.js"
+cp "$SRC/assets/site-config.js" "$OUT/assets/site-config.js"
 cp "$SRC/assets/oja-interactive.js" "$OUT/assets/oja-interactive.js"
 cp "$SRC/assets/oja-intake.js" "$OUT/assets/oja-intake.js"
 cp "$SRC/assets/ycda-launch.js" "$OUT/assets/ycda-launch.js"
@@ -77,6 +85,7 @@ for asset in company-logo.png company-logo-header.png company-logo.svg company-l
 done
 cp "$SRC/.htaccess" "$OUT/.htaccess"
 cp "$SRC/robots.txt" "$OUT/robots.txt"
+cp "$SRC/humans.txt" "$OUT/humans.txt"
 mkdir -p "$OUT/.well-known"
 cp "$SRC/.well-known/security.txt" "$OUT/.well-known/security.txt"
 cp "$SRC/README-UPLOAD.txt" "$OUT/README-UPLOAD.txt"

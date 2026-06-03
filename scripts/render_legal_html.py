@@ -130,9 +130,10 @@ def wrap(title: str, page_title: str, body: str, path: str) -> str:
   {head(page_title, title, path)}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
   {NAV}
-  <main class="legal-page">
+  <main id="main-content" class="legal-page">
     <article class="legal-content">
       {nav_home}{body}
     </article>

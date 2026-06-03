@@ -19,6 +19,14 @@ DOCUMENTS = [
     ("Support Information", "How to get help, contact details, and useful links.", "/contact-profile-picture-sync/support/"),
 ]
 
+COMPANY = [
+    ("Website Privacy Policy", "How we handle project inquiries, analytics, and this marketing site.", "/company/privacy/"),
+]
+
+YCDA = [
+    ("You Can Dance Academy (studio site)", "Member privacy, class policies, and bookings live on the studio website.", "https://youcandanceacademy.co.uk"),
+]
+
 RELATED = [
     ("Security & privacy summary", "Plain-language overview — on-device processing and sign-in.", "/contact-profile-picture-sync/security/"),
     ("FAQ", "Quick answers on privacy, matching, billing, and feedback.", "/contact-profile-picture-sync/faq/"),
@@ -28,8 +36,9 @@ RELATED = [
 ]
 
 
-def card(title: str, desc: str, href: str) -> str:
-    return f"""<a class="legal-hub-card" href="{href}">
+def card(title: str, desc: str, href: str, external: bool = False) -> str:
+    rel = ' rel="noopener"' if external else ""
+    return f"""<a class="legal-hub-card" href="{href}"{rel}>
   <h2>{title}</h2>
   <p>{desc}</p>
   <span class="legal-hub-cta">Read document →</span>
@@ -45,15 +54,28 @@ def main() -> None:
     legal_dir.mkdir(parents=True, exist_ok=True)
 
     docs_html = "\n".join(card(t, d, h) for t, d, h in DOCUMENTS)
+    company_html = "\n".join(card(t, d, h) for t, d, h in COMPANY)
+    ycda_html = "\n".join(card(t, d, h, True) for t, d, h in YCDA)
     related_html = "\n".join(card(t, d, h) for t, d, h in RELATED)
 
     body = f"""
 <h1>Legal &amp; policies</h1>
 <p class="guide-intro">Published legal documents for <strong>FaceMatch</strong> by Orange Juice Applications (effective version <strong>3.3</strong>, May 2026). These match the in-app <strong>Settings → Help &amp; Legal</strong> documents and App Store disclosure URLs.</p>
 
-<h2>Legal documents</h2>
+<h2>FaceMatch legal documents</h2>
 <div class="legal-hub-grid">
 {docs_html}
+</div>
+
+<h2>Orange Juice Applications (this website)</h2>
+<div class="legal-hub-grid legal-hub-grid-compact">
+{company_html}
+</div>
+
+<h2>You Can Dance Academy (members)</h2>
+<p class="guide-intro">Class bookings, member accounts, and studio policies are governed by <strong>youcandanceacademy.co.uk</strong>, not the FaceMatch legal pack below.</p>
+<div class="legal-hub-grid legal-hub-grid-compact">
+{ycda_html}
 </div>
 
 <h2>Related help &amp; disclosures</h2>
@@ -65,14 +87,15 @@ def main() -> None:
 <ul>
   <li><strong>Support:</strong> <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a></li>
   <li><strong>Privacy &amp; data rights:</strong> <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a></li>
+  <li><strong>Contact page:</strong> <a href="/contact/">/contact/</a></li>
 </ul>
 <p class="guide-footer-links">These documents are not legal advice. For questions about a custom app project, see <a href="/start-a-project/">Start a project</a>.</p>
 """
 
     legal_dir.joinpath("index.html").write_text(
         wrap_page(
-            "Legal & policies — FaceMatch · Orange Juice Applications",
-            "Privacy Policy, Terms of Use, data retention, acceptable use, support, FAQ, and security for FaceMatch.",
+            "Legal & policies — Orange Juice Applications",
+            "Privacy Policy, Terms of Use, website privacy, YCDA studio policies, FAQ, and security for FaceMatch.",
             body,
             "/legal/",
         ),

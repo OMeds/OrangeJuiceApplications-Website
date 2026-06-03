@@ -1,0 +1,13 @@
+/* TEAM */
+Studio: Orange Juice Applications
+Site: https://www.orangejuiceapplications.com
+Contact: support@orangejuiceapplications.com
+
+/* THANKS */
+You Can Dance Academy — product partner & anchor studio
+Apple — SwiftUI, Contacts, on-device Vision
+
+/* SITE */
+Built: Static HTML, CSS, Python build scripts
+Repo: https://github.com/OMeds/OrangeJuiceApplications-Website
+Last update: 2026-06-03
