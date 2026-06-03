@@ -301,10 +301,166 @@
     obs.observe(bar.parentElement || bar);
   }
 
+  /* --- Ambient particle canvas --- */
+  function initCanvas() {
+    var canvas = qs("#oja-canvas");
+    if (!canvas || prefersReducedMotion) return;
+
+    var ctx = canvas.getContext("2d");
+    var particles = [];
+    var count = Math.min(48, Math.floor(window.innerWidth / 28));
+    var mouse = { x: 0, y: 0, on: false };
+
+    function resize() {
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+
+    for (var i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: 1 + Math.random() * 2,
+      });
+    }
+
+    window.addEventListener(
+      "pointermove",
+      function (e) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.on = true;
+        document.documentElement.classList.add("has-pointer");
+      },
+      { passive: true }
+    );
+
+    function frame() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      particles.forEach(function (p) {
+        if (mouse.on) {
+          var dx = mouse.x - p.x;
+          var dy = mouse.y - p.y;
+          var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          if (dist < 140) {
+            p.vx -= (dx / dist) * 0.02;
+            p.vy -= (dy / dist) * 0.02;
+          }
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > window.innerWidth) p.vx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(232, 93, 4, 0.35)";
+        ctx.fill();
+      });
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var a = particles[i];
+          var b = particles[j];
+          var d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 120) {
+            ctx.strokeStyle = "rgba(232, 93, 4, " + (0.12 * (1 - d / 120)) + ")";
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+    requestAnimationFrame(frame);
+  }
+
+  /* --- Cursor glow follows pointer --- */
+  function initCursorGlow() {
+    if (prefersReducedMotion || !document.documentElement.classList.contains("oja-site")) return;
+    var glow = document.createElement("div");
+    glow.className = "oja-cursor-glow";
+    glow.setAttribute("aria-hidden", "true");
+    document.body.appendChild(glow);
+    window.addEventListener(
+      "pointermove",
+      function (e) {
+        glow.style.left = e.clientX + "px";
+        glow.style.top = e.clientY + "px";
+      },
+      { passive: true }
+    );
+  }
+
+  /* --- Magnetic buttons --- */
+  function initMagnetic() {
+    if (prefersReducedMotion) return;
+    qsa("[data-magnetic]").forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = "translate(" + x * 0.18 + "px," + y * 0.18 + "px)";
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.transform = "";
+      });
+    });
+  }
+
+  /* --- Chip switcher (hub) --- */
+  function initChips() {
+    var root = qs("[data-chip-group]");
+    if (!root) return;
+    var chips = qsa("[data-chip]", root);
+    var panels = qsa("[data-chip-panel]");
+    function activate(id) {
+      chips.forEach(function (c) {
+        c.classList.toggle("is-active", c.getAttribute("data-chip") === id);
+      });
+      panels.forEach(function (p) {
+        p.classList.toggle("is-active", p.getAttribute("data-chip-panel") === id);
+      });
+    }
+    chips.forEach(function (c) {
+      c.addEventListener("click", function () {
+        activate(c.getAttribute("data-chip"));
+      });
+    });
+    if (chips[0]) activate(chips[0].getAttribute("data-chip"));
+  }
+
+  function initNavScroll() {
+    var nav = qs(".site-nav.is-enhanced");
+    if (!nav) return;
+    function onScroll() {
+      nav.classList.toggle("is-scrolled", window.scrollY > 24);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+
+  function revealFallback() {
+    window.setTimeout(function () {
+      qsa("[data-reveal]:not(.is-visible)").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }, 1200);
+  }
+
   onReady(function () {
     initNav();
     initScrollProgress();
     initReveal();
+    revealFallback();
     initCounters();
     initTabs();
     initAccordion();
@@ -312,5 +468,10 @@
     initHeroGlow();
     initTilt();
     initDevProgress();
+    initCanvas();
+    initCursorGlow();
+    initMagnetic();
+    initChips();
+    initNavScroll();
   });
 })();

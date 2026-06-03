@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="oja-site">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,12 +19,19 @@
   <meta name="twitter:title" content="FaceMatch — In development">
   <meta name="twitter:description" content="Privacy-first contact photos for iPhone and iPad. Guides are live; App Store listing coming soon.">
   <meta name="twitter:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
-  <link rel="stylesheet" href="/assets/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=1">
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js" defer></script>
+  <script src="/assets/oja-interactive.js?v=2" defer></script>
 </head>
 <body>
+  <canvas id="oja-canvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="oja-page-wrap">
 
   <div class="site-banner site-banner-warning" role="status">
     FaceMatch is in active development — not yet on the App Store. Guides and legal pages are published for testers.
@@ -270,6 +277,7 @@
       </div>
     </section>
   </main>
+  </div>
 
   <footer class="site-footer">
     <p>&copy; Orange Juice Applications. FaceMatch is in development.</p>

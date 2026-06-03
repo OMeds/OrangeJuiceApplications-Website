@@ -1,0 +1,389 @@
+/* Premium interactive layer — Orange Juice Applications */
+:root {
+  --oja-font-display: "Outfit", system-ui, sans-serif;
+  --oja-font-body: "DM Sans", system-ui, sans-serif;
+  --oja-bg-deep: #0a0a0c;
+  --oja-bg-warm: #f6f3ef;
+  --oja-surface: rgba(255, 255, 255, 0.72);
+  --oja-glass-border: rgba(255, 255, 255, 0.45);
+  --oja-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.12);
+  --oja-shadow-glow: 0 0 80px rgba(232, 93, 4, 0.25);
+}
+
+html.oja-site {
+  scroll-behavior: smooth;
+}
+
+html.oja-site body {
+  font-family: var(--oja-font-body);
+  background: var(--oja-bg-warm);
+  overflow-x: hidden;
+}
+
+html.oja-site h1,
+html.oja-site h2,
+html.oja-site h3,
+html.oja-site .hero-badge {
+  font-family: var(--oja-font-display);
+}
+
+/* Ambient canvas + cursor */
+#oja-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.oja-cursor-glow {
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  margin: -160px 0 0 -160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 93, 4, 0.18), transparent 68%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: multiply;
+}
+
+html.oja-site.has-pointer .oja-cursor-glow {
+  opacity: 1;
+}
+
+.oja-page-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+/* Nav glass */
+html.oja-site .site-nav.is-enhanced {
+  background: rgba(246, 243, 239, 0.82);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+html.oja-site .site-nav.is-scrolled {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+/* Hero cinematic */
+html.oja-site .page-hero {
+  min-height: min(92vh, 52rem);
+  display: flex;
+  align-items: center;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
+}
+
+html.oja-site .page-hero::before {
+  background:
+    radial-gradient(ellipse 90% 70% at 50% -20%, rgba(232, 93, 4, 0.22), transparent 55%),
+    radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 40%), rgba(232, 93, 4, 0.2), transparent 42%),
+    linear-gradient(165deg, #fff9f4 0%, var(--oja-bg-warm) 45%, #ebe6df 100%);
+}
+
+html.oja-site .page-hero h1 {
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 55%, var(--orange-dark) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.oja-site .hero-badge {
+  font-family: var(--oja-font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+/* Magnetic buttons */
+html.oja-site .btn {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
+html.oja-site .btn-primary {
+  box-shadow: 0 8px 28px rgba(232, 93, 4, 0.35);
+}
+
+html.oja-site .btn[data-magnetic]:hover {
+  box-shadow: 0 12px 36px rgba(232, 93, 4, 0.4);
+}
+
+/* Marquee */
+.oja-marquee {
+  overflow: hidden;
+  border-block: 1px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(90deg, #fff 0%, #fff9f4 50%, #fff 100%);
+  padding: 1rem 0;
+}
+
+.oja-marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: oja-marquee 28s linear infinite;
+}
+
+.oja-marquee:hover .oja-marquee-track {
+  animation-play-state: paused;
+}
+
+.oja-marquee-item {
+  font-family: var(--oja-font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--muted);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.oja-marquee-item::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+@keyframes oja-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Bento showcase */
+.oja-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.25rem;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.oja-bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--radius) + 8px);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--oja-surface);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--oja-shadow-lg);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.25s ease;
+}
+
+.oja-bento-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.5) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.oja-bento-card:hover {
+  text-decoration: none;
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--oja-shadow-lg), var(--oja-shadow-glow);
+  border-color: rgba(232, 93, 4, 0.25);
+}
+
+.oja-bento-card:hover::after {
+  opacity: 1;
+}
+
+.oja-bento-ycda {
+  grid-column: span 7;
+  min-height: 20rem;
+  background: linear-gradient(145deg, rgba(240, 247, 252, 0.95), rgba(255, 255, 255, 0.9));
+}
+
+.oja-bento-fm {
+  grid-column: span 5;
+  min-height: 20rem;
+  background: linear-gradient(145deg, rgba(255, 247, 240, 0.95), rgba(255, 255, 255, 0.9));
+}
+
+.oja-bento-stat {
+  grid-column: span 4;
+  min-height: 9rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.oja-bento-stat .stat-value {
+  font-family: var(--oja-font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--orange-dark);
+}
+
+@media (max-width: 900px) {
+  .oja-bento-ycda,
+  .oja-bento-fm,
+  .oja-bento-stat {
+    grid-column: span 12;
+  }
+}
+
+/* Dark interlude section */
+.oja-dark-band {
+  background: var(--oja-bg-deep);
+  color: #f2f2f2;
+  padding: clamp(3rem, 8vw, 6rem) 1.25rem;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.oja-dark-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(232, 93, 4, 0.15), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(97, 164, 184, 0.12), transparent 40%);
+  pointer-events: none;
+}
+
+.oja-dark-band .section-head h2,
+.oja-dark-band h3 {
+  color: #fff;
+}
+
+.oja-dark-band .section-head p,
+.oja-dark-band p {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.oja-dark-band .dev-banner {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.oja-dark-band .dev-progress-track {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Interactive chips */
+.oja-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.5rem 0 0;
+}
+
+.oja-chip {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.oja-chip.is-active,
+.oja-chip:hover {
+  background: var(--orange);
+  color: #fff;
+  border-color: var(--orange);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 93, 4, 0.35);
+}
+
+.oja-chip-panel {
+  display: none;
+  max-width: 40rem;
+  margin: 1.25rem auto 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  animation: tab-in 0.4s ease;
+}
+
+.oja-chip-panel.is-active {
+  display: block;
+}
+
+/* Scroll progress enhanced */
+html.oja-site .scroll-progress {
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange), #f48c06, var(--ycda-teal));
+  box-shadow: 0 0 12px rgba(232, 93, 4, 0.5);
+}
+
+/* Cards polish */
+html.oja-site .showcase-card,
+html.oja-site .feature-tile,
+html.oja-site .card {
+  backdrop-filter: blur(8px);
+}
+
+html.oja-site .feature-tile {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+html.oja-site .feature-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--oja-shadow-lg);
+}
+
+/* Footer */
+html.oja-site .site-footer {
+  background: var(--oja-bg-deep);
+  color: rgba(255, 255, 255, 0.65);
+  border-top: none;
+  padding: 2.5rem 1.25rem;
+}
+
+html.oja-site .site-footer a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+html.oja-site .site-footer a:hover {
+  color: #f48c06;
+}
+
+/* Page load fade */
+html.oja-site body {
+  animation: oja-page-in 0.7s ease;
+}
+
+@keyframes oja-page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oja-marquee-track { animation: none; }
+  .oja-cursor-glow { display: none; }
+  #oja-canvas { display: none; }
+  html.oja-site body { animation: none; }
+}

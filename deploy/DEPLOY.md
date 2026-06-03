@@ -40,7 +40,18 @@ Upload everything **inside** `dist/` to your web root (`htdocs` on Fasthosts), n
 **Local directory:** `<repo>/dist`  
 **Remote directory:** `/htdocs` (or your document root)
 
-## 3. Upload workflow
+## 3. Upload from terminal (optional)
+
+If you prefer not to use the FileZilla GUI, fill in `deploy/.deploy-credentials.env` and run:
+
+```bash
+./scripts/build.sh
+python3 deploy/upload-ftp.py
+```
+
+Credentials stay in the gitignored env file — do not commit them.
+
+## 4. Upload workflow (FileZilla)
 
 1. Connect via FileZilla.
 2. Left pane: local `dist/`.
@@ -49,7 +60,7 @@ Upload everything **inside** `dist/` to your web root (`htdocs` on Fasthosts), n
 5. Confirm `index.html`, `.htaccess`, `assets/`, `facematch/`, `ycda/`, `contact-profile-picture-sync/` exist on the server.
 6. Test: `https://www.orangejuiceapplications.com/`
 
-## 4. Merge into existing FileZilla Site Manager (macOS)
+## 5. Merge into existing FileZilla Site Manager (macOS)
 
 FileZilla stores sites at:
 
@@ -57,7 +68,10 @@ FileZilla stores sites at:
 
 Back up that file, then either import `deploy/filezilla-sitemanager.xml` or copy the `<Server>` block from the generated XML into your existing `<Servers>` section.
 
-## Security
+## 6. Security
 
 - Never commit `deploy/.deploy-credentials.env` or `deploy/filezilla-sitemanager.xml` (both are gitignored).
 - Use SFTP if Fasthosts provides it.
+
+
+FTP Server-  

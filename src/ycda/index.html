@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="page-ycda">
+<html lang="en" class="oja-site page-ycda">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,14 +16,20 @@
   <meta property="og:description" content="Weekly inclusive classes, member portal, and parent app — built by Orange Juice Applications.">
   <meta property="og:url" content="https://www.orangejuiceapplications.com/ycda/">
   <meta property="og:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
-  <link rel="stylesheet" href="/assets/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=1">
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js" defer></script>
+  <script src="/assets/oja-interactive.js?v=2" defer></script>
   <script src="/assets/ycda-launch.js" defer></script>
 </head>
 <body>
+  <canvas id="oja-canvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
-
+  <div class="oja-page-wrap">
   <nav class="site-nav is-enhanced">
     <a class="brand" href="/">
       <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
@@ -59,8 +65,8 @@
         The full experience lives at <strong>youcandanceacademy.co.uk</strong>, built and maintained by Orange Juice Applications.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary btn-ycda" id="ycda-open" href="https://youcandanceacademy.co.uk" rel="noopener">Open youcandanceacademy.co.uk</a>
-        <a class="btn btn-secondary" href="#classes">Browse classes here</a>
+        <a class="btn btn-primary btn-ycda" id="ycda-open" href="https://youcandanceacademy.co.uk" rel="noopener" data-magnetic>Open youcandanceacademy.co.uk</a>
+        <a class="btn btn-secondary" href="#classes" data-magnetic>Browse classes here</a>
       </div>
       <p class="ycda-url-note" id="ycda-url-display" hidden></p>
     </div>
@@ -315,6 +321,7 @@
       </div>
     </section>
   </main>
+  </div>
 
   <footer class="site-footer">
     <p>&copy; You Can Dance Academy. Website experience by <a href="https://www.orangejuiceapplications.com/">Orange Juice Applications</a>.</p>

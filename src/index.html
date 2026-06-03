@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="oja-site">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,165 +15,216 @@
   <meta property="og:description" content="Studio software for You Can Dance Academy and FaceMatch for Apple Contacts — built with care.">
   <meta property="og:url" content="https://www.orangejuiceapplications.com/">
   <meta property="og:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
-  <link rel="stylesheet" href="/assets/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/style.css?v=4">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=1">
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js" defer></script>
+  <script src="/assets/oja-interactive.js?v=2" defer></script>
 </head>
 <body>
+  <canvas id="oja-canvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
-  <nav class="site-nav is-enhanced">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
-      <span class="brand-name">Orange Juice Applications</span>
-    </a>
-    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="main-nav">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="visually-hidden">Menu</span>
-    </button>
-    <div class="nav-links" id="main-nav" data-nav-panel>
-      <a href="#projects">Projects</a>
-      <a href="/ycda/">You Can Dance Academy</a>
-      <a href="/facematch/">FaceMatch</a>
-      <a href="https://youcandanceacademy.co.uk" rel="noopener">Live studio site</a>
-      <a href="mailto:support@orangejuiceapplications.com">Contact</a>
-    </div>
-  </nav>
-
-  <header class="page-hero" data-hero-glow>
-    <div class="hero-orbs" aria-hidden="true">
-      <span class="hero-orb hero-orb-1"></span>
-      <span class="hero-orb hero-orb-2"></span>
-      <span class="hero-orb hero-orb-3"></span>
-    </div>
-    <div class="hero-inner">
-      <span class="hero-badge badge-pulse">Software with a human pulse</span>
-      <h1>We build apps that feel personal</h1>
-      <p class="tagline">
-        From inclusive dance classes in Blaby to privacy-first contact photos on iPhone and iPad —
-        Orange Juice Applications ships focused products, not bloated platforms.
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://youcandanceacademy.co.uk" rel="noopener">Visit You Can Dance Academy</a>
-        <a class="btn btn-secondary" href="/facematch/">Explore FaceMatch (in dev)</a>
+  <div class="oja-page-wrap">
+    <nav class="site-nav is-enhanced">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
+        <span class="brand-name">Orange Juice Applications</span>
+      </a>
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <div class="nav-links" id="main-nav" data-nav-panel>
+        <a href="#projects">Projects</a>
+        <a href="/ycda/">You Can Dance Academy</a>
+        <a href="/facematch/">FaceMatch</a>
+        <a href="https://youcandanceacademy.co.uk" rel="noopener">Live studio site</a>
+        <a href="mailto:support@orangejuiceapplications.com">Contact</a>
       </div>
-      <div class="stats-row" data-reveal>
-        <div class="stat-item">
-          <span class="stat-value" data-count-to="5" data-count-suffix="">5</span>
-          <span class="stat-label">Weekly class styles</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" data-count-to="2" data-count-suffix="">2</span>
-          <span class="stat-label">Active product lines</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-value" data-count-to="100" data-count-suffix="%">100%</span>
-          <span class="stat-label">On-device FaceMatch matching</span>
-        </div>
+    </nav>
+
+    <header class="page-hero" data-hero-glow>
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="hero-orb hero-orb-1"></span>
+        <span class="hero-orb hero-orb-2"></span>
+        <span class="hero-orb hero-orb-3"></span>
       </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="section-wide" id="projects">
-      <div class="section-head" data-reveal>
-        <h2>What we are building</h2>
-        <p>Our flagship studio experience is live at youcandanceacademy.co.uk. FaceMatch is the next chapter — still in active development.</p>
-      </div>
-
-      <div class="project-showcase" data-reveal>
-        <a class="card showcase-card showcase-card-ycda" href="/ycda/" data-tilt>
-          <span class="showcase-tag tag-live">Live · youcandanceacademy.co.uk</span>
-          <span class="project-icon-ycda" aria-hidden="true">YCDA</span>
-          <h2>You Can Dance Academy</h2>
-          <p>Inclusive dance for all ages — Spark, Ignite, Shine, Broadway Workout, and GLOW at Blaby &amp; District Social Centre.</p>
-          <ul class="showcase-features">
-            <li>Member portal — bookings, calendars, videos, billing</li>
-            <li>ClassManager tasters &amp; term-time scheduling</li>
-            <li>Parent app for reminders (coming to stores)</li>
-          </ul>
-          <span class="showcase-cta showcase-cta-ycda">Explore the YCDA hub →</span>
-        </a>
-
-        <a class="card showcase-card showcase-card-fm" href="/facematch/" data-tilt>
-          <span class="showcase-tag tag-dev">In development</span>
-          <img class="project-icon" src="/assets/app-icon.png" width="72" height="72" alt="">
-          <h2>FaceMatch</h2>
-          <p>Find the right profile photo for every contact — discovered from social sources, compared on your device, approved before apply.</p>
-          <ul class="showcase-features">
-            <li>Account sign-in or import from files</li>
-            <li>Review queue — nothing writes without you</li>
-            <li>Built for iPhone &amp; iPad · App Store soon</li>
-          </ul>
-          <span class="showcase-cta showcase-cta-fm">See the preview →</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="section-wide">
-      <div class="dev-banner" data-reveal>
-        <div>
-          <strong>FaceMatch</strong> is in active development — guides and legal pages are ready; the App Store listing is not live yet.
+      <div class="hero-inner">
+        <span class="hero-badge badge-pulse">Software with a human pulse</span>
+        <h1>We build apps that feel personal</h1>
+        <p class="tagline">
+          From inclusive dance classes in Blaby to privacy-first contact photos on iPhone and iPad —
+          Orange Juice Applications ships focused products, not bloated platforms.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://youcandanceacademy.co.uk" rel="noopener" data-magnetic>Visit You Can Dance Academy</a>
+          <a class="btn btn-secondary" href="/facematch/" data-magnetic>Explore FaceMatch (in dev)</a>
         </div>
-        <div class="dev-progress-wrap">
-          <p class="dev-progress-label">Build progress (preview)</p>
-          <div class="dev-progress-track">
-            <div class="dev-progress-bar" data-dev-progress="72%" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="FaceMatch development progress"></div>
+        <div class="stats-row" data-reveal>
+          <div class="stat-item">
+            <span class="stat-value" data-count-to="5">0</span>
+            <span class="stat-label">Weekly class styles</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" data-count-to="2">0</span>
+            <span class="stat-label">Active product lines</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" data-count-to="100" data-count-suffix="%">0</span>
+            <span class="stat-label">On-device FaceMatch matching</span>
           </div>
         </div>
-        <a class="btn btn-primary" href="/facematch/">FaceMatch preview</a>
       </div>
-    </section>
+    </header>
 
-    <section class="section-wide">
-      <div class="section-head" data-reveal>
-        <h2>Why Orange Juice?</h2>
-        <p>Small studio, clear boundaries — your dance family's data stays purposeful; your contacts stay on your device.</p>
+    <div class="oja-marquee" aria-hidden="true">
+      <div class="oja-marquee-track">
+        <span class="oja-marquee-item">You Can Dance Academy · Blaby</span>
+        <span class="oja-marquee-item">FaceMatch · In development</span>
+        <span class="oja-marquee-item">Privacy-first · On your device</span>
+        <span class="oja-marquee-item">Member portal · ClassManager</span>
+        <span class="oja-marquee-item">Spark · Ignite · Shine · GLOW</span>
+        <span class="oja-marquee-item">youcandanceacademy.co.uk</span>
+        <span class="oja-marquee-item">You Can Dance Academy · Blaby</span>
+        <span class="oja-marquee-item">FaceMatch · In development</span>
+        <span class="oja-marquee-item">Privacy-first · On your device</span>
+        <span class="oja-marquee-item">Member portal · ClassManager</span>
+        <span class="oja-marquee-item">Spark · Ignite · Shine · GLOW</span>
+        <span class="oja-marquee-item">youcandanceacademy.co.uk</span>
       </div>
-      <div class="feature-grid-3" data-reveal>
-        <div class="feature-tile">
-          <h3>Studio-first</h3>
-          <p>Schedules, tasters, SEND-friendly classes, and parent tools shaped around Abi &amp; Emma's real classes in Leicestershire.</p>
-        </div>
-        <div class="feature-tile">
-          <h3>Apple-native</h3>
-          <p>FaceMatch leans on on-device matching and Contacts — no cloud address book uploads.</p>
-        </div>
-        <div class="feature-tile">
-          <h3>Transparent support</h3>
-          <p>Reach us at support@orangejuiceapplications.com — guides, security summaries, and feedback flows are published early.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <section class="section-wide">
-      <div class="card company-card" data-reveal style="text-align: center;">
-        <img class="company-logo" src="/assets/company-logo.svg" width="320" height="77" alt="Orange Juice Applications">
-        <h2>Orange Juice Applications</h2>
-        <p>Independent software for dance education and personal productivity on Apple platforms.</p>
-        <p class="company-links">
-          <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
-          &middot;
-          <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
-        </p>
-      </div>
-    </section>
-  </main>
+    <main>
+      <section class="section-wide" id="projects">
+        <div class="section-head" data-reveal>
+          <h2>What we are building</h2>
+          <p>Our flagship studio experience is live at youcandanceacademy.co.uk. FaceMatch is the next chapter — still in active development.</p>
+        </div>
 
-  <footer class="site-footer">
-    <p>&copy; Orange Juice Applications. All rights reserved.</p>
-    <p>
-      <a href="https://youcandanceacademy.co.uk" rel="noopener">youcandanceacademy.co.uk</a>
-      &middot;
-      <a href="/ycda/">YCDA hub</a>
-      &middot;
-      <a href="/facematch/">FaceMatch</a>
-      &middot;
-      <a href="/contact-profile-picture-sync/guides/">FaceMatch guides</a>
-    </p>
-  </footer>
+        <div class="oja-bento" data-reveal>
+          <a class="oja-bento-card oja-bento-ycda" href="/ycda/" data-tilt>
+            <span class="showcase-tag tag-live">Live · youcandanceacademy.co.uk</span>
+            <span class="project-icon-ycda" aria-hidden="true">YCDA</span>
+            <h2>You Can Dance Academy</h2>
+            <p>Inclusive dance for all ages — Spark, Ignite, Shine, Broadway Workout, and GLOW at Blaby &amp; District Social Centre.</p>
+            <span class="showcase-cta showcase-cta-ycda">Explore the YCDA hub →</span>
+          </a>
+          <a class="oja-bento-card oja-bento-fm" href="/facematch/" data-tilt>
+            <span class="showcase-tag tag-dev">In development</span>
+            <img class="project-icon" src="/assets/app-icon.png" width="72" height="72" alt="">
+            <h2>FaceMatch</h2>
+            <p>Find the right profile photo for every contact — on-device, approved before apply.</p>
+            <span class="showcase-cta showcase-cta-fm">See the preview →</span>
+          </a>
+          <div class="oja-bento-card oja-bento-stat" data-tilt>
+            <span class="stat-value" data-count-to="100" data-count-suffix="%">0</span>
+            <p class="stat-label">On-device matching</p>
+          </div>
+          <div class="oja-bento-card oja-bento-stat" data-tilt>
+            <span class="stat-value" data-count-to="5">0</span>
+            <p class="stat-label">Weekly class styles</p>
+          </div>
+          <div class="oja-bento-card oja-bento-stat" data-tilt>
+            <span class="stat-value" data-count-to="2">0</span>
+            <p class="stat-label">Product lines</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="oja-dark-band">
+        <div class="section-wide">
+          <div class="section-head" data-reveal>
+            <h2>Explore our focus</h2>
+            <p>Tap a topic — each product has its own site, guides, and support paths.</p>
+          </div>
+          <div data-chip-group data-reveal>
+            <div class="oja-chips">
+              <button type="button" class="oja-chip is-active" data-chip="ycda">You Can Dance Academy</button>
+              <button type="button" class="oja-chip" data-chip="fm">FaceMatch</button>
+              <button type="button" class="oja-chip" data-chip="oja">Orange Juice</button>
+            </div>
+            <div class="oja-chip-panel is-active" data-chip-panel="ycda">
+              <p>Live at <strong>youcandanceacademy.co.uk</strong> — tasters, member portal, class schedules, and parent tools for Abi &amp; Emma's inclusive classes in Leicestershire.</p>
+              <p style="margin-top:1rem;"><a class="btn btn-primary btn-ycda" href="https://youcandanceacademy.co.uk" rel="noopener" data-magnetic>Open live site</a></p>
+            </div>
+            <div class="oja-chip-panel" data-chip-panel="fm">
+              <p><strong>FaceMatch</strong> is in active development for iPhone and iPad — social sign-in or file import, review queue, on-device Vision matching. Guides are live; App Store soon.</p>
+              <p style="margin-top:1rem;"><a class="btn btn-primary" href="/facematch/" data-magnetic>FaceMatch preview</a></p>
+            </div>
+            <div class="oja-chip-panel" data-chip-panel="oja">
+              <p>Independent studio software — clear privacy boundaries, Apple-native apps, and transparent support at support@orangejuiceapplications.com.</p>
+            </div>
+          </div>
+
+          <div class="dev-banner" data-reveal style="margin-top:2.5rem;">
+            <div>
+              <strong>FaceMatch</strong> build preview — guides and legal pages are ready; the App Store listing is not live yet.
+            </div>
+            <div class="dev-progress-wrap">
+              <p class="dev-progress-label">Development progress</p>
+              <div class="dev-progress-track">
+                <div class="dev-progress-bar" data-dev-progress="72%" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="/facematch/" data-magnetic>Preview FaceMatch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-wide">
+        <div class="section-head" data-reveal>
+          <h2>Why Orange Juice?</h2>
+          <p>Small studio, clear boundaries — your dance family's data stays purposeful; your contacts stay on your device.</p>
+        </div>
+        <div class="feature-grid-3" data-reveal>
+          <div class="feature-tile" data-tilt>
+            <h3>Studio-first</h3>
+            <p>Schedules, tasters, SEND-friendly classes, and parent tools shaped around real classes in Leicestershire.</p>
+          </div>
+          <div class="feature-tile" data-tilt>
+            <h3>Apple-native</h3>
+            <p>FaceMatch leans on on-device matching and Contacts — no cloud address book uploads.</p>
+          </div>
+          <div class="feature-tile" data-tilt>
+            <h3>Transparent support</h3>
+            <p>Guides, security summaries, and feedback flows published early — we're easy to reach.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-wide">
+        <div class="card company-card" data-reveal style="text-align: center;">
+          <img class="company-logo" src="/assets/company-logo.svg" width="320" height="77" alt="Orange Juice Applications">
+          <h2>Orange Juice Applications</h2>
+          <p>Independent software for dance education and personal productivity on Apple platforms.</p>
+          <p class="company-links">
+            <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
+            &middot;
+            <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; Orange Juice Applications. All rights reserved.</p>
+      <p>
+        <a href="https://youcandanceacademy.co.uk" rel="noopener">youcandanceacademy.co.uk</a>
+        &middot;
+        <a href="/ycda/">YCDA hub</a>
+        &middot;
+        <a href="/facematch/">FaceMatch</a>
+        &middot;
+        <a href="/contact-profile-picture-sync/guides/">FaceMatch guides</a>
+      </p>
+    </footer>
+  </div>
 
   <style>
     .visually-hidden {
