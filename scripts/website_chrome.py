@@ -46,6 +46,9 @@ NAV = """
     <span class="brand-name">Orange Juice Applications</span>
   </a>
   <div class="nav-links">
+    <a href="/ycda/">YCDA</a>
+    <a href="/facematch/">FaceMatch</a>
+    <a href="/start-a-project/">Start a project</a>
     <a href="/contact-profile-picture-sync/guides/">Guides</a>
     <a href="/contact-profile-picture-sync/feedback/">Feedback</a>
     <a href="/contact-profile-picture-sync/support/">Support</a>

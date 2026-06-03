@@ -13,7 +13,7 @@ python3 "$ROOT/scripts/process_brand_logo.py"
 python3 "$ROOT/scripts/process_app_icon.py"
 
 rm -rf "$OUT"
-mkdir -p "$OUT/assets" "$OUT/facematch" "$OUT/ycda" \
+mkdir -p "$OUT/assets" "$OUT/facematch" "$OUT/ycda" "$OUT/start-a-project" \
   "$OUT/contact-profile-picture-sync/privacy" \
   "$OUT/contact-profile-picture-sync/terms" \
   "$OUT/contact-profile-picture-sync/support" \
@@ -42,11 +42,13 @@ python3 "$ROOT/scripts/render_error_pages.py" "$OUT"
 cp "$SRC/index.html" "$OUT/index.html"
 cp "$SRC/facematch/index.html" "$OUT/facematch/index.html"
 cp "$SRC/ycda/index.html" "$OUT/ycda/index.html"
+cp "$SRC/start-a-project/index.html" "$OUT/start-a-project/index.html"
 cp "$SRC/sitemap.xml" "$OUT/sitemap.xml"
 cp "$SRC/assets/style.css" "$OUT/assets/style.css"
 cp "$SRC/assets/oja-premium.css" "$OUT/assets/oja-premium.css"
 cp "$SRC/assets/site.js" "$OUT/assets/site.js"
 cp "$SRC/assets/oja-interactive.js" "$OUT/assets/oja-interactive.js"
+cp "$SRC/assets/oja-intake.js" "$OUT/assets/oja-intake.js"
 cp "$SRC/assets/ycda-launch.js" "$OUT/assets/ycda-launch.js"
 cp "$SRC/assets/feedback.js" "$OUT/assets/feedback.js"
 cp "$SRC/assets/oauth-bridge.js" "$OUT/assets/oauth-bridge.js"

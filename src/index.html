@@ -19,8 +19,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=4">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=1">
+  <link rel="stylesheet" href="/assets/style.css?v=5">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=2">
   <script src="/assets/site.js" defer></script>
   <script src="/assets/oja-interactive.js?v=2" defer></script>
 </head>
@@ -40,13 +40,13 @@
         <span class="nav-toggle-bar"></span>
         <span class="visually-hidden">Menu</span>
       </button>
-      <div class="nav-links" id="main-nav" data-nav-panel>
-        <a href="#projects">Projects</a>
-        <a href="/ycda/">You Can Dance Academy</a>
-        <a href="/facematch/">FaceMatch</a>
-        <a href="https://youcandanceacademy.co.uk" rel="noopener">Live studio site</a>
-        <a href="mailto:support@orangejuiceapplications.com">Contact</a>
-      </div>
+    <div class="nav-links" id="main-nav" data-nav-panel>
+      <a href="#projects">Projects</a>
+      <a href="/ycda/">YCDA</a>
+      <a href="/facematch/">FaceMatch</a>
+      <a href="/start-a-project/">Start a project</a>
+      <a href="mailto:support@orangejuiceapplications.com">Contact</a>
+    </div>
     </nav>
 
     <header class="page-hero" data-hero-glow>
@@ -63,8 +63,9 @@
           Orange Juice Applications ships focused products, not bloated platforms.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://youcandanceacademy.co.uk" rel="noopener" data-magnetic>Visit You Can Dance Academy</a>
-          <a class="btn btn-secondary" href="/facematch/" data-magnetic>Explore FaceMatch (in dev)</a>
+          <a class="btn btn-primary" href="/ycda/" data-magnetic>You Can Dance Academy</a>
+          <a class="btn btn-secondary" href="/facematch/" data-magnetic>FaceMatch</a>
+          <a class="btn btn-secondary" href="/start-a-project/" data-magnetic>Start a project</a>
         </div>
         <div class="stats-row" data-reveal>
           <div class="stat-item">
@@ -150,8 +151,8 @@
               <button type="button" class="oja-chip" data-chip="oja">Orange Juice</button>
             </div>
             <div class="oja-chip-panel is-active" data-chip-panel="ycda">
-              <p>Live at <strong>youcandanceacademy.co.uk</strong> — tasters, member portal, class schedules, and parent tools for Abi &amp; Emma's inclusive classes in Leicestershire.</p>
-              <p style="margin-top:1rem;"><a class="btn btn-primary btn-ycda" href="https://youcandanceacademy.co.uk" rel="noopener" data-magnetic>Open live site</a></p>
+              <p>Our studio product — tasters, member portal, class schedules, and parent tools for inclusive classes in Leicestershire. Explore the <a href="/ycda/">YCDA hub</a>.</p>
+              <p style="margin-top:1rem;"><a class="btn btn-primary btn-ycda" href="/ycda/" data-magnetic>Explore YCDA</a></p>
             </div>
             <div class="oja-chip-panel" data-chip-panel="fm">
               <p><strong>FaceMatch</strong> is in active development for iPhone and iPad — social sign-in or file import, review queue, on-device Vision matching. Guides are live; App Store soon.</p>
@@ -173,6 +174,84 @@
               </div>
             </div>
             <a class="btn btn-primary" href="/facematch/" data-magnetic>Preview FaceMatch</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-wide" id="compare">
+        <div class="section-head" data-reveal>
+          <h2>How we compare</h2>
+          <p>Honest positioning — most studios compare agencies, off-the-shelf tools, and freelancers before they commit.</p>
+        </div>
+        <div class="oja-compare-wrap" data-reveal>
+          <table class="oja-compare-table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Large agencies</th>
+                <th scope="col">Off-the-shelf SaaS</th>
+                <th scope="col">Freelance platforms</th>
+                <th scope="col" class="oja-col-us">Orange Juice Applications</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Best for</th>
+                <td>Enterprise budgets, long RFP cycles</td>
+                <td>Standard dance/booking workflows out of the box</td>
+                <td>One-off tasks, lowest headline price</td>
+                <td class="oja-col-us">Focused apps, studios &amp; Apple-first products</td>
+              </tr>
+              <tr>
+                <th scope="row">Discovery / scoping</th>
+                <td>Account managers, multi-week sales</td>
+                <td>Self-serve signup, limited customisation</td>
+                <td>Variable quality, little solution design</td>
+                <td class="oja-col-us">Short intake → structured email → discovery call</td>
+              </tr>
+              <tr>
+                <th scope="row">Your codebase</th>
+                <td>Often greenfield or full rewrite</td>
+                <td>Their platform, your data in their system</td>
+                <td>Depends on individual freelancer</td>
+                <td class="oja-col-us">GitHub-friendly — extend repos or start new</td>
+              </tr>
+              <tr>
+                <th scope="row">Apple / privacy</th>
+                <td>Generic mobile teams</td>
+                <td>Varies; rarely on-device-first</td>
+                <td>Hit or miss on App Store craft</td>
+                <td class="oja-col-us">Native iOS/iPad, clear privacy boundaries (see FaceMatch)</td>
+              </tr>
+              <tr>
+                <th scope="row">Ongoing relationship</th>
+                <td>Retainers, handoffs to offshore teams</td>
+                <td>Monthly SaaS + add-ons</td>
+                <td>Per-gig, no long-term owner</td>
+                <td class="oja-col-us">Same studio that ships YCDA &amp; FaceMatch</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="oja-compare-note" data-reveal">Examples of SaaS peers include class-booking platforms and generic app builders — we are not affiliated. <a href="/start-a-project/">Tell us your constraints</a> and we will say honestly if we are the right fit.</p>
+      </section>
+
+      <section class="oja-build-band" id="custom-apps">
+        <div class="oja-build-inner" data-reveal>
+          <div>
+            <h2>Apps you might want developed</h2>
+            <p>We take on a small number of build partners each year — especially studios, membership businesses, and privacy-conscious consumer apps.</p>
+            <ul class="oja-build-points">
+              <li>New product from idea to App Store or web MVP</li>
+              <li>Rescue or accelerate an existing GitHub repo</li>
+              <li>Member portals, parent apps, and booking flows</li>
+              <li>Swift, SwiftUI, TypeScript / Next.js, and integrations</li>
+            </ul>
+          </div>
+          <div>
+            <p style="color: var(--muted); margin: 0 0 1rem;">Top agencies use a qualification wizard before the first call — we built the same flow so your requirements reach us intact.</p>
+            <a class="btn btn-primary" href="/start-a-project/" data-magnetic>Start a project inquiry</a>
+            <a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com" style="margin-left: 0.5rem;" data-magnetic>Email us directly</a>
           </div>
         </div>
       </section>
@@ -215,13 +294,13 @@
     <footer class="site-footer">
       <p>&copy; Orange Juice Applications. All rights reserved.</p>
       <p>
-        <a href="https://youcandanceacademy.co.uk" rel="noopener">youcandanceacademy.co.uk</a>
-        &middot;
-        <a href="/ycda/">YCDA hub</a>
-        &middot;
-        <a href="/facematch/">FaceMatch</a>
-        &middot;
-        <a href="/contact-profile-picture-sync/guides/">FaceMatch guides</a>
+      <a href="/ycda/">YCDA</a>
+      &middot;
+      <a href="/facematch/">FaceMatch</a>
+      &middot;
+      <a href="/start-a-project/">Start a project</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/guides/">Guides</a>
       </p>
     </footer>
   </div>

@@ -33,6 +33,7 @@ ErrorDocument 500 /500.html
   # Project landing pages (URLs without trailing slash)
   RewriteRule ^facematch$ /facematch/index.html [L]
   RewriteRule ^ycda$ /ycda/index.html [L]
+  RewriteRule ^start-a-project$ /start-a-project/index.html [L]
 
   # Legal, help & guides (URLs without trailing slash)
   RewriteRule ^contact-profile-picture-sync/privacy$ /contact-profile-picture-sync/privacy/index.html [L]

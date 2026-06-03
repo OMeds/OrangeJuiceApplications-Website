@@ -387,3 +387,258 @@ html.oja-site body {
   #oja-canvas { display: none; }
   html.oja-site body { animation: none; }
 }
+
+/* --- Competitor comparison --- */
+.oja-compare-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 auto;
+  max-width: var(--max-wide);
+}
+
+.oja-compare-table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  background: var(--card);
+  border-radius: calc(var(--radius) + 6px);
+  overflow: hidden;
+  box-shadow: var(--oja-shadow-lg);
+}
+
+.oja-compare-table th,
+.oja-compare-table td {
+  padding: 1rem 1.1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.oja-compare-table thead th {
+  background: #f8f8f8;
+  font-family: var(--oja-font-display);
+  font-size: 0.88rem;
+}
+
+.oja-compare-table th.oja-col-us {
+  background: linear-gradient(180deg, #fff7f0, #fff);
+  color: var(--orange-dark);
+  border-bottom: 2px solid var(--orange);
+}
+
+.oja-compare-table td.oja-col-us {
+  background: rgba(255, 247, 240, 0.5);
+  font-weight: 500;
+}
+
+.oja-compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.oja-compare-note {
+  max-width: 42rem;
+  margin: 1.25rem auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* --- Custom apps CTA band --- */
+.oja-build-band {
+  padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
+  background: linear-gradient(135deg, #fff7f0 0%, #fff 50%, #f0f7fc 100%);
+  border-block: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.oja-build-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .oja-build-inner { grid-template-columns: 1fr; }
+}
+
+.oja-build-points {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.oja-build-points li {
+  padding: 0.4rem 0 0.4rem 1.5rem;
+  position: relative;
+  color: var(--muted);
+}
+
+.oja-build-points li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* --- Project intake wizard --- */
+.intake-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 2rem;
+  align-items: start;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .intake-layout { grid-template-columns: 1fr; }
+}
+
+.intake-aside h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+
+.intake-aside p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.intake-aside-list {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+}
+
+.intake-aside-list li { margin-bottom: 0.5rem; }
+
+.intake-aside-note {
+  font-size: 0.88rem;
+  margin-top: 1.5rem;
+}
+
+.intake-panel {
+  padding: 1.75rem;
+}
+
+.intake-progress {
+  margin-bottom: 1.5rem;
+}
+
+.intake-progress-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.intake-progress-fill {
+  height: 100%;
+  width: 16.66%;
+  background: linear-gradient(90deg, var(--orange), #f48c06);
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intake-progress-label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.intake-step {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.intake-step:not(.is-active) {
+  display: none;
+}
+
+.intake-step legend {
+  font-family: var(--oja-font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.intake-hint {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.intake-option {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.intake-option:hover {
+  border-color: var(--orange);
+  background: #fffaf5;
+}
+
+.intake-option input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.intake-option input:checked + span,
+.intake-option:has(input:checked) {
+  border-color: var(--orange);
+}
+
+.intake-option:has(input:checked) {
+  background: #fff7f0;
+  box-shadow: 0 4px 16px rgba(232, 93, 4, 0.12);
+}
+
+.intake-check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.5rem;
+}
+
+.intake-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.intake-check:has(input:checked) {
+  border-color: var(--orange);
+  background: #fff7f0;
+}
+
+.intake-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.intake-footnote {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 1rem 0 0;
+}
