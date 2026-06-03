@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Orange Juice Applications">
+  <defs>
+    <linearGradient id="g" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e85d04"/>
+      <stop offset="100%" stop-color="#c44900"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" fill="#fafafa"/>
+  <g transform="translate(2 2) scale(0.58)">
+    <path d="M11 14c-2.2 3.8-2.2 16.2 0 20" fill="none" stroke="#c44900" stroke-width="2.4" stroke-linecap="round" opacity="0.4"/>
+    <path d="M24 10a14 14 0 1 1-9.9 23.5" fill="none" stroke="url(#g)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M33.5 24v11.5c0 3.5-2.8 6.3-6.3 6.3" fill="none" stroke="url(#g)" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="24" cy="24" r="2.4" fill="#e85d04"/>
+  </g>
+</svg>

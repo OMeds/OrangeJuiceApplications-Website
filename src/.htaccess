@@ -1,0 +1,64 @@
+DirectoryIndex index.html
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+# --- Security headers (requires mod_headers on the host) ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Static site — no inline scripts; mailto feedback only.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:; upgrade-insecure-requests"
+</IfModule>
+
+# Block dotfiles and common secret / build artifact paths
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Deny hidden paths and sensitive extensions
+  RewriteRule (^|/)\. - [F,L]
+  RewriteRule \.(git|env|xcconfig|p12|pem|mobileprovision|keychain|swift|pbxproj)$ - [F,L,NC]
+  RewriteRule ^(website-deploy-src|Config|FaceMatch|Scripts|docs)/ - [F,L,NC]
+
+  # Project landing pages (URLs without trailing slash)
+  RewriteRule ^facematch$ /facematch/index.html [L]
+  RewriteRule ^ycda$ /ycda/index.html [L]
+
+  # Legal, help & guides (URLs without trailing slash)
+  RewriteRule ^contact-profile-picture-sync/privacy$ /contact-profile-picture-sync/privacy/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/terms$ /contact-profile-picture-sync/terms/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/support$ /contact-profile-picture-sync/support/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/faq$ /contact-profile-picture-sync/faq/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/security$ /contact-profile-picture-sync/security/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/feedback$ /contact-profile-picture-sync/feedback/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides$ /contact-profile-picture-sync/guides/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/getting-started$ /contact-profile-picture-sync/guides/getting-started/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/match-photos$ /contact-profile-picture-sync/guides/match-photos/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/review-queue$ /contact-profile-picture-sync/guides/review-queue/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/social-sign-in$ /contact-profile-picture-sync/guides/social-sign-in/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/manage-connections$ /contact-profile-picture-sync/guides/manage-connections/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/settings-and-sync$ /contact-profile-picture-sync/guides/settings-and-sync/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/troubleshooting$ /contact-profile-picture-sync/guides/troubleshooting/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/refunds$ /contact-profile-picture-sync/guides/refunds/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/two-paths-social-networks$ /contact-profile-picture-sync/guides/two-paths-social-networks/index.html [L]
+  RewriteRule ^contact-profile-picture-sync/guides/import-from-files$ /contact-profile-picture-sync/guides/import-from-files/index.html [L]
+
+  # OAuth HTTPS bridges (not linked from public pages)
+  RewriteRule ^facematch/oauth/linkedin$ /facematch/oauth/linkedin/index.html [L]
+  RewriteRule ^facematch/oauth/facebook$ /facematch/oauth/facebook/index.html [L]
+  RewriteRule ^facematch/oauth/instagram$ /facematch/oauth/instagram/index.html [L]
+  RewriteRule ^facematch/oauth/microsoft$ /facematch/oauth/microsoft/index.html [L]
+  RewriteRule ^facematch/oauth/slack$ /facematch/oauth/slack/index.html [L]
+  RewriteRule ^facematch/oauth/discord$ /facematch/oauth/discord/index.html [L]
+  RewriteRule ^facematch/oauth/x$ /facematch/oauth/x/index.html [L]
+</IfModule>

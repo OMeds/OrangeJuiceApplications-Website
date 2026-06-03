@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 96" role="img" aria-label="Orange Juice Applications">
+  <defs>
+    <linearGradient id="ojaGrad" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e85d04"/>
+      <stop offset="100%" stop-color="#c44900"/>
+    </linearGradient>
+    <linearGradient id="ojaGradWide" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e85d04"/>
+      <stop offset="100%" stop-color="#c44900"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(4 8) scale(1.35)">
+    <path d="M11 14c-2.2 3.8-2.2 16.2 0 20" fill="none" stroke="#c44900" stroke-width="2.2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M24 10a14 14 0 1 1-9.9 23.5" fill="none" stroke="url(#ojaGrad)" stroke-width="4.2" stroke-linecap="round"/>
+    <path d="M33.5 24v11.5c0 3.5-2.8 6.3-6.3 6.3" fill="none" stroke="url(#ojaGrad)" stroke-width="4.2" stroke-linecap="round"/>
+    <circle cx="24" cy="24" r="2.2" fill="#e85d04" opacity="0.9"/>
+  </g>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif" fill="#111">
+    <text x="88" y="44" font-size="28" font-weight="700" letter-spacing="-0.02em">Orange Juice</text>
+    <text x="88" y="72" font-size="17" font-weight="600" fill="#5a5a5a" letter-spacing="0.06em">APPLICATIONS</text>
+  </g>
+  <rect x="88" y="78" width="120" height="3" rx="1.5" fill="url(#ojaGradWide)" opacity="0.85"/>
+</svg>

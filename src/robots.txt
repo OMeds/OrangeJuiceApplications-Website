@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# OAuth callback paths are for the app only — do not index
+Disallow: /facematch/oauth/
+
+Sitemap: https://www.orangejuiceapplications.com/sitemap.xml

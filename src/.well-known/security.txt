@@ -1,0 +1,6 @@
+Contact: mailto:security@orangejuiceapplications.com
+Contact: mailto:support@orangejuiceapplications.com
+Expires: 2027-05-29T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.orangejuiceapplications.com/.well-known/security.txt
+Policy: https://www.orangejuiceapplications.com/contact-profile-picture-sync/security/

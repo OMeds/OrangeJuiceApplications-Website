@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FaceMatch — In development · Orange Juice Applications</title>
+  <meta name="description" content="FaceMatch is in active development — privacy-first contact photo matching for iPhone and iPad. Preview features and read guides before the App Store launch.">
+  <link rel="canonical" href="https://www.orangejuiceapplications.com/facematch/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Orange Juice Applications">
+  <meta property="og:title" content="FaceMatch — In development">
+  <meta property="og:description" content="Discover profile photos from social sources, compare on-device, and approve before you apply. Coming soon to the App Store.">
+  <meta property="og:url" content="https://www.orangejuiceapplications.com/facematch/">
+  <meta property="og:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FaceMatch — In development">
+  <meta name="twitter:description" content="Privacy-first contact photos for iPhone and iPad. Guides are live; App Store listing coming soon.">
+  <meta name="twitter:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/site.js" defer></script>
+  <script src="/assets/oja-interactive.js" defer></script>
+</head>
+<body>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+  <div class="site-banner site-banner-warning" role="status">
+    FaceMatch is in active development — not yet on the App Store. Guides and legal pages are published for testers.
+  </div>
+
+  <nav class="site-nav is-enhanced">
+    <a class="brand" href="/">
+      <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
+      <span class="brand-name">Orange Juice Applications</span>
+    </a>
+    <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="fm-nav">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Menu</span>
+    </button>
+    <div class="nav-links" id="fm-nav" data-nav-panel>
+      <a href="/">Home</a>
+      <a href="/ycda/">You Can Dance Academy</a>
+      <a href="https://youcandanceacademy.co.uk" rel="noopener">Live studio site</a>
+      <a href="#preview">Preview</a>
+      <a href="#paths">Two paths</a>
+      <a href="/contact-profile-picture-sync/guides/">Guides</a>
+      <a href="/contact-profile-picture-sync/support/">Support</a>
+    </div>
+  </nav>
+
+  <header class="page-hero" data-hero-glow>
+    <div class="hero-orbs" aria-hidden="true">
+      <span class="hero-orb hero-orb-1"></span>
+      <span class="hero-orb hero-orb-2"></span>
+    </div>
+    <div class="hero-inner">
+      <span class="hero-badge badge-pulse tag-dev" style="background: rgba(232, 93, 4, 0.14); color: var(--orange-dark);">In development</span>
+      <h1>Find the right face for every contact</h1>
+      <p class="tagline">
+        FaceMatch discovers profile photos from social sources, compares them on your device,
+        and lets you approve before anything is applied — built for iPhone and iPad.
+      </p>
+
+      <div class="hero-card" data-reveal data-tilt style="max-width: 22rem; margin: 0 auto 1.5rem;">
+        <img class="app-icon-img" src="/assets/app-icon.png" width="88" height="88" alt="FaceMatch app icon">
+        <h2>FaceMatch</h2>
+        <p>For iPhone and iPad</p>
+        <p class="store-dev" aria-label="Coming soon to the App Store">
+          <span class="store-dev-dot" aria-hidden="true"></span>
+          Coming soon to the App Store
+        </p>
+      </div>
+
+      <div class="dev-progress-wrap" style="max-width: 20rem; margin: 0 auto 1.5rem; text-align: left;" data-reveal>
+        <p class="dev-progress-label" style="color: var(--muted);">Development preview</p>
+        <div class="dev-progress-track" style="background: var(--border);">
+          <div class="dev-progress-bar" data-dev-progress="72%" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="FaceMatch development progress"></div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/contact-profile-picture-sync/guides/">Read the guides</a>
+        <a class="btn btn-secondary" href="/contact-profile-picture-sync/feedback/">Send feedback</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="anchor-nav section-wide" aria-label="On this page">
+    <a href="#preview">What's coming</a>
+    <a href="#paths">Two paths</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#guides">Guides</a>
+  </nav>
+
+  <main>
+    <section class="section-wide" id="preview">
+      <div class="section-head" data-reveal>
+        <h2>What we're building</h2>
+        <p>Core flows are implemented in the app; this site documents how to use them before public launch.</p>
+      </div>
+      <div class="fm-preview-grid" data-reveal>
+        <div class="fm-preview-card">
+          <h3>On-device matching</h3>
+          <p>Contacts stay on your device. Photo comparison uses Apple's on-device tools — not a cloud address book.</p>
+        </div>
+        <div class="fm-preview-card">
+          <h3>Review queue</h3>
+          <p>Nothing updates Apple Contacts until you approve each suggestion.</p>
+        </div>
+        <div class="fm-preview-card">
+          <h3>Account connections</h3>
+          <p>Sign in to Facebook, Instagram, LinkedIn, Google, Microsoft, Slack, and more via official APIs.</p>
+        </div>
+        <div class="fm-preview-card">
+          <h3>Import from files</h3>
+          <p>LinkedIn CSV, Google Takeout, Meta exports, and photo folders — no sign-in required.</p>
+        </div>
+        <div class="fm-preview-card">
+          <h3>Work Contacts preset</h3>
+          <p>Stricter thresholds for sales, recruiting, and EA workflows.</p>
+        </div>
+        <div class="fm-preview-card">
+          <h3>One-time purchase</h3>
+          <p>Planned as a single App Store purchase — not a subscription.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wide" id="paths">
+      <div class="section-head" data-reveal>
+        <h2>Two paths in the app</h2>
+        <p>Choose Account Sign-In or Import from Files — switch tabs to see each flow.</p>
+      </div>
+
+      <div data-reveal data-tabs>
+        <div class="tabs tabs-orange" role="tablist" aria-label="FaceMatch workflows">
+          <button type="button" class="tab-btn is-active" data-tab="signin" role="tab" aria-selected="true">Account Sign-In</button>
+          <button type="button" class="tab-btn" data-tab="import" role="tab">Import from Files</button>
+        </div>
+
+        <div class="tab-panel is-active" data-tab-panel="signin" role="tabpanel">
+          <article class="class-detail-card">
+            <h3>Path A — Account Sign-In</h3>
+            <ol class="value-list" style="list-style: decimal; padding-left: 1.25rem; margin: 0;">
+              <li>Open <strong>Settings</strong></li>
+              <li>Tap <strong>Account Sign-In</strong></li>
+              <li>Choose a platform → <strong>Sign In</strong></li>
+              <li>Enable it under Photo Sources</li>
+              <li><strong>Contacts → Sync Social Photos</strong></li>
+              <li>Approve in the <strong>Review</strong> tab</li>
+            </ol>
+            <p style="margin: 1rem 0 0;"><a href="/contact-profile-picture-sync/guides/social-sign-in/">Social sign-in guide →</a></p>
+          </article>
+        </div>
+        <div class="tab-panel" data-tab-panel="import" role="tabpanel" hidden>
+          <article class="class-detail-card">
+            <h3>Path B — Import from Files</h3>
+            <ol class="value-list" style="list-style: decimal; padding-left: 1.25rem; margin: 0;">
+              <li>Open <strong>Settings</strong></li>
+              <li>Tap <strong>Import from Files</strong></li>
+              <li>Choose import type (folder, LinkedIn CSV, etc.)</li>
+              <li>Tap <strong>Choose File…</strong></li>
+              <li>Open <strong>Review Queue</strong> after import</li>
+              <li>Or: contact → <strong>Share Photo from Browser</strong> → Share → FaceMatch</li>
+            </ol>
+            <p style="margin: 1rem 0 0;"><a href="/contact-profile-picture-sync/guides/import-from-files/">Import from files guide →</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wide" id="privacy">
+      <div class="feature-grid-3" data-reveal>
+        <div class="feature-tile">
+          <h3>Built for Apple Contacts</h3>
+          <p>Browse, search, and update profile photos in the address book you already use.</p>
+        </div>
+        <div class="feature-tile">
+          <h3>No cloud contact DB</h3>
+          <p>We don't upload your full contact database to Orange Juice Applications servers.</p>
+        </div>
+        <div class="feature-tile">
+          <h3>Security summary</h3>
+          <p><a href="/contact-profile-picture-sync/security/">Read how connections and tokens work →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wide" id="guides">
+      <div class="section-head" data-reveal>
+        <h2>Guides (live now)</h2>
+        <p>Step-by-step documentation for testers and early users while FaceMatch is in development.</p>
+      </div>
+      <div class="grid guide-preview-grid" data-reveal>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/two-paths-social-networks/">
+          <h3>Two paths</h3>
+          <p>Sign-in vs file import — where to tap in Settings.</p>
+        </a>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/getting-started/">
+          <h3>Getting started</h3>
+          <p>First launch, permissions, and your first match.</p>
+        </a>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/match-photos/">
+          <h3>Match photos</h3>
+          <p>One contact or bulk sync across your address book.</p>
+        </a>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/review-queue/">
+          <h3>Review queue</h3>
+          <p>Approve suggestions before they update Contacts.</p>
+        </a>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/import-from-files/">
+          <h3>Import from files</h3>
+          <p>LinkedIn CSV, Takeout, Meta exports, folders.</p>
+        </a>
+        <a class="card guide-preview-card" href="/contact-profile-picture-sync/guides/troubleshooting/">
+          <h3>Troubleshooting</h3>
+          <p>Common fixes while the app is in beta.</p>
+        </a>
+      </div>
+      <p style="text-align: center; margin-top: 1.25rem;" data-reveal>
+        <a class="btn btn-primary" href="/contact-profile-picture-sync/guides/">Browse all guides</a>
+      </p>
+    </section>
+
+    <section class="section-wide">
+      <div class="card company-card" data-reveal style="text-align: center;">
+        <img class="company-logo" src="/assets/company-logo.svg" width="320" height="77" alt="Orange Juice Applications">
+        <h2>Also from Orange Juice Applications</h2>
+        <p>Our live studio product powers <a href="https://youcandanceacademy.co.uk" rel="noopener">youcandanceacademy.co.uk</a> — inclusive dance in Blaby.</p>
+        <p class="company-links">
+          <a href="/ycda/">YCDA hub</a>
+          &middot;
+          <a href="/">All projects</a>
+          &middot;
+          <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section-wide">
+      <div class="card refunds-card" data-reveal>
+        <h2>Refunds &amp; billing (at launch)</h2>
+        <p>
+          FaceMatch is planned as a <strong>one-time App Store purchase</strong>. Refunds will be processed by <strong>Apple</strong>.
+        </p>
+        <p class="refunds-actions">
+          <a class="btn btn-primary" href="/contact-profile-picture-sync/guides/refunds/">Refunds guide</a>
+          <a class="btn btn-secondary" href="/contact-profile-picture-sync/faq/">FAQ</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-strip">
+      <div class="contact-box" data-reveal>
+        <p><strong>Testing FaceMatch?</strong></p>
+        <p><a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a></p>
+        <p>
+          <a href="/contact-profile-picture-sync/feedback/">Send feedback</a>
+          &middot;
+          <a href="/contact-profile-picture-sync/support/">Support information</a>
+          &middot;
+          <a href="/contact-profile-picture-sync/privacy/">Privacy Policy</a>
+          &middot;
+          <a href="/contact-profile-picture-sync/terms/">Terms of Use</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; Orange Juice Applications. FaceMatch is in development.</p>
+    <p>
+      <a href="/contact-profile-picture-sync/guides/">Guides</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/feedback/">Feedback</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/faq/">FAQ</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/security/">Security</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/privacy/">Privacy</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/terms/">Terms</a>
+      &middot;
+      <a href="/contact-profile-picture-sync/support/">Support</a>
+    </p>
+    <p>
+      <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
+      &middot;
+      <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
+    </p>
+  </footer>
+
+  <style>
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</body>
+</html>
