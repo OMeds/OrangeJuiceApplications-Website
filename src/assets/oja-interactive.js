@@ -184,62 +184,88 @@
 
   /* --- Testimonial carousel --- */
   function initCarousel() {
-    var root = qs("[data-carousel]");
-    if (!root) return;
+    qsa("[data-carousel]").forEach(function (root) {
+      var viewport = qs("[data-carousel-viewport]", root) || qs(".carousel-viewport", root);
+      var track = qs("[data-carousel-track]", root);
+      var slides = qsa("[data-carousel-slide]", root);
+      var prev = qs("[data-carousel-prev]", root);
+      var next = qs("[data-carousel-next]", root);
+      var dots = qsa("[data-carousel-dot]", root);
+      if (!viewport || !track || !slides.length) return;
 
-    var track = qs("[data-carousel-track]", root);
-    var slides = qsa("[data-carousel-slide]", root);
-    var prev = qs("[data-carousel-prev]", root);
-    var next = qs("[data-carousel-next]", root);
-    var dots = qsa("[data-carousel-dot]", root);
-    if (!track || !slides.length) return;
+      var index = 0;
+      var autoplay = null;
 
-    var index = 0;
+      function slideWidth() {
+        return viewport.clientWidth;
+      }
 
-    function goTo(i) {
-      index = (i + slides.length) % slides.length;
-      track.style.transform = "translateX(-" + index * 100 + "%)";
+      function layoutSlides() {
+        var w = slideWidth();
+        if (w < 1) return;
+        slides.forEach(function (slide) {
+          slide.style.flexBasis = w + "px";
+          slide.style.width = w + "px";
+          slide.style.maxWidth = w + "px";
+        });
+        track.style.width = w * slides.length + "px";
+        goTo(index, true);
+      }
+
+      function goTo(i, skipAnim) {
+        index = (i + slides.length) % slides.length;
+        var offset = index * slideWidth();
+        if (skipAnim || prefersReducedMotion) {
+          track.style.transition = "none";
+        }
+        track.style.transform = "translateX(-" + offset + "px)";
+        if (skipAnim || prefersReducedMotion) {
+          track.offsetHeight;
+          track.style.transition = "";
+        }
+        dots.forEach(function (dot, d) {
+          dot.classList.toggle("is-active", d === index);
+          dot.setAttribute("aria-selected", d === index ? "true" : "false");
+        });
+        slides.forEach(function (slide, s) {
+          slide.setAttribute("aria-hidden", s !== index ? "true" : "false");
+        });
+      }
+
+      if (prev) {
+        prev.addEventListener("click", function () {
+          goTo(index - 1);
+        });
+      }
+      if (next) {
+        next.addEventListener("click", function () {
+          goTo(index + 1);
+        });
+      }
       dots.forEach(function (dot, d) {
-        dot.classList.toggle("is-active", d === index);
-        dot.setAttribute("aria-selected", d === index ? "true" : "false");
+        dot.addEventListener("click", function () {
+          goTo(d);
+        });
       });
-      slides.forEach(function (slide, s) {
-        slide.setAttribute("aria-hidden", s !== index ? "true" : "false");
-      });
-    }
 
-    if (prev) {
-      prev.addEventListener("click", function () {
-        goTo(index - 1);
+      root.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") goTo(index - 1);
+        if (e.key === "ArrowRight") goTo(index + 1);
       });
-    }
-    if (next) {
-      next.addEventListener("click", function () {
-        goTo(index + 1);
-      });
-    }
-    dots.forEach(function (dot, d) {
-      dot.addEventListener("click", function () {
-        goTo(d);
-      });
+
+      if (!prefersReducedMotion) {
+        autoplay = window.setInterval(function () {
+          if (document.hidden) return;
+          goTo(index + 1);
+        }, 7000);
+        root.addEventListener("mouseenter", function () {
+          if (autoplay) window.clearInterval(autoplay);
+        });
+      }
+
+      layoutSlides();
+      window.addEventListener("resize", layoutSlides);
     });
-
-    root.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") goTo(index - 1);
-      if (e.key === "ArrowRight") goTo(index + 1);
-    });
-
-    if (!prefersReducedMotion) {
-      var autoplay = window.setInterval(function () {
-        if (document.hidden) return;
-        goTo(index + 1);
-      }, 7000);
-      root.addEventListener("mouseenter", function () {
-        window.clearInterval(autoplay);
-      });
-    }
-
-    goTo(0);
   }
 
   /* --- Hero pointer glow --- */

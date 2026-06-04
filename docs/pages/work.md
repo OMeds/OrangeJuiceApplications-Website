@@ -20,7 +20,7 @@ Inclusive dance classes (Spark, Ignite, Shine, Broadway Workout, GLOW) in Blaby,
 
 Privacy-first contact photo matching for iPhone and iPad — social sign-in or file import, review queue before any contact updates.
 
-**Explore:** [FaceMatch preview](/facematch/) · [Guides](/contact-profile-picture-sync/guides/) · [Legal hub](/legal/)
+**Explore:** [FaceMatch preview](/facematch/) · [TestFlight beta](/facematch/beta/) · [Guides](/contact-profile-picture-sync/guides/) · [Legal hub](/legal/)
 
 ## Custom apps & portals
 

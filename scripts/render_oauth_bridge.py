@@ -10,7 +10,8 @@ def main() -> None:
         print("usage: render_oauth_bridge.py output.html platform", file=sys.stderr)
         sys.exit(1)
     dest, platform = sys.argv[1], sys.argv[2]
-    if platform not in {"linkedin"}:
+    allowed = {"linkedin", "facebook", "instagram", "microsoft", "slack", "discord", "x"}
+    if platform not in allowed:
         print(f"unsupported oauth platform: {platform}", file=sys.stderr)
         sys.exit(1)
 

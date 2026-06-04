@@ -1,15 +1,28 @@
 /* Orange Juice Applications / FaceMatch public site */
 :root {
+  --color-primary: #1a1a1a;
+  --color-secondary: #3f3f46;
+  --color-cta: #e85d04;
+  --color-background: #f5f5f7;
+  --color-text: #1a1a1a;
   --orange: #e85d04;
   --orange-dark: #c44900;
-  --ink: #1a1a1a;
-  --muted: #5c5c5c;
-  --bg: #fafafa;
+  --ink: var(--color-primary);
+  --muted: #475569;
+  --bg: var(--color-background);
   --card: #ffffff;
-  --border: #e8e8e8;
+  --border: #e2e8f0;
   --radius: 14px;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.1);
   --max: 52rem;
+  --oja-page-bg: #f5f5f7;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
 }
 
 * { box-sizing: border-box; }
@@ -610,7 +623,6 @@ a:hover { color: var(--orange-dark); text-decoration: underline; }
 .site-banner-warning {
   background: #fff4e6;
   color: #9a4b00;
-  border-bottom: 1px solid #ffd8a8;
 }
 
 @media (max-width: 640px) {
@@ -789,7 +801,7 @@ body.nav-open {
   pointer-events: none;
 }
 
-.site-nav.is-enhanced {
+.site-nav.is-enhanced:not(.is-floating) {
   position: sticky;
   backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.92);
@@ -841,9 +853,9 @@ body.nav-open {
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
-    padding: 0.5rem 0 0.75rem;
-    border-top: 1px solid var(--border);
-    margin-top: 0.5rem;
+    padding: 0.65rem 0 0.25rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.09);
+    margin-top: 0.65rem;
   }
   .nav-links[data-nav-panel].is-open {
     display: flex;
@@ -865,7 +877,7 @@ body.nav-open {
   background:
     radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 30%), var(--orange-glow), transparent 42%),
     radial-gradient(ellipse 80% 60% at 50% -10%, rgba(232, 93, 4, 0.18), transparent),
-    linear-gradient(180deg, #fff7f0 0%, var(--bg) 70%);
+    linear-gradient(180deg, #fff7f0 0%, var(--bg) 100%);
   z-index: 0;
 }
 
@@ -1301,33 +1313,48 @@ html.js [data-reveal].is-visible {
 
 .carousel {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   border-radius: calc(var(--radius) + 4px);
   background: var(--card);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  box-sizing: border-box;
 }
 
 .carousel-viewport {
+  width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
 .carousel-track {
   display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .carousel-slide {
-  flex: 0 0 100%;
-  padding: 2rem 2.5rem;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1.25rem, 4vw, 2.5rem);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .carousel-slide blockquote {
   margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
   line-height: 1.65;
   color: var(--ink);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .carousel-slide cite {
@@ -1515,7 +1542,7 @@ html.js [data-reveal].is-visible {
   background:
     radial-gradient(circle at var(--glow-x, 60%) var(--glow-y, 40%), rgba(97, 164, 184, 0.35), transparent 45%),
     radial-gradient(ellipse 70% 50% at 80% 0%, rgba(42, 86, 163, 0.15), transparent),
-    linear-gradient(180deg, #f0f7fc 0%, var(--bg) 72%);
+    linear-gradient(180deg, #f0f7fc 0%, #f8fbfd 55%, var(--bg) 100%);
 }
 
 .page-hero-ycda .hero-badge {

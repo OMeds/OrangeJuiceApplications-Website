@@ -36,9 +36,11 @@ ERROR_PAGES: dict[str, dict[str, str]] = {
 
 ERROR_HELP_LINKS = """
 <ul class="error-help-links">
+  <li><a href="/">Home</a></li>
+  <li><a href="/facematch/">FaceMatch</a></li>
+  <li><a href="/ycda/">YCDA</a></li>
+  <li><a href="/contact/">Contact</a></li>
   <li><a href="/contact-profile-picture-sync/guides/">User guides</a></li>
-  <li><a href="/contact-profile-picture-sync/guides/troubleshooting/">Troubleshooting</a></li>
   <li><a href="/contact-profile-picture-sync/support/">Support</a></li>
-  <li><a href="/contact-profile-picture-sync/faq/">FAQ</a></li>
 </ul>
 """

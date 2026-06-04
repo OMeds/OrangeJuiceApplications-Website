@@ -36,7 +36,10 @@ ErrorDocument 500 /500.html
   RewriteRule ^ycda$ /ycda/index.html [L]
   RewriteRule ^start-a-project$ /start-a-project/index.html [L]
   RewriteRule ^legal$ /legal/index.html [L]
+  RewriteRule ^press$ /press/index.html [L]
   RewriteRule ^company/privacy$ /company/privacy/index.html [L]
+  RewriteRule ^company/services$ /company/services/index.html [L]
+  RewriteRule ^facematch/beta$ /facematch/beta/index.html [L]
 
   RewriteRule ^contact-profile-picture-sync/subscription-terms$ /contact-profile-picture-sync/subscription-terms/index.html [L]
   RewriteRule ^contact-profile-picture-sync/data-retention$ /contact-profile-picture-sync/data-retention/index.html [L]

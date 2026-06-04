@@ -6,6 +6,9 @@ window.OJA_SITE_CONFIG = {
   /** Formspree form id for /start-a-project/ (e.g. "abcdwxyz" from formspree.io/f/abcdwxyz) */
   formspreeIntakeId: "",
 
+  /** Formspree form id for /contact-profile-picture-sync/feedback/ */
+  formspreeFeedbackId: "",
+
   /** 30-minute discovery call — Calendly event URL */
   calendlyUrl: "",
 
@@ -15,6 +18,9 @@ window.OJA_SITE_CONFIG = {
   /** App Store product URLs — leave empty until live */
   facematchAppStoreUrl: "",
   ycdaAppStoreUrl: "",
+
+  /** TestFlight public link — shown on /facematch/beta/ */
+  testFlightUrl: "",
 
   supportEmail: "support@orangejuiceapplications.com",
   privacyEmail: "privacy@orangejuiceapplications.com",

@@ -1,11 +1,9 @@
 /**
- * Web feedback form — opens mail client with structured subject:
- * Web - Bug - Short summary
+ * Web feedback form — Formspree when configured, else mailto.
  */
 (function () {
   "use strict";
 
-  var SUPPORT_EMAIL = "support@orangejuiceapplications.com";
   var SOURCE = "Web";
   var ALLOWED_CATEGORIES = {
     Feedback: true,
@@ -15,6 +13,20 @@
   };
   var MAX_SUMMARY = 120;
   var MAX_DETAIL = 4000;
+
+  function config() {
+    return window.OJA_SITE_CONFIG || {};
+  }
+
+  function supportEmail() {
+    return config().supportEmail || "support@orangejuiceapplications.com";
+  }
+
+  function formspreeEndpoint() {
+    var id = (config().formspreeFeedbackId || "").trim();
+    if (!id) return "";
+    return "https://formspree.io/f/" + encodeURIComponent(id);
+  }
 
   function onReady(fn) {
     if (document.readyState === "loading") {
@@ -42,20 +54,26 @@
       .slice(0, maxLength);
   }
 
-  function encodeMailto(value) {
-    return encodeURIComponent(value);
-  }
-
   function buildSubject(category, summary) {
     var short = sanitizeText(summary, 80) || "Feedback";
     return SOURCE + " - " + category + " - " + short;
   }
 
-  function buildBody(category, summary, detail) {
-    var page = sanitizeText(window.location.href, 500);
-    var browser = sanitizeText(navigator.userAgent, 500);
+  function buildPayload(category, summary, detail, email) {
+    return {
+      _subject: buildSubject(category, summary),
+      category: category,
+      summary: sanitizeText(summary, MAX_SUMMARY),
+      detail: sanitizeMultiline(detail, MAX_DETAIL),
+      contact_email: sanitizeText(email, 120),
+      page: sanitizeText(window.location.href, 500),
+      browser: sanitizeText(navigator.userAgent, 500),
+      source: SOURCE
+    };
+  }
 
-    return [
+  function buildMailto(category, summary, detail) {
+    var body = [
       "Source: " + SOURCE,
       "Category: " + category,
       "Summary: " + sanitizeText(summary, MAX_SUMMARY),
@@ -64,9 +82,17 @@
       sanitizeMultiline(detail, MAX_DETAIL),
       "",
       "---",
-      "Page: " + page,
-      "Browser: " + browser
+      "Page: " + sanitizeText(window.location.href, 500),
+      "Browser: " + sanitizeText(navigator.userAgent, 500)
     ].join("\n");
+    return (
+      "mailto:" +
+      supportEmail() +
+      "?subject=" +
+      encodeURIComponent(buildSubject(category, summary)) +
+      "&body=" +
+      encodeURIComponent(body)
+    );
   }
 
   function showError(form, message) {
@@ -97,17 +123,20 @@
     var categoryField = form.querySelector("#feedback-category");
     var summaryField = form.querySelector("#feedback-summary");
     var detailField = form.querySelector("#feedback-detail");
+    var emailField = form.querySelector("#feedback-email");
     var previewField = form.querySelector("#feedback-subject-preview");
+    var submitBtn = form.querySelector("[type=submit]");
+
+    if (submitBtn && formspreeEndpoint()) {
+      submitBtn.textContent = "Send feedback";
+    }
 
     function refreshPreview() {
       if (!previewField || !categoryField || !summaryField) return;
       var category = ALLOWED_CATEGORIES[categoryField.value]
         ? categoryField.value
         : "Feedback";
-      previewField.textContent = buildSubject(
-        category,
-        summaryField.value || "…"
-      );
+      previewField.textContent = buildSubject(category, summaryField.value || "…");
     }
 
     categoryField.addEventListener("change", refreshPreview);
@@ -123,35 +152,53 @@
         : "Feedback";
       var summary = sanitizeText(summaryField.value, MAX_SUMMARY);
       var detail = sanitizeMultiline(detailField.value, MAX_DETAIL);
+      var email = emailField ? sanitizeText(emailField.value, 120) : "";
 
       if (!summary) {
         showError(form, "Add a short summary so we can identify your feedback.");
         summaryField.focus();
         return;
       }
-
       if (!detail) {
         showError(form, "Add a description of the bug, issue, or feedback.");
         detailField.focus();
         return;
       }
 
-      var subject = buildSubject(category, summary);
-      var body = buildBody(category, summary, detail);
-      var mailto =
-        "mailto:" +
-        SUPPORT_EMAIL +
-        "?subject=" +
-        encodeMailto(subject) +
-        "&body=" +
-        encodeMailto(body);
+      if (formspreeEndpoint()) {
+        if (!email || email.indexOf("@") === -1) {
+          showError(form, "Enter your email so we can reply.");
+          if (emailField) emailField.focus();
+          return;
+        }
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending…";
+        }
+        fetch(formspreeEndpoint(), {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(buildPayload(category, summary, detail, email))
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error("failed");
+            form.reset();
+            refreshPreview();
+            showSuccess(form, "Thank you — your feedback was sent. We typically reply within two business days.");
+          })
+          .catch(function () {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Send feedback";
+            }
+            showError(form, "Could not send online. Opening your email app instead.");
+            window.location.href = buildMailto(category, summary, detail);
+          });
+        return;
+      }
 
-      showSuccess(
-        form,
-        "Opening your email app… Send the message to complete your feedback."
-      );
-
-      window.location.href = mailto;
+      showSuccess(form, "Opening your email app… Send the message to complete your feedback.");
+      window.location.href = buildMailto(category, summary, detail);
     });
   });
 })();

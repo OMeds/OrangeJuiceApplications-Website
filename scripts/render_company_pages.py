@@ -2,29 +2,24 @@
 """Render about, contact, work, updates, and company privacy pages."""
 from __future__ import annotations
 
-import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from marketing_shell import marketing_page  # noqa: E402
+from marketing_shell import hero, marketing_page  # noqa: E402
 from render_legal_html import convert  # noqa: E402
+from website_chrome import SITE_URL  # noqa: E402
+from website_components import (  # noqa: E402
+    about_principles,
+    contact_channels,
+    cta_band as cta_band_block,
+    work_case_studies,
+)
 
 PAGES = ROOT / "docs" / "pages"
 UPDATES = ROOT / "docs" / "updates"
-
-
-def hero(title: str, tagline: str, badge: str = "") -> str:
-    badge_html = f'<span class="hero-badge">{badge}</span>\n        ' if badge else ""
-    return f"""
-    <header class="page-hero" data-hero-glow style="min-height: auto; padding-bottom: 2rem;">
-      <div class="hero-inner">
-        {badge_html}<h1>{title}</h1>
-        <p class="tagline">{tagline}</p>
-      </div>
-    </header>"""
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -53,16 +48,64 @@ def render_md_page(
     hero_badge: str = "",
     extra_body: str = "",
     extra_scripts: str = "",
+    og_image: str | None = None,
+    *,
+    hero_actions: str = "",
+    footer_cta: str = "",
+    cinematic_hero: bool = False,
 ) -> None:
     md = (PAGES / md_name).read_text(encoding="utf-8")
-    body = f'<div class="section-wide oja-content-page" data-reveal>{convert(md)}{extra_body}</div>'
+    html_body = convert(md)
+
+    if slug == "work":
+        html_body = work_case_studies() + f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
+    elif slug == "about":
+        html_body = (
+            f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
+            + about_principles()
+        )
+    elif slug == "contact":
+        html_body = (
+            contact_channels()
+            + f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
+            + extra_body
+        )
+        extra_body = ""
+    else:
+        html_body = f'<div class="section-wide oja-content-page" data-reveal>{html_body}</div>'
+
+    if slug == "contact":
+        body = f'<div class="section-wide">{html_body}</div>'
+    elif slug in ("work", "about"):
+        body = f'<div class="section-wide">{html_body}</div>'
+    else:
+        body = html_body
+
+    if not footer_cta and slug in ("about", "work", "contact"):
+        footer_cta = cta_band_block(
+            "Ready to talk?",
+            "Tell us about your app, portal, or existing codebase — we reply within about two business days.",
+            "/start-a-project/",
+            "Start a project",
+            "mailto:support@orangejuiceapplications.com",
+            "Email us",
+        )
+
     html_doc = marketing_page(
         page_title,
         description,
         body,
         path,
-        hero=hero(hero_title, hero_tagline, hero_badge),
+        og_image=og_image,
+        hero=hero(
+            hero_title,
+            hero_tagline,
+            hero_badge,
+            actions=hero_actions,
+            cinematic=cinematic_hero,
+        ),
         nav_id=f"nav-{slug}",
+        footer_cta=footer_cta,
     )
     dest = out_dir / slug / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -89,32 +132,34 @@ def updates_index(posts: list[dict[str, str]]) -> str:
     for p in sorted(posts, key=lambda x: x.get("date", ""), reverse=True):
         href = f"/updates/{p['slug']}/"
         cards.append(
-            f"""<article class="update-card card" data-reveal>
+            f"""<a class="oja-update-bento-card" href="{href}" data-reveal>
   <time class="update-date" datetime="{p.get('date', '')}">{p.get('date', '')}</time>
-  <h2><a href="{href}">{p.get('title', '')}</a></h2>
+  <h2>{p.get('title', '')}</h2>
   <p>{p.get('summary', '')}</p>
-  <a class="btn btn-secondary" href="{href}">Read update</a>
-</article>"""
+  <span class="showcase-cta">Read update →</span>
+</a>"""
         )
     grid = "\n".join(cards)
     return f"""
-    <header class="page-hero" data-hero-glow style="min-height: auto; padding-bottom: 2rem;">
-      <div class="hero-inner">
-        <span class="hero-badge">News</span>
-        <h1>Updates</h1>
-        <p class="tagline">Product news, launches, and guides from Orange Juice Applications.</p>
-      </div>
-    </header>
-    <div class="section-wide updates-grid">
+    <div class="section-wide">
+      <div class="oja-updates-bento" data-reveal>
       {grid}
-    </div>"""
+      </div>
+    </div>
+    <p class="section-wide oja-muted" style="text-align: center; margin-bottom: 3rem;" data-reveal>
+      <a href="/updates/feed.xml">RSS feed</a> for this page
+    </p>"""
 
 
 def render_updates(out: Path) -> list[dict[str, str]]:
     posts: list[dict[str, str]] = []
     for md_path in sorted(UPDATES.glob("*.md")):
+        if md_path.name.startswith("_"):
+            continue
         raw = md_path.read_text(encoding="utf-8")
         meta, body_md = parse_front_matter(raw)
+        if meta.get("published", "true").lower() == "false":
+            continue
         slug = meta.get("slug", md_path.stem)
         posts.append(meta)
         article = convert(body_md)
@@ -129,6 +174,7 @@ def render_updates(out: Path) -> list[dict[str, str]]:
             f"/updates/{slug}/",
             hero="",
             nav_id=f"nav-update-{slug}",
+            use_canvas=False,
         )
         dest = out / "updates" / slug / "index.html"
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -141,6 +187,12 @@ def render_updates(out: Path) -> list[dict[str, str]]:
         "Product news, FaceMatch development, and You Can Dance Academy updates.",
         index_body,
         "/updates/",
+        hero=hero(
+            "Updates",
+            "Product news, launches, and guides from Orange Juice Applications.",
+            "News",
+            cinematic=True,
+        ),
         nav_id="nav-updates",
     )
     (out / "updates" / "index.html").write_text(html_doc, encoding="utf-8")
@@ -164,6 +216,7 @@ def main() -> None:
         "About us",
         "Small studio, focused products, published support.",
         "Orange Juice Applications",
+        cinematic_hero=True,
     )
     render_md_page(
         out,
@@ -175,6 +228,8 @@ def main() -> None:
         "Our work",
         "Studio software and Apple-native apps shipped with care.",
         "Portfolio",
+        og_image=f"{SITE_URL}/assets/og-image.png",
+        cinematic_hero=True,
     )
     render_md_page(
         out,
@@ -187,6 +242,11 @@ def main() -> None:
         "We reply within about two business days.",
         "Get in touch",
         extra_body=contact_extras(),
+        hero_actions=(
+            '<a class="btn btn-primary" href="/start-a-project/" data-magnetic>Start a project</a>'
+            '<a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com" data-magnetic>Email support</a>'
+        ),
+        cinematic_hero=True,
     )
     render_updates(out)
 

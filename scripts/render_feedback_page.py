@@ -12,11 +12,14 @@ from website_chrome import wrap_page  # noqa: E402
 BODY = """
 <h1>Send feedback</h1>
 <p class="guide-intro">
-  Report a website bug, app issue, or share feedback. Your email app opens with a structured subject
-  such as <strong>Web - Bug - Page not loading</strong> so we can sort messages quickly.
+  Report a website bug, app issue, or share feedback. When Formspree is configured, feedback is sent
+  from this page; otherwise your email app opens with a subject like <strong>Web - Bug - Page not loading</strong>.
 </p>
 
 <form id="feedback-form" class="feedback-form" novalidate>
+  <label class="feedback-label" for="feedback-email">Your email</label>
+  <input id="feedback-email" class="feedback-input" name="email" type="email" autocomplete="email"
+    placeholder="you@example.com" required>
   <label class="feedback-label" for="feedback-category">Type</label>
   <select id="feedback-category" class="feedback-input" name="category" required>
     <option value="Feedback">Feedback</option>
@@ -37,7 +40,7 @@ BODY = """
   <p id="feedback-subject-preview" class="feedback-preview">Web - Feedback - …</p>
 
   <div class="feedback-actions">
-    <button type="submit" class="btn btn-primary">Email feedback</button>
+    <button type="submit" class="btn btn-primary">Send feedback</button>
     <a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com">Email support directly</a>
   </div>
 

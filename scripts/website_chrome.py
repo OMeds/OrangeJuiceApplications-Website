@@ -5,6 +5,44 @@ import html
 
 SITE_URL = "https://www.orangejuiceapplications.com"
 
+RSS_LINK = (
+    '<link rel="alternate" type="application/rss+xml" '
+    'title="Orange Juice Applications Updates" href="/updates/feed.xml">'
+)
+
+
+def organization_json_ld() -> str:
+    data = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Orange Juice Applications",
+        "url": SITE_URL,
+        "email": "support@orangejuiceapplications.com",
+        "logo": f"{SITE_URL}/assets/company-logo.png",
+        "sameAs": ["https://youcandanceacademy.co.uk"],
+    }
+    import json
+
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
+
+def facematch_json_ld() -> str:
+    import json
+
+    data = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "FaceMatch",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "iOS",
+        "description": "Privacy-first contact photo matching for iPhone and iPad.",
+        "url": f"{SITE_URL}/facematch/",
+        "image": f"{SITE_URL}/assets/app-icon.png",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+        "author": {"@type": "Organization", "name": "Orange Juice Applications"},
+    }
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
 
 def head(
     title: str,
@@ -42,14 +80,16 @@ def head(
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=6">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=3">
+  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=6">
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=3" defer></script>{analytics}"""
+  <script src="/assets/oja-interactive.js?v=5" defer></script>
+  {RSS_LINK}{analytics}"""
 
 
 NAV = """
-<nav class="site-nav is-enhanced">
+<nav class="site-nav is-enhanced is-floating">
   <a class="brand" href="/">
     <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
     <span class="brand-name">Orange Juice Applications</span>
@@ -98,6 +138,8 @@ FOOTER_LINKS = """
     <a href="/start-a-project/">Start a project</a>
     &middot;
     <a href="/contact/">Contact</a>
+    &middot;
+    <a href="/press/">Press</a>
   </p>
   <p>
     <a href="/contact-profile-picture-sync/support/">Support</a>
@@ -114,8 +156,6 @@ FOOTER_LINKS = """
     <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
     &middot;
     <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
-    &middot;
-    <a href="/humans.txt">humans.txt</a>
   </p>"""
 
 FOOTER = f"""
@@ -129,21 +169,18 @@ MARKETING_FOOTER = FOOTER
 
 
 def wrap_page(title: str, description: str, body: str, path: str = "/") -> str:
-    return f"""<!DOCTYPE html>
-<html lang="en" class="oja-site">
-<head>
-  {head(title, description, path)}
-</head>
-<body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
-  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
-  {NAV}
-  <main id="main-content" class="legal-page">
-    <article class="legal-content">
-      {body}
-    </article>
-  </main>
-  {FOOTER}
-</body>
-</html>
-"""
+    """Legal/guides shell — marketing chrome without ambient canvas."""
+    from marketing_shell import marketing_page  # noqa: WPS433
+
+    short_title = title.split("—")[0].strip()
+    wrapped = f'<article class="legal-content oja-content-page">{body}</article>'
+    return marketing_page(
+        title,
+        description,
+        wrapped,
+        path,
+        hero="",
+        use_canvas=False,
+        page_class="page-legal",
+        nav_cta=False,
+    )

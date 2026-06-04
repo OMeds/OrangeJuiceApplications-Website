@@ -1,13 +1,21 @@
-/* Premium interactive layer — Orange Juice Applications */
+/* Premium interactive layer — Orange Juice Applications (UI UX Pro Max: bento + glass) */
 :root {
   --oja-font-display: "Outfit", system-ui, sans-serif;
   --oja-font-body: "DM Sans", system-ui, sans-serif;
   --oja-bg-deep: #0a0a0c;
   --oja-bg-warm: #f6f3ef;
-  --oja-surface: rgba(255, 255, 255, 0.72);
-  --oja-glass-border: rgba(255, 255, 255, 0.45);
-  --oja-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.12);
-  --oja-shadow-glow: 0 0 80px rgba(232, 93, 4, 0.25);
+  --oja-page-bg: #f5f5f7;
+  --oja-surface: rgba(255, 255, 255, 0.88);
+  --oja-glass-border: rgba(255, 255, 255, 0.55);
+  --oja-card-radius: 22px;
+  --oja-grid-gap: 1.25rem;
+  --oja-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.1);
+  --oja-shadow-glow: 0 0 80px rgba(232, 93, 4, 0.22);
+  --oja-nav-gap: 1rem;
+  --oja-nav-inner-h: 3.5rem;
+  --oja-nav-offset: calc(var(--oja-nav-gap) + var(--oja-nav-inner-h) + 0.5rem);
+  --oja-section-border: rgba(15, 23, 42, 0.09);
+  --oja-header-pad: calc(var(--oja-nav-offset) + 1.25rem);
 }
 
 html.oja-site {
@@ -16,8 +24,26 @@ html.oja-site {
 
 html.oja-site body {
   font-family: var(--oja-font-body);
-  background: var(--oja-bg-warm);
+  background: var(--oja-page-bg);
   overflow-x: hidden;
+  color: var(--ink);
+}
+
+/* Main-only pages (no hero): clear the floating nav */
+html.oja-site .oja-page-wrap > main:first-child {
+  padding-top: var(--oja-nav-offset);
+}
+
+html.oja-site a[href]:not(.btn),
+html.oja-site button,
+html.oja-site .oja-bento-card,
+html.oja-site .feature-tile[href],
+html.oja-site .legal-hub-card,
+html.oja-site .press-card,
+html.oja-site .oja-chip,
+html.oja-site .carousel-btn,
+html.oja-site .carousel-dot {
+  cursor: pointer;
 }
 
 html.oja-site h1,
@@ -61,32 +87,79 @@ html.oja-site.has-pointer .oja-cursor-glow {
   z-index: 2;
 }
 
-/* Nav glass */
-html.oja-site .site-nav.is-enhanced {
-  background: rgba(246, 243, 239, 0.82);
+/* Floating glass nav (UI UX Pro Max) */
+html.oja-site .site-nav.is-enhanced.is-floating {
+  position: fixed;
+  top: var(--oja-nav-gap);
+  left: max(1rem, env(safe-area-inset-left, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  z-index: 50;
+  max-width: min(calc(var(--max-wide, 72rem) + 2.5rem), calc(100% - 2rem));
+  margin: 0 auto;
+  width: auto;
+  min-height: var(--oja-nav-inner-h);
+  padding: 0.6rem 0.85rem;
+  box-sizing: border-box;
+  align-items: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid var(--oja-section-border);
+  box-shadow: var(--shadow-md);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-html.oja-site .site-nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.92);
+html.oja-site .site-nav.is-enhanced.is-floating.is-scrolled {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Hero cinematic */
+@media (max-width: 640px) {
+  :root {
+    --oja-nav-gap: 0.65rem;
+    --oja-nav-inner-h: 3.15rem;
+  }
+
+  html.oja-site .site-nav.is-enhanced.is-floating {
+    top: var(--oja-nav-gap);
+    left: 0.65rem;
+    right: 0.65rem;
+    min-height: 0;
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+/* Hero — single top inset (no duplicate page-wrap padding) */
 html.oja-site .page-hero {
-  min-height: min(92vh, 52rem);
+  position: relative;
+  min-height: min(82vh, 46rem);
   display: flex;
   align-items: center;
-  padding-top: 5rem;
-  padding-bottom: 4rem;
+  margin: 0;
+  padding: var(--oja-header-pad) 1.25rem clamp(2.5rem, 5vw, 4rem);
+  box-sizing: border-box;
+}
+
+html.oja-site .page-hero.is-compact,
+html.oja-site main > .page-hero.is-compact {
+  min-height: 0;
+  padding-top: var(--oja-header-pad);
+  padding-bottom: clamp(1.75rem, 4vw, 2.5rem);
 }
 
 html.oja-site .page-hero::before {
   background:
-    radial-gradient(ellipse 90% 70% at 50% -20%, rgba(232, 93, 4, 0.22), transparent 55%),
-    radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 40%), rgba(232, 93, 4, 0.2), transparent 42%),
-    linear-gradient(165deg, #fff9f4 0%, var(--oja-bg-warm) 45%, #ebe6df 100%);
+    radial-gradient(ellipse 90% 70% at 50% -20%, rgba(232, 93, 4, 0.2), transparent 55%),
+    radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 40%), rgba(232, 93, 4, 0.16), transparent 42%),
+    linear-gradient(180deg, #fff9f4 0%, var(--oja-bg-warm) 42%, var(--oja-page-bg) 100%);
+}
+
+html.oja-site .page-hero-ycda::before {
+  background:
+    radial-gradient(ellipse 85% 65% at 50% -15%, rgba(97, 164, 184, 0.22), transparent 55%),
+    radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 40%), rgba(97, 164, 184, 0.14), transparent 45%),
+    linear-gradient(180deg, #f0f7fc 0%, #f8fbfd 50%, var(--oja-page-bg) 100%);
 }
 
 html.oja-site .page-hero h1 {
@@ -120,12 +193,34 @@ html.oja-site .btn[data-magnetic]:hover {
   box-shadow: 0 12px 36px rgba(232, 93, 4, 0.4);
 }
 
+/* Section rhythm — separators match page background */
+html.oja-site main > .section-wide:first-child,
+html.oja-site main > .oja-trust-band:first-child {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+html.oja-site main > .oja-marquee + .section-wide,
+html.oja-site main > .oja-marquee + .oja-trust-band {
+  padding-top: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+html.oja-site .anchor-nav {
+  max-width: var(--max-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.75rem 1.25rem 1.25rem;
+  border-bottom: 1px solid var(--oja-section-border);
+  background: var(--oja-page-bg);
+}
+
 /* Marquee */
 .oja-marquee {
   overflow: hidden;
-  border-block: 1px solid rgba(0, 0, 0, 0.06);
-  background: linear-gradient(90deg, #fff 0%, #fff9f4 50%, #fff 100%);
-  padding: 1rem 0;
+  margin: 0;
+  border-top: 1px solid var(--oja-section-border);
+  border-bottom: 1px solid var(--oja-section-border);
+  background: var(--oja-page-bg);
+  padding: 0.85rem 0;
 }
 
 .oja-marquee-track {
@@ -200,7 +295,7 @@ html.oja-site .btn[data-magnetic]:hover {
 
 .oja-bento-card:hover {
   text-decoration: none;
-  transform: translateY(-6px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow: var(--oja-shadow-lg), var(--oja-shadow-glow);
   border-color: rgba(232, 93, 4, 0.25);
 }
@@ -246,7 +341,7 @@ html.oja-site .btn[data-magnetic]:hover {
   }
 }
 
-/* Dark interlude section */
+/* Dark interlude section — full-bleed, flush separators */
 .oja-dark-band {
   background: var(--oja-bg-deep);
   color: #f2f2f2;
@@ -254,6 +349,8 @@ html.oja-site .btn[data-magnetic]:hover {
   margin: 0;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .oja-dark-band::before {
@@ -334,9 +431,11 @@ html.oja-site .btn[data-magnetic]:hover {
 
 /* Scroll progress enhanced */
 html.oja-site .scroll-progress {
-  height: 4px;
+  top: 0;
+  height: 3px;
+  z-index: 60;
   background: linear-gradient(90deg, var(--orange), #f48c06, var(--ycda-teal));
-  box-shadow: 0 0 12px rgba(232, 93, 4, 0.5);
+  box-shadow: none;
 }
 
 /* Cards polish */
@@ -359,8 +458,9 @@ html.oja-site .feature-tile:hover {
 html.oja-site .site-footer {
   background: var(--oja-bg-deep);
   color: rgba(255, 255, 255, 0.65);
-  border-top: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2.5rem 1.25rem;
+  margin-top: 0;
 }
 
 html.oja-site .site-footer a {
@@ -447,8 +547,6 @@ html.oja-site body {
 /* --- Custom apps CTA band --- */
 .oja-build-band {
   padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
-  background: linear-gradient(135deg, #fff7f0 0%, #fff 50%, #f0f7fc 100%);
-  border-block: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .oja-build-inner {
@@ -843,4 +941,403 @@ html.oja-site body {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: var(--card);
+}
+
+.work-gallery {
+  margin: 1rem 0 1.5rem;
+}
+
+.work-gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.press-card {
+  display: block;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.press-card:hover {
+  text-decoration: none;
+  border-color: var(--orange);
+}
+
+.press-card h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.beta-card {
+  text-align: center;
+  padding: 2rem;
+  max-width: 24rem;
+  margin: 1.5rem auto;
+}
+
+.updates-grid + p a[href$="feed.xml"] {
+  font-weight: 600;
+}
+
+/* --- Trust strip (social proof) --- */
+.oja-trust-band {
+  padding: var(--space-2xl) 1.25rem;
+  text-align: center;
+}
+
+.oja-trust-band .section-head {
+  margin-bottom: var(--space-lg);
+}
+
+.oja-trust-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem 2rem;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.oja-trust-mark {
+  height: 44px;
+  width: auto;
+  opacity: 0.92;
+}
+
+.oja-trust-mark-app {
+  height: 52px;
+  width: 52px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.oja-trust-pill {
+  font-family: var(--oja-font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.oja-trust-pill.is-live {
+  color: var(--orange-dark);
+  border-color: rgba(232, 93, 4, 0.35);
+  background: #fff7f0;
+}
+
+.oja-social-proof {
+  padding-bottom: var(--space-3xl);
+  overflow: hidden;
+}
+
+.oja-carousel-wrap {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.oja-social-proof .oja-carousel-wrap {
+  max-width: 44rem;
+}
+
+.oja-social-proof .carousel {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+html.oja-site .nav-links a:focus-visible,
+html.oja-site .oja-bento-card:focus-visible,
+html.oja-site .feature-tile:focus-visible,
+html.oja-site .site-nav .brand:focus-visible,
+html.oja-site .oja-contact-card:focus-visible,
+html.oja-site .oja-work-card:focus-visible,
+html.oja-site .oja-update-bento-card:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+/* Nav primary CTA */
+html.oja-site .btn-nav-cta {
+  padding: 0.45rem 0.95rem;
+  font-size: 0.88rem;
+  margin-left: 0.25rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  html.oja-site .btn-nav-cta {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Site banner (FaceMatch) — sits below floating nav */
+html.oja-site .site-banner {
+  position: relative;
+  z-index: 40;
+  max-width: min(calc(var(--max-wide, 72rem) + 2.5rem), calc(100% - 2rem));
+  margin: var(--oja-nav-offset) auto 0;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  border: 1px solid #ffd8a8;
+  box-sizing: border-box;
+}
+
+html.oja-site.page-facematch .page-hero {
+  min-height: 0;
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+html.oja-site.page-facematch .page-hero::before {
+  top: 0;
+}
+
+/* Build band — aligned borders and background */
+.oja-build-band {
+  border-top: 1px solid var(--oja-section-border);
+  border-bottom: 1px solid var(--oja-section-border);
+  background: linear-gradient(135deg, #fff7f0 0%, var(--oja-page-bg) 48%, #f0f7fc 100%);
+}
+
+/* CTA band */
+.oja-cta-band {
+  padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
+  margin: 0;
+  background: linear-gradient(135deg, var(--oja-bg-deep) 0%, #1a1a22 100%);
+  color: #f5f5f5;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.oja-cta-band-inner {
+  max-width: var(--max-wide);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.oja-cta-band h2 {
+  font-family: var(--oja-font-display);
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+
+.oja-cta-band p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 36rem;
+}
+
+.oja-cta-band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.oja-cta-band .btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+.oja-cta-band .btn-secondary:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Work portfolio bento */
+.oja-work-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--oja-grid-gap);
+  margin-bottom: var(--space-2xl);
+}
+
+.oja-work-card {
+  grid-column: span 4;
+  display: block;
+  padding: 1.75rem;
+  border-radius: var(--oja-card-radius);
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.oja-work-card:hover {
+  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: var(--oja-shadow-lg);
+  border-color: rgba(232, 93, 4, 0.3);
+}
+
+.oja-work-card-ycda {
+  background: linear-gradient(145deg, #f0f7fc, #fff);
+}
+
+.oja-work-card-fm {
+  background: linear-gradient(145deg, #fff7f0, #fff);
+}
+
+.oja-work-card h2 {
+  font-family: var(--oja-font-display);
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.oja-work-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .oja-work-card {
+    grid-column: span 12;
+  }
+}
+
+/* Contact grid */
+.oja-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin-bottom: var(--space-2xl);
+}
+
+.oja-contact-card {
+  display: block;
+  padding: 1.35rem;
+  border-radius: var(--oja-card-radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
+}
+
+.oja-contact-card:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  border-color: var(--orange);
+  box-shadow: var(--oja-shadow-lg);
+}
+
+.oja-contact-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.oja-contact-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Updates bento */
+.oja-updates-bento {
+  display: grid;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 0 auto var(--space-xl);
+}
+
+.oja-update-bento-card {
+  display: block;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--oja-card-radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s, box-shadow 0.2s;
+}
+
+.oja-update-bento-card:hover {
+  text-decoration: none;
+  transform: translateY(-3px);
+  border-color: rgba(232, 93, 4, 0.35);
+  box-shadow: var(--oja-shadow-lg);
+}
+
+.oja-update-bento-card h2 {
+  margin: 0.35rem 0 0.5rem;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.oja-update-bento-card .showcase-cta {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+/* Prose wrapper for markdown pages */
+.oja-content-prose {
+  max-width: 42rem;
+  margin: 0 auto var(--space-2xl);
+}
+
+.oja-content-prose h2 {
+  font-family: var(--oja-font-display);
+  margin-top: 2rem;
+}
+
+.legal-hub-page .legal-hub-card .oja-icon-wrap {
+  margin-bottom: 0.75rem;
+}
+
+.legal-hub-card {
+  cursor: pointer;
+}
+
+/* FaceMatch preview as bento */
+.fm-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--oja-grid-gap);
+}
+
+.fm-preview-card {
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--oja-card-radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fm-preview-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--oja-shadow-lg);
 }

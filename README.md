@@ -17,6 +17,18 @@ This repository was split from the [FaceMatch](https://github.com/OMeds/FaceMatc
 | `docs/guides/` | FaceMatch user guides (Markdown → HTML) |
 | `scripts/` | Build and asset generation |
 | `deploy/` | FileZilla site template and FTP notes |
+| `.cursor/skills/ui-ux-pro-max/` | [UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) agent skill (design search DB) |
+| `design-system/orange-juice-applications/` | Persisted OJA design tokens (from the skill workflow) |
+
+### UI UX Pro Max
+
+Installed with `npx -y uipro-cli init --ai cursor`. Regenerate recommendations:
+
+```bash
+python3 .cursor/skills/ui-ux-pro-max/scripts/search.py "studio portfolio Apple apps" --design-system -p "Orange Juice Applications" -f markdown
+```
+
+Site styling follows `design-system/orange-juice-applications/MASTER.md` (brand orange retained over generic palette suggestions).
 
 ## Build
 

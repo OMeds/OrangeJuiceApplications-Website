@@ -15,16 +15,17 @@
   <meta property="og:title" content="You Can Dance Academy — Inclusive dance in Blaby">
   <meta property="og:description" content="Weekly inclusive classes, member portal, and parent app — built by Orange Juice Applications.">
   <meta property="og:url" content="https://www.orangejuiceapplications.com/ycda/">
-  <meta property="og:image" content="https://www.orangejuiceapplications.com/assets/og-image.png">
+  <meta property="og:image" content="https://www.orangejuiceapplications.com/assets/og-ycda.png">
   <script>document.documentElement.classList.add("js");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=6">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=3">
+  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=6">
   <script src="/assets/site-config.js" defer></script>
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=3" defer></script>
+  <script src="/assets/oja-interactive.js?v=5" defer></script>
   <script src="/assets/ycda-launch.js" defer></script>
 </head>
 <body>
@@ -32,7 +33,7 @@
   <canvas id="oja-canvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
   <div class="oja-page-wrap">
-  <nav class="site-nav is-enhanced">
+  <nav class="site-nav is-enhanced is-floating">
     <a class="brand" href="/">
       <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
       <span class="brand-name">Orange Juice Applications</span>
@@ -51,6 +52,7 @@
       <a href="/legal/">Legal</a>
       <a href="#classes">Classes</a>
       <a href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-nav-cta" href="/start-a-project/">Start a project</a>
     </div>
   </nav>
 
@@ -208,8 +210,9 @@
         <h2>From our dance families</h2>
         <p>Swipe or use arrow keys when focused — real parent feedback from You Can Dance Academy.</p>
       </div>
-      <div class="carousel" data-carousel data-reveal tabindex="0" aria-roledescription="carousel" aria-label="Parent testimonials">
-        <div class="carousel-viewport">
+      <div class="oja-carousel-wrap" data-reveal>
+      <div class="carousel" data-carousel tabindex="0" aria-roledescription="carousel" aria-label="Parent testimonials">
+        <div class="carousel-viewport" data-carousel-viewport>
           <div class="carousel-track" data-carousel-track>
             <figure class="carousel-slide" data-carousel-slide>
               <blockquote>
@@ -240,6 +243,7 @@
           </div>
           <button type="button" class="carousel-btn" data-carousel-next aria-label="Next testimonial">›</button>
         </div>
+      </div>
       </div>
     </section>
 

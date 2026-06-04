@@ -37,6 +37,19 @@
     if (fallback) fallback.hidden = true;
   }
 
+  function initTestFlight() {
+    var url = (config().testFlightUrl || "").trim();
+    document.querySelectorAll("[data-testflight-link]").forEach(function (link) {
+      var soon = document.querySelector("[data-testflight-soon]");
+      if (url) {
+        link.href = url;
+        link.hidden = false;
+        link.classList.remove("is-hidden");
+        if (soon) soon.hidden = true;
+      }
+    });
+  }
+
   function initAppStoreBlocks() {
     var cfg = config();
     var map = {
@@ -61,6 +74,7 @@
   onReady(function () {
     loadPlausible();
     initCalendly();
+    initTestFlight();
     initAppStoreBlocks();
 
     var stylesheet = document.querySelector('link[rel="stylesheet"][href*="style.css"]');

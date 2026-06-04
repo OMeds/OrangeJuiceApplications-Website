@@ -1,0 +1,46 @@
+name: Deploy site (FTP)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Build static site
+        run: ./scripts/build.sh
+
+      - name: Write FTP credentials
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+          FTP_PROTOCOL: ${{ secrets.FTP_PROTOCOL }}
+        run: |
+          test -n "$FTP_HOST" && test -n "$FTP_USER" && test -n "$FTP_PASSWORD"
+          cat > deploy/.deploy-credentials.env <<EOF
+          FTP_HOST=$FTP_HOST
+          FTP_PORT=${FTP_PORT:-21}
+          FTP_USER=$FTP_USER
+          FTP_PASSWORD=$FTP_PASSWORD
+          FTP_REMOTE_DIR=${FTP_REMOTE_DIR:-/htdocs}
+          FTP_PROTOCOL=${FTP_PROTOCOL:-ftp}
+          EOF
+
+      - name: Upload to Fasthosts
+        run: python3 deploy/upload-ftp.py

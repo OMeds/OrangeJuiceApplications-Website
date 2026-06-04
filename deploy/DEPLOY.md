@@ -68,7 +68,24 @@ FileZilla stores sites at:
 
 Back up that file, then either import `deploy/filezilla-sitemanager.xml` or copy the `<Server>` block from the generated XML into your existing `<Servers>` section.
 
-## 6. Security
+## 6. GitHub Actions deploy (optional)
+
+Workflow **Deploy site (FTP)** runs manually from the Actions tab (`workflow_dispatch`).
+
+Add repository secrets:
+
+| Secret | Example |
+|--------|---------|
+| `FTP_HOST` | `ftp.fasthosts.co.uk` |
+| `FTP_USER` | your FTP username |
+| `FTP_PASSWORD` | your FTP password |
+| `FTP_REMOTE_DIR` | `/htdocs` |
+| `FTP_PORT` | `21` (optional) |
+| `FTP_PROTOCOL` | `ftp` or `ftps` (optional) |
+
+Configure Formspree, Calendly, and TestFlight in `src/assets/site-config.js` before deploy.
+
+## 7. Security
 
 - Never commit `deploy/.deploy-credentials.env` or `deploy/filezilla-sitemanager.xml` (both are gitignored).
 - Use SFTP if Fasthosts provides it.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate 403, 404, and 500 error pages for website-deploy."""
+"""Generate 403, 404, and 500 error pages."""
 from __future__ import annotations
 
 import html
@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from website_chrome import FOOTER, NAV, head  # noqa: E402
 from website_errors import ERROR_HELP_LINKS, ERROR_PAGES  # noqa: E402
 
 
@@ -22,32 +23,19 @@ def render_page(spec: dict[str, str]) -> str:
     secondary_label = html.escape(spec["secondary_label"])
     secondary_href = html.escape(spec["secondary_href"])
     help_links = ERROR_HELP_LINKS if spec["code"] == "404" else ""
+    page_title = f"{spec['title']} — Orange Juice Applications"
 
     return f"""<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="oja-site">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{title} — Orange Juice Applications</title>
+  {head(page_title, spec["lead"], f"/{spec['code']}.html")}
   <meta name="robots" content="noindex">
-  <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
-  <link rel="stylesheet" href="/assets/style.css">
-  <script src="/assets/site.js" defer></script>
 </head>
 <body>
-  <nav class="site-nav">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="/assets/company-logo-header.svg" width="40" height="36" alt="">
-      <span class="brand-name">Orange Juice Applications</span>
-    </a>
-    <div class="nav-links">
-      <a href="/contact-profile-picture-sync/guides/">Guides</a>
-      <a href="/contact-profile-picture-sync/support/">Support</a>
-      <a href="/">Home</a>
-    </div>
-  </nav>
-
-  <main class="error-page">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  {NAV}
+  <main id="main-content" class="error-page">
     <p class="error-code">{code}</p>
     <h1>{title}</h1>
     <p class="error-lead">{lead}</p>
@@ -58,10 +46,7 @@ def render_page(spec: dict[str, str]) -> str:
     </div>
     {help_links}
   </main>
-
-  <footer class="site-footer">
-    <p>&copy; Orange Juice Applications</p>
-  </footer>
+  {FOOTER}
 </body>
 </html>
 """
