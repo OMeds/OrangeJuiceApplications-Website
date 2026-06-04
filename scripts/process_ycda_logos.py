@@ -42,27 +42,29 @@ def save_max_height(image: Image.Image, path: Path, max_height: int) -> None:
 
 
 def main() -> None:
-    src = SOURCE_TRANSPARENT if SOURCE_TRANSPARENT.exists() else SOURCE_FULL
+    # Prefer the darker full logo on light marketing surfaces.
+    src = SOURCE_FULL if SOURCE_FULL.exists() else SOURCE_TRANSPARENT
     if not src.exists():
-        # Fall back to assets if Brand copies not yet present
+        src = ASSETS / "ycda-logo.png"
+    if not src.exists():
         src = ASSETS / "ycda-logo-transparent.png"
     if not src.exists():
         print(
-            "Missing YCDA logo. Place logo-transparent.png in Brand/ycda/ "
-            "or src/assets/ycda-logo-transparent.png",
+            "Missing YCDA logo. Place logo.png (preferred) or logo-transparent.png "
+            "in Brand/ycda/, or existing assets under src/assets/.",
             file=sys.stderr,
         )
         sys.exit(1)
 
     img = Image.open(src).convert("RGBA")
-    save_max(img, ASSETS / "ycda-logo-transparent.png", 640)
+    save_max(img, ASSETS / "ycda-logo.png", 640)
     save_max_height(img, ASSETS / "ycda-logo-header.png", 64)
     save_max_height(img, ASSETS / "ycda-logo-card.png", 80)
     save_max_height(img, ASSETS / "ycda-logo-hero.png", 112)
 
-    if SOURCE_FULL.exists():
-        full = Image.open(SOURCE_FULL).convert("RGBA")
-        save_max(full, ASSETS / "ycda-logo.png", 640)
+    if SOURCE_TRANSPARENT.exists() and SOURCE_TRANSPARENT != src:
+        transparent = Image.open(SOURCE_TRANSPARENT).convert("RGBA")
+        save_max(transparent, ASSETS / "ycda-logo-transparent.png", 640)
 
     print("Wrote YCDA logo assets under src/assets/")
 

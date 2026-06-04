@@ -40,7 +40,7 @@ chmod +x scripts/build.sh
 ./scripts/build.sh
 ```
 
-YCDA logos are pulled from the live studio site into `Brand/ycda/` and resized to `src/assets/ycda-logo-*.png` via `scripts/process_ycda_logos.py` (runs automatically during build).
+YCDA logos are pulled from the live studio site into `Brand/ycda/` (`logo.png` is used on-site; `logo-transparent.png` is kept as an optional alternate) and resized to `src/assets/ycda-logo-*.png` via `scripts/process_ycda_logos.py` (runs automatically during build).
 
 Preview locally:
 
