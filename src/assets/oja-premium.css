@@ -1023,6 +1023,56 @@ html.oja-site body {
   box-shadow: var(--shadow-md);
 }
 
+/* You Can Dance Academy logos (from youcandanceacademy.co.uk) */
+.ycda-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.ycda-logo--hero {
+  max-width: min(280px, 72vw);
+  max-height: 112px;
+  margin: 0 auto 1rem;
+}
+
+.ycda-logo--bento {
+  max-width: 180px;
+  max-height: 72px;
+  margin-bottom: 0.5rem;
+}
+
+.ycda-logo--trust {
+  max-height: 48px;
+  max-width: 140px;
+}
+
+.ycda-logo--card {
+  max-height: 80px;
+  max-width: 160px;
+  margin-bottom: 0.65rem;
+}
+
+.oja-bento-ycda .ycda-logo--bento,
+.oja-work-card-ycda .ycda-logo--card {
+  filter: drop-shadow(0 4px 12px rgba(42, 86, 163, 0.12));
+}
+
+.oja-partner-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.oja-partner-logos .company-logo {
+  max-width: min(280px, 100%);
+  height: auto;
+}
+
 .oja-trust-pill {
   font-family: var(--oja-font-display);
   font-size: 0.82rem;

@@ -13,6 +13,7 @@ export PYTHONPATH="$ROOT/scripts${PYTHONPATH:+:$PYTHONPATH}"
 python3 "$ROOT/scripts/process_brand_logo.py"
 python3 "$ROOT/scripts/process_app_icon.py"
 python3 "$ROOT/scripts/process_og_images.py"
+python3 "$ROOT/scripts/process_ycda_logos.py"
 
 rm -rf "$OUT"
 mkdir -p "$OUT/assets" "$OUT/facematch/beta" "$OUT/ycda" "$OUT/start-a-project" "$OUT/legal" \
@@ -95,7 +96,8 @@ cp "$SRC/assets/feedback.js" "$OUT/assets/feedback.js"
 cp "$SRC/assets/oauth-bridge.js" "$OUT/assets/oauth-bridge.js"
 for asset in company-logo.png company-logo-header.png company-logo.svg company-logo-header.svg \
   company-logo-mark.svg favicon.svg favicon.png app-icon.png apple-touch-icon.png \
-  og-image.png og-facematch.png og-ycda.png; do
+  og-image.png og-facematch.png og-ycda.png \
+  ycda-logo.png ycda-logo-transparent.png ycda-logo-header.png ycda-logo-card.png ycda-logo-hero.png; do
   cp "$SRC/assets/$asset" "$OUT/assets/$asset"
 done
 cp "$SRC/.htaccess" "$OUT/.htaccess"

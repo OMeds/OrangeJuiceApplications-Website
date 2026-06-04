@@ -11,6 +11,7 @@ This repository was split from the [FaceMatch](https://github.com/OMeds/FaceMatc
 | `src/` | Editable site source (HTML, CSS, JS, assets) |
 | `dist/` | Build output — upload **contents** to your web host |
 | `Brand/` | Logo SVG sources |
+| `Brand/ycda/` | You Can Dance Academy logos (sourced from youcandanceacademy.co.uk) |
 | `docs/legal/` | FaceMatch + website privacy (Markdown → HTML) |
 | `docs/pages/` | About, work, contact (Markdown → HTML) |
 | `docs/updates/` | News posts (Markdown → HTML) |
@@ -38,6 +39,8 @@ Requirements: Python 3, Pillow, Node/npx (for `@resvg/resvg-js-cli` logo rasteri
 chmod +x scripts/build.sh
 ./scripts/build.sh
 ```
+
+YCDA logos are pulled from the live studio site into `Brand/ycda/` and resized to `src/assets/ycda-logo-*.png` via `scripts/process_ycda_logos.py` (runs automatically during build).
 
 Preview locally:
 

@@ -37,6 +37,22 @@ def icon_wrap(name: str, tone: str = "orange") -> str:
     return f'<span class="oja-icon-wrap oja-icon-wrap-{html.escape(tone)}">{icon(name)}</span>'
 
 
+def ycda_logo(size: str = "card", alt: str = "You Can Dance Academy") -> str:
+    """size: card | hero | header | trust"""
+    paths = {
+        "card": ("/assets/ycda-logo-card.png", 160, 80),
+        "hero": ("/assets/ycda-logo-hero.png", 280, 112),
+        "header": ("/assets/ycda-logo-header.png", 128, 64),
+        "trust": ("/assets/ycda-logo-header.png", 128, 48),
+    }
+    src, width, height = paths.get(size, paths["card"])
+    cls = f"ycda-logo ycda-logo--{html.escape(size)}"
+    return (
+        f'<img class="{cls}" src="{src}" width="{width}" height="{height}" '
+        f'alt="{html.escape(alt)}" loading="lazy" decoding="async">'
+    )
+
+
 def hero_block(
     title: str,
     tagline: str,
@@ -122,7 +138,7 @@ def work_case_studies() -> str:
     <div class="oja-work-bento" data-reveal>
       <a class="oja-work-card oja-work-card-ycda" href="/ycda/" data-tilt>
         <span class="showcase-tag tag-live">Live</span>
-        {icon_wrap("users", "ycda")}
+        {ycda_logo("card")}
         <h2>You Can Dance Academy</h2>
         <p>Member portal, tasters, and parent tools for inclusive classes in Blaby — live at youcandanceacademy.co.uk.</p>
         <span class="showcase-cta showcase-cta-ycda">YCDA hub {icon("arrow-right")}</span>
