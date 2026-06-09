@@ -1,14 +1,14 @@
 # Work
 
-Selected products and engagements from Orange Juice Applications.
+Selected products and engagements from Orange Juice Applications — an all-in-one software studio.
 
 ## You Can Dance Academy — Live
 
 **Role:** Product & engineering partner  
-**Stack:** Web member experience, ClassManager integration, parent-facing flows  
+**Stack:** Web member experience, ClassManager integration, parent-facing flows, portal login  
 **Status:** Live at [youcandanceacademy.co.uk](https://youcandanceacademy.co.uk)
 
-Inclusive dance classes (Spark, Ignite, Shine, Broadway Workout, GLOW) in Blaby, Leicestershire. We built tasters, class storytelling, and portal hand-offs so families spend less time on admin.
+Inclusive dance classes (Spark, Ignite, Shine, Broadway Workout, GLOW) in Blaby, Leicestershire. We built the public site, tasters, class storytelling, member portal, and parent app links so families spend less time on admin.
 
 **Explore:** [YCDA hub](/ycda/) · [Studio site](https://youcandanceacademy.co.uk)
 
@@ -22,12 +22,12 @@ Privacy-first contact photo matching for iPhone and iPad — social sign-in or f
 
 **Explore:** [FaceMatch preview](/facematch/) · [TestFlight beta](/facematch/beta/) · [Guides](/contact-profile-picture-sync/guides/) · [Legal hub](/legal/)
 
-## Custom apps & portals
+## Custom software
 
-We take a limited number of **studio, SMB, and Apple-first** projects per year. Typical engagements:
+We take a limited number of **web, mobile, and integration** projects per year. Typical engagements:
 
-- New app from idea to TestFlight / App Store
+- New app or portal from idea to production
 - Improving an existing codebase (including GitHub repos you already own)
-- Member or parent portals similar to YCDA
+- Member portals, internal dashboards, and API integrations
 
 **Start here:** [Project intake](/start-a-project/) — we reply within about two business days.

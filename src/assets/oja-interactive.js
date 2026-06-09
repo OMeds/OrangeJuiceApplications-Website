@@ -334,7 +334,11 @@
 
     var ctx = canvas.getContext("2d");
     var particles = [];
-    var count = Math.min(48, Math.floor(window.innerWidth / 28));
+    var isHome = document.documentElement.classList.contains("page-home-story");
+    var isMobile = window.innerWidth < 768;
+    var count = isHome
+      ? Math.min(isMobile ? 28 : 52, Math.floor(window.innerWidth / (isMobile ? 26 : 20)))
+      : Math.min(48, Math.floor(window.innerWidth / 28));
     var mouse = { x: 0, y: 0, on: false };
 
     function resize() {
@@ -349,9 +353,9 @@
       particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: 1 + Math.random() * 2,
+        vx: (Math.random() - 0.5) * (isHome ? 0.28 : 0.35),
+        vy: (Math.random() - 0.5) * (isHome ? 0.28 : 0.35),
+        r: isHome ? 2 + Math.random() * 3.5 : 1 + Math.random() * 2,
       });
     }
 
@@ -366,6 +370,11 @@
       { passive: true }
     );
 
+    var linkDist = isHome ? 168 : 120;
+    var fillAlpha = isHome ? 0.48 : 0.35;
+    var lineAlpha = isHome ? 0.18 : 0.12;
+    var mouseDist = isHome ? 168 : 140;
+
     function frame() {
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       particles.forEach(function (p) {
@@ -373,7 +382,7 @@
           var dx = mouse.x - p.x;
           var dy = mouse.y - p.y;
           var dist = Math.sqrt(dx * dx + dy * dy) || 1;
-          if (dist < 140) {
+          if (dist < mouseDist) {
             p.vx -= (dx / dist) * 0.02;
             p.vy -= (dy / dist) * 0.02;
           }
@@ -384,7 +393,7 @@
         if (p.y < 0 || p.y > window.innerHeight) p.vy *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(232, 93, 4, 0.35)";
+        ctx.fillStyle = "rgba(232, 93, 4, " + fillAlpha + ")";
         ctx.fill();
       });
       for (var i = 0; i < particles.length; i++) {
@@ -392,8 +401,9 @@
           var a = particles[i];
           var b = particles[j];
           var d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 120) {
-            ctx.strokeStyle = "rgba(232, 93, 4, " + (0.12 * (1 - d / 120)) + ")";
+          if (d < linkDist) {
+            ctx.strokeStyle = "rgba(232, 93, 4, " + lineAlpha * (1 - d / linkDist) + ")";
+            ctx.lineWidth = isHome ? 1.25 : 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -474,6 +484,173 @@
     onScroll();
   }
 
+  /* --- YCDA site preview (home scroll story) --- */
+  var YCDA_TAB_ORDER = ["home", "classes", "tasters", "portal"];
+
+  function setYcdaTab(preview, tabId, fromUser) {
+    if (!preview || YCDA_TAB_ORDER.indexOf(tabId) < 0) return;
+    if (fromUser) preview.dataset.userTab = "true";
+    qsa("[data-ycda-tab]", preview).forEach(function (btn) {
+      var on = btn.getAttribute("data-ycda-tab") === tabId;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    qsa("[data-ycda-screen]", preview).forEach(function (screen) {
+      var on = screen.getAttribute("data-ycda-screen") === tabId;
+      screen.classList.toggle("is-active", on);
+      screen.hidden = !on;
+    });
+    var chapter = preview.closest("[data-story-chapter]");
+    if (chapter && fromUser) {
+      var steps = qsa("[data-story-step]", chapter);
+      steps.forEach(function (step, i) {
+        var match = step.getAttribute("data-ycda-step") === tabId;
+        step.classList.toggle("is-active", match);
+      });
+    }
+  }
+
+  function initYcdaPreview() {
+    qsa("[data-ycda-preview]").forEach(function (preview) {
+      var tabs = qsa("[data-ycda-tab]", preview);
+      var viewport = qs(".oja-ycda-preview-viewport", preview);
+      if (!tabs.length) return;
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          setYcdaTab(preview, tab.getAttribute("data-ycda-tab"), true);
+        });
+      });
+
+      if (viewport) {
+        viewport.addEventListener("keydown", function (e) {
+          var current = tabs.find(function (t) {
+            return t.classList.contains("is-active");
+          });
+          if (!current) return;
+          var idx = YCDA_TAB_ORDER.indexOf(current.getAttribute("data-ycda-tab"));
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            setYcdaTab(preview, YCDA_TAB_ORDER[(idx + 1) % YCDA_TAB_ORDER.length], true);
+          }
+          if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            setYcdaTab(
+              preview,
+              YCDA_TAB_ORDER[(idx - 1 + YCDA_TAB_ORDER.length) % YCDA_TAB_ORDER.length],
+              true
+            );
+          }
+        });
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (preview.dataset.userTab) preview.dataset.userTab = "";
+        },
+        { passive: true }
+      );
+    });
+  }
+
+  /* --- Scroll story (home): pinned chapters + step reveals --- */
+  function initScrollStory() {
+    var story = qs("[data-scroll-story]");
+    if (!story) return;
+
+    var chapters = qsa("[data-story-chapter]", story);
+    var railLinks = qsa("[data-story-rail-link]");
+    if (!chapters.length) return;
+
+    function chapterProgress(chapter) {
+      var rect = chapter.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var scrollable = chapter.offsetHeight - vh;
+      if (scrollable <= 0) return rect.top <= vh * 0.35 ? 1 : 0;
+      var scrolled = -rect.top;
+      return Math.max(0, Math.min(1, scrolled / scrollable));
+    }
+
+    function updateChapter(chapter) {
+      var steps = qsa("[data-story-step]", chapter);
+      var visuals = qsa("[data-story-visual]", chapter);
+      if (!steps.length) return;
+
+      var progress = chapterProgress(chapter);
+      var idx = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+
+      steps.forEach(function (step, i) {
+        step.classList.toggle("is-active", i === idx);
+      });
+      visuals.forEach(function (visual, i) {
+        visual.classList.toggle("is-active", i === idx);
+      });
+
+      if (chapter.getAttribute("data-story-chapter") === "ycda") {
+        var preview = qs("[data-ycda-preview]", chapter);
+        var stepEl = steps[idx];
+        if (preview && stepEl && !preview.dataset.userTab) {
+          var tabId = stepEl.getAttribute("data-ycda-step");
+          if (tabId) setYcdaTab(preview, tabId, false);
+        }
+      }
+    }
+
+    function updateRail() {
+      if (!railLinks.length) return;
+      var activeId = null;
+      var best = -1;
+
+      chapters.forEach(function (chapter) {
+        var rect = chapter.getBoundingClientRect();
+        var vh = window.innerHeight;
+        if (rect.top <= vh * 0.45 && rect.bottom >= vh * 0.25) {
+          var visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+          if (visible > best) {
+            best = visible;
+            activeId = chapter.getAttribute("data-story-chapter");
+          }
+        }
+      });
+
+      if (!activeId && chapters[0]) {
+        activeId = chapters[0].getAttribute("data-story-chapter");
+      }
+
+      railLinks.forEach(function (link) {
+        link.classList.toggle(
+          "is-active",
+          link.getAttribute("data-story-rail-link") === activeId
+        );
+      });
+    }
+
+    function onScroll() {
+      chapters.forEach(updateChapter);
+      updateRail();
+    }
+
+    if (prefersReducedMotion) {
+      chapters.forEach(function (chapter) {
+        var steps = qsa("[data-story-step]", chapter);
+        var visuals = qsa("[data-story-visual]", chapter);
+        steps.forEach(function (step, i) {
+          step.classList.toggle("is-active", i === 0);
+        });
+        visuals.forEach(function (visual, i) {
+          visual.classList.toggle("is-active", i === 0);
+        });
+      });
+      updateRail();
+      return;
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    onScroll();
+  }
+
   function revealFallback() {
     window.setTimeout(function () {
       qsa("[data-reveal]:not(.is-visible)").forEach(function (el) {
@@ -499,5 +676,7 @@
     initMagnetic();
     initChips();
     initNavScroll();
+    initYcdaPreview();
+    initScrollStory();
   });
 })();

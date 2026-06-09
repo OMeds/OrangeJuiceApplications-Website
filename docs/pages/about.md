@@ -1,16 +1,19 @@
 # About Orange Juice Applications
 
-We are a small, independent software studio building **focused products** — not generic SaaS platforms.
+We are a small, independent **all-in-one software studio** — one team from discovery through support, not a generic agency roster.
 
 ## What we do
 
-- **Studio software** — member portals, class information, and parent tools shaped around real dance education (see [You Can Dance Academy](/ycda/)).
-- **Apple-native apps** — [FaceMatch](/facematch/) matches contact photos on-device with privacy-first defaults.
-- **Custom projects** — when a studio or SMB needs an app, portal, or redesign, we scope honestly via [Start a project](/start-a-project/).
+- **Web apps & member portals** — custom sites, booking flows, and parent tools (see our flagship [You Can Dance Academy](/ycda/) work).
+- **Mobile apps** — iOS, iPad, and Android where reach matters (including parent apps linked from studio sites).
+- **Integrations & APIs** — ClassManager, payments, and the systems your members already use.
+- **Internal tools & dashboards** — focused software for teams that outgrew spreadsheets.
+- **Privacy-conscious consumer apps** — [FaceMatch](/facematch/) matches contact photos on-device.
+- **Codebase rescue** — extend or accelerate an existing GitHub repo via [Start a project](/start-a-project/).
 
 ## How we work
 
-1. **Understand the user** — parents, teachers, or professionals using the product daily.
+1. **Understand the user** — parents, staff, or professionals using the product daily.
 2. **Ship in slices** — working software early, with clear boundaries on data and scope.
 3. **Publish support early** — guides, security summaries, and legal pages before launch where it helps trust.
 
@@ -18,8 +21,8 @@ We are a small, independent software studio building **focused products** — no
 
 | Principle | In practice |
 |-----------|-------------|
-| Privacy by design | FaceMatch keeps matching on the device; YCDA uses purposeful member data only |
-| Apple-first | SwiftUI where it matters; web where reach matters |
+| Privacy by design | FaceMatch keeps matching on the device; member data stays purposeful |
+| Full-stack ownership | Same studio from design through deploy and support |
 | Transparent | Published policies, FAQ, and direct email support |
 
 ## Team

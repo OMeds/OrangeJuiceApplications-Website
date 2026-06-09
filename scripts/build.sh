@@ -14,6 +14,11 @@ python3 "$ROOT/scripts/process_brand_logo.py"
 python3 "$ROOT/scripts/process_app_icon.py"
 python3 "$ROOT/scripts/process_og_images.py"
 python3 "$ROOT/scripts/process_ycda_logos.py"
+if command -v node >/dev/null 2>&1 && [[ -f "$ROOT/scripts/capture_ycda_screenshots.mjs" ]]; then
+  if [[ ! -f "$SRC/assets/ycda-screenshots/home.png" ]] && [[ -f "$ROOT/node_modules/playwright/package.json" || -f "$ROOT/package.json" ]]; then
+    node "$ROOT/scripts/capture_ycda_screenshots.mjs" 2>/dev/null || true
+  fi
+fi
 
 rm -rf "$OUT"
 mkdir -p "$OUT/assets" "$OUT/facematch/beta" "$OUT/ycda" "$OUT/start-a-project" "$OUT/legal" \
@@ -99,6 +104,12 @@ for asset in company-logo.png company-logo-header.png company-logo.svg company-l
   og-image.png og-facematch.png og-ycda.png \
   ycda-logo.png ycda-logo-transparent.png ycda-logo-header.png ycda-logo-card.png ycda-logo-hero.png; do
   cp "$SRC/assets/$asset" "$OUT/assets/$asset"
+done
+mkdir -p "$OUT/assets/ycda-screenshots"
+for shot in home.png classes.png tasters.png portal.png; do
+  if [[ -f "$SRC/assets/ycda-screenshots/$shot" ]]; then
+    cp "$SRC/assets/ycda-screenshots/$shot" "$OUT/assets/ycda-screenshots/$shot"
+  fi
 done
 cp "$SRC/.htaccess" "$OUT/.htaccess"
 cp "$SRC/robots.txt" "$OUT/robots.txt"

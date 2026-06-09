@@ -80,11 +80,11 @@ def head(
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/style.css?v=10">
   <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=6">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=11">
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=5" defer></script>
+  <script src="/assets/oja-interactive.js?v=11" defer></script>
   {RSS_LINK}{analytics}"""
 
 

@@ -284,9 +284,16 @@ a:hover { color: var(--orange-dark); text-decoration: underline; }
 }
 
 .btn-secondary {
-  background: var(--card);
-  border: 1px solid var(--border);
-  color: var(--ink) !important;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a !important;
 }
 
 .guides-promo h2 {
@@ -752,10 +759,12 @@ a:hover { color: var(--orange-dark); text-decoration: underline; }
 .btn-ycda {
   background: #2a56a3;
   border-color: #2a56a3;
+  color: #fff !important;
 }
 
 .btn-ycda:hover {
   background: #1e4280;
+  color: #fff !important;
 }
 
 .ycda-config-hint {
