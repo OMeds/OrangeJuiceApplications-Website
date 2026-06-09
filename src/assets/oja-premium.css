@@ -583,52 +583,100 @@ html.oja-site body {
 }
 
 /* --- Project intake wizard --- */
+.oja-intake-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.oja-intake-calendly {
+  max-width: 42rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--oja-section-border);
+}
+
+.oja-intake-calendly .calendly-card {
+  max-width: none;
+  margin: 0;
+}
+
+.oja-intake-calendly .calendly-card h2 {
+  margin-top: 0;
+}
+
 .intake-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: 2rem;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
   align-items: start;
-  max-width: var(--max-wide);
-  margin: 0 auto;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
-  .intake-layout { grid-template-columns: 1fr; }
+  .intake-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+.intake-aside {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+  border-radius: var(--oja-card-radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
 }
 
 .intake-aside h2 {
-  font-size: 1.35rem;
+  font-family: var(--oja-font-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
   margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
 }
 
 .intake-aside p {
   color: var(--muted);
   margin: 0 0 1rem;
+  line-height: 1.55;
 }
 
 .intake-aside-list {
   margin: 0;
   padding-left: 1.15rem;
   color: var(--muted);
+  line-height: 1.5;
 }
 
-.intake-aside-list li { margin-bottom: 0.5rem; }
+.intake-aside-list li {
+  margin-bottom: 0.55rem;
+}
 
 .intake-aside-note {
   font-size: 0.88rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--oja-section-border);
+  line-height: 1.5;
 }
 
 .intake-panel {
-  padding: 1.75rem;
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border-radius: var(--oja-card-radius);
+  box-shadow: var(--oja-shadow-lg);
 }
 
 .intake-progress {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--oja-section-border);
 }
 
 .intake-progress-track {
-  height: 6px;
+  height: 8px;
   background: var(--border);
   border-radius: 999px;
   overflow: hidden;
@@ -642,12 +690,16 @@ html.oja-site body {
   transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.intake-progress-meta {
+  margin: 0.65rem 0 0;
+}
+
 .intake-progress-label {
   display: block;
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--muted);
   font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .intake-step {
@@ -663,27 +715,30 @@ html.oja-site body {
 
 .intake-step legend {
   font-family: var(--oja-font-display);
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem);
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.02em;
 }
 
 .intake-hint {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--muted);
-  margin: 0 0 1rem;
+  margin: 0 0 1.15rem;
+  line-height: 1.5;
 }
 
 .intake-option {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.85rem;
   align-items: flex-start;
-  padding: 0.85rem 1rem;
-  margin-bottom: 0.5rem;
+  padding: 0.95rem 1.1rem;
+  min-height: 44px;
+  margin-bottom: 0.65rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
 
 .intake-option:hover {
@@ -692,8 +747,10 @@ html.oja-site body {
 }
 
 .intake-option input {
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
   flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .intake-option input:checked + span,
@@ -706,21 +763,33 @@ html.oja-site body {
   box-shadow: 0 4px 16px rgba(232, 93, 4, 0.12);
 }
 
+.intake-option span {
+  line-height: 1.45;
+}
+
 .intake-check-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: 0.65rem;
 }
 
 .intake-check {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 0.65rem;
+  gap: 0.55rem;
+  min-height: 44px;
+  padding: 0.65rem 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
+  line-height: 1.35;
+}
+
+.intake-check input {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
 }
 
 .intake-check:has(input:checked) {
@@ -728,17 +797,54 @@ html.oja-site body {
   background: #fff7f0;
 }
 
+.intake-form .feedback-label {
+  display: block;
+  margin-top: 1.1rem;
+}
+
+.intake-form .feedback-label:first-of-type,
+.intake-form fieldset .feedback-label:first-of-type {
+  margin-top: 0;
+}
+
+.intake-form .feedback-input,
+.intake-form .feedback-textarea {
+  margin-top: 0.35rem;
+}
+
 .intake-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--oja-section-border);
+}
+
+.intake-actions .btn {
+  min-height: 44px;
+  min-width: 8rem;
 }
 
 .intake-footnote {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--muted);
   margin: 1rem 0 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .oja-intake-page {
+    gap: var(--space-lg);
+  }
+
+  .intake-check-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intake-actions .btn {
+    flex: 1 1 100%;
+  }
 }
 
 /* --- Legal hub --- */
@@ -879,7 +985,7 @@ html.oja-site body {
 }
 
 .intake-success {
-  padding: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
   text-align: center;
 }
 

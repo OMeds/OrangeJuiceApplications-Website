@@ -15,13 +15,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/style.css?v=9">
+  <link rel="stylesheet" href="/assets/style.css?v=10">
   <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=6">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=13">
   <script src="/assets/site-config.js" defer></script>
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=5" defer></script>
-  <script src="/assets/oja-intake.js?v=2" defer></script>
+  <script src="/assets/oja-interactive.js?v=11" defer></script>
+  <script src="/assets/oja-intake.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -40,7 +40,7 @@
         <span class="visually-hidden">Menu</span>
       </button>
       <div class="nav-links" id="intake-nav" data-nav-panel>
-        <a href="/">Home</a>
+        <a href="/#projects">Projects</a>
         <a href="/about/">About</a>
         <a href="/work/">Work</a>
         <a href="/ycda/">YCDA</a>
@@ -52,6 +52,10 @@
     </nav>
 
     <header class="page-hero is-compact" data-hero-glow>
+      <div class="hero-orbs" aria-hidden="true">
+        <span class="hero-orb hero-orb-1"></span>
+        <span class="hero-orb hero-orb-2"></span>
+      </div>
       <div class="hero-inner">
         <span class="hero-badge">Project intake</span>
         <h1>Build something with us</h1>
@@ -59,161 +63,182 @@
           Whether you have a GitHub repo, a napkin sketch, or an existing studio — answer a few questions
           and we will open a structured email so nothing gets lost.
         </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#intake-form" data-magnetic>Start the wizard</a>
+          <a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com" data-magnetic>Email us</a>
+        </div>
       </div>
     </header>
 
-    <main id="main-content" class="section-wide">
-      <div class="intake-layout" data-reveal>
-        <aside class="intake-aside">
-          <h2>How agencies capture leads</h2>
-          <p>Strong studios use a short qualification flow before a discovery call — project type, technical maturity, stack, timeline, and budget band. We do the same, without locking you into a CRM on day one.</p>
-          <ul class="intake-aside-list">
-            <li>Typical reply within <strong>2 business days</strong></li>
-            <li>No spam list — your answers go straight to our inbox</li>
-            <li>Ideal for apps, portals, and Apple-first products</li>
-          </ul>
-          <p class="intake-aside-note">Prefer email? <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>. Inquiries are covered by our <a href="/company/services/">project inquiry terms</a>.</p>
-        </aside>
+    <main id="main-content">
+      <div class="section-wide oja-intake-page">
+        <div class="intake-layout" id="intake-form" data-reveal>
+          <aside class="intake-aside card">
+            <h2>What we need to know</h2>
+            <p>A short qualification flow before a discovery call — project type, technical maturity, stack, timeline, and budget band. Same discipline as top studios, without locking you into a CRM on day one.</p>
+            <ul class="intake-aside-list">
+              <li>Typical reply within <strong>2 business days</strong></li>
+              <li>No spam list — your answers go straight to our inbox</li>
+              <li>Web, mobile, integrations, and studio portals</li>
+            </ul>
+            <p class="intake-aside-note">Prefer email? <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>. Inquiries are covered by our <a href="/company/services/">project inquiry terms</a>.</p>
+          </aside>
 
-        <div class="intake-panel card">
-          <div class="intake-progress" aria-hidden="true">
-            <div class="intake-progress-track">
-              <div class="intake-progress-fill" data-intake-progress-fill></div>
-            </div>
-            <span class="intake-progress-label" data-intake-step-label">Step 1 of 6</span>
-          </div>
-
-          <form class="intake-form" data-intake-form novalidate>
-            <fieldset class="intake-step is-active" data-intake-step>
-              <legend>What are you looking to build?</legend>
-              <p class="intake-hint">Like product-led agencies, we start with outcome — not technology.</p>
-              <label class="intake-option">
-                <input type="radio" name="project_type" value="New app" data-required>
-                <span><strong>New app</strong> — idea to MVP on App Store, web, or both</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="project_type" value="Improve existing" data-required>
-                <span><strong>Improve existing</strong> — features, redesign, or performance on live product</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="project_type" value="Studio / member portal" data-required>
-                <span><strong>Studio or member portal</strong> — classes, bookings, parents (like YCDA)</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="project_type" value="Not sure yet" data-required>
-                <span><strong>Not sure yet</strong> — need help scoping</span>
-              </label>
-            </fieldset>
-
-            <fieldset class="intake-step" data-intake-step hidden>
-              <legend>What is your technical starting point?</legend>
-              <label class="intake-option">
-                <input type="radio" name="technical_level" value="existing_repo" data-required>
-                <span><strong>We have a GitHub (or other) repo</strong> — code exists, need a partner</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="technical_level" value="existing_team" data-required>
-                <span><strong>We have developers</strong> — need design, Apple expertise, or delivery help</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="technical_level" value="non_technical" data-required>
-                <span><strong>Non-technical founder</strong> — product vision, need full build partner</span>
-              </label>
-              <label class="intake-option">
-                <input type="radio" name="technical_level" value="exploring" data-required>
-                <span><strong>Exploring options</strong> — comparing agencies and freelancers</span>
-              </label>
-            </fieldset>
-
-            <fieldset class="intake-step" data-intake-step hidden>
-              <legend>Existing code &amp; languages</legend>
-              <div data-intake-repo-fields hidden>
-                <label class="feedback-label" for="github_url">Repository URL (optional)</label>
-                <input class="feedback-input" type="url" id="github_url" name="github_url" placeholder="https://github.com/your-org/your-app" inputmode="url" autocomplete="off">
+          <div class="intake-panel card">
+            <div class="intake-progress" role="group" aria-label="Form progress">
+              <div class="intake-progress-track">
+                <div class="intake-progress-fill" data-intake-progress-fill></div>
               </div>
-              <div data-intake-lang-fields>
-                <p class="intake-hint">Select any that apply — or skip if unknown.</p>
-                <div class="intake-check-grid">
-                  <label class="intake-check"><input type="checkbox" name="languages" value="Swift / SwiftUI"> Swift / SwiftUI</label>
-                  <label class="intake-check"><input type="checkbox" name="languages" value="Kotlin / Android"> Kotlin / Android</label>
-                  <label class="intake-check"><input type="checkbox" name="languages" value="TypeScript / React / Next.js"> TypeScript / React / Next.js</label>
-                  <label class="intake-check"><input type="checkbox" name="languages" value="Python"> Python</label>
-                  <label class="intake-check"><input type="checkbox" name="languages" value="PHP / WordPress"> PHP / WordPress</label>
-                  <label class="intake-check"><input type="checkbox" name="languages" value="Not chosen yet"> Not chosen yet</label>
+              <p class="intake-progress-meta">
+                <span class="intake-progress-label" data-intake-step-label>Step 1 of 6</span>
+              </p>
+            </div>
+
+            <form class="intake-form" data-intake-form novalidate>
+              <fieldset class="intake-step is-active" data-intake-step>
+                <legend>What are you looking to build?</legend>
+                <p class="intake-hint">We start with outcome — not technology.</p>
+                <label class="intake-option">
+                  <input type="radio" name="project_type" value="New app" data-required>
+                  <span><strong>New app</strong> — idea to MVP on App Store, web, or both</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="project_type" value="Improve existing" data-required>
+                  <span><strong>Improve existing</strong> — features, redesign, or performance on live product</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="project_type" value="Studio / member portal" data-required>
+                  <span><strong>Studio or member portal</strong> — classes, bookings, parents (like YCDA)</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="project_type" value="Not sure yet" data-required>
+                  <span><strong>Not sure yet</strong> — need help scoping</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>What is your technical starting point?</legend>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="existing_repo" data-required>
+                  <span><strong>We have a GitHub (or other) repo</strong> — code exists, need a partner</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="existing_team" data-required>
+                  <span><strong>We have developers</strong> — need design, Apple expertise, or delivery help</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="non_technical" data-required>
+                  <span><strong>Non-technical founder</strong> — product vision, need full build partner</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="exploring" data-required>
+                  <span><strong>Exploring options</strong> — comparing agencies and freelancers</span>
+                </label>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>Existing code &amp; languages</legend>
+                <div data-intake-repo-fields hidden>
+                  <label class="feedback-label" for="github_url">Repository URL (optional)</label>
+                  <input class="feedback-input" type="url" id="github_url" name="github_url" placeholder="https://github.com/your-org/your-app" inputmode="url" autocomplete="off">
                 </div>
+                <div data-intake-lang-fields>
+                  <p class="intake-hint">Select any that apply — or skip if unknown.</p>
+                  <div class="intake-check-grid">
+                    <label class="intake-check"><input type="checkbox" name="languages" value="Swift / SwiftUI"> Swift / SwiftUI</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="Kotlin / Android"> Kotlin / Android</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="TypeScript / React / Next.js"> TypeScript / React / Next.js</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="Python"> Python</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="PHP / WordPress"> PHP / WordPress</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="Not chosen yet"> Not chosen yet</label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step data-validate-platforms hidden>
+                <legend>Where should it run?</legend>
+                <div class="intake-check-grid">
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="iPhone / iPad"> iPhone / iPad</label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Android"> Android</label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Web app"> Web app</label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Marketing site"> Marketing site</label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Member portal"> Member / parent portal</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>Timeline &amp; budget</legend>
+                <p class="intake-hint">Rough bands help us route you — no commitment.</p>
+                <label class="feedback-label" for="timeline">Target timeline</label>
+                <select class="feedback-input" id="timeline" name="timeline" data-required>
+                  <option value="">Choose…</option>
+                  <option value="ASAP / under 3 months">ASAP / under 3 months</option>
+                  <option value="3–6 months">3–6 months</option>
+                  <option value="6–12 months">6–12 months</option>
+                  <option value="Flexible / exploring">Flexible / exploring</option>
+                </select>
+                <label class="feedback-label" for="budget">Budget band (GBP, excl. VAT)</label>
+                <select class="feedback-input" id="budget" name="budget" data-required>
+                  <option value="">Choose…</option>
+                  <option value="Under £10k">Under £10k</option>
+                  <option value="£10k – £25k">£10k – £25k</option>
+                  <option value="£25k – £50k">£25k – £50k</option>
+                  <option value="£50k+">£50k+</option>
+                  <option value="Prefer to discuss">Prefer to discuss</option>
+                </select>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>Tell us more &amp; how to reach you</legend>
+                <label class="feedback-label" for="project_summary">Project summary</label>
+                <textarea class="feedback-input feedback-textarea" id="project_summary" name="project_summary" rows="5" placeholder="Goals, users, must-have features, competitors you admire…" data-required></textarea>
+                <label class="feedback-label" for="contact_name">Your name</label>
+                <input class="feedback-input" type="text" id="contact_name" name="contact_name" autocomplete="name" data-required>
+                <label class="feedback-label" for="contact_company">Company / studio (optional)</label>
+                <input class="feedback-input" type="text" id="contact_company" name="contact_company" autocomplete="organization">
+                <label class="feedback-label" for="contact_email">Email</label>
+                <input class="feedback-input" type="email" id="contact_email" name="contact_email" autocomplete="email" data-required>
+                <label class="feedback-label" for="contact_phone">Phone (optional)</label>
+                <input class="feedback-input" type="tel" id="contact_phone" name="contact_phone" autocomplete="tel">
+              </fieldset>
+
+              <p class="feedback-error" data-intake-error hidden role="alert"></p>
+
+              <div class="intake-actions">
+                <button type="button" class="btn btn-secondary" data-intake-back hidden>Back</button>
+                <button type="button" class="btn btn-primary" data-intake-next data-magnetic>Continue</button>
+                <button type="submit" class="btn btn-primary" data-intake-submit hidden data-magnetic>Send inquiry via email</button>
               </div>
-            </fieldset>
+              <p class="intake-footnote" data-intake-footnote>Submitting opens your email app with your project details ready to send to <strong>support@orangejuiceapplications.com</strong>. Send the message to start the conversation.</p>
+            </form>
+          </div>
+        </div>
 
-            <fieldset class="intake-step" data-intake-step data-validate-platforms hidden>
-              <legend>Where should it run?</legend>
-              <div class="intake-check-grid">
-                <label class="intake-check"><input type="checkbox" name="platforms" value="iPhone / iPad"> iPhone / iPad</label>
-                <label class="intake-check"><input type="checkbox" name="platforms" value="Android"> Android</label>
-                <label class="intake-check"><input type="checkbox" name="platforms" value="Web app"> Web app</label>
-                <label class="intake-check"><input type="checkbox" name="platforms" value="Marketing site"> Marketing site</label>
-                <label class="intake-check"><input type="checkbox" name="platforms" value="Member portal"> Member / parent portal</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="intake-step" data-intake-step hidden>
-              <legend>Timeline &amp; budget</legend>
-              <p class="intake-hint">Rough bands help us route you — no commitment.</p>
-              <label class="feedback-label" for="timeline">Target timeline</label>
-              <select class="feedback-input" id="timeline" name="timeline" data-required>
-                <option value="">Choose…</option>
-                <option value="ASAP / under 3 months">ASAP / under 3 months</option>
-                <option value="3–6 months">3–6 months</option>
-                <option value="6–12 months">6–12 months</option>
-                <option value="Flexible / exploring">Flexible / exploring</option>
-              </select>
-              <label class="feedback-label" for="budget">Budget band (GBP, excl. VAT)</label>
-              <select class="feedback-input" id="budget" name="budget" data-required>
-                <option value="">Choose…</option>
-                <option value="Under £10k">Under £10k</option>
-                <option value="£10k – £25k">£10k – £25k</option>
-                <option value="£25k – £50k">£25k – £50k</option>
-                <option value="£50k+">£50k+</option>
-                <option value="Prefer to discuss">Prefer to discuss</option>
-              </select>
-            </fieldset>
-
-            <fieldset class="intake-step" data-intake-step hidden>
-              <legend>Tell us more &amp; how to reach you</legend>
-              <label class="feedback-label" for="project_summary">Project summary</label>
-              <textarea class="feedback-input feedback-textarea" id="project_summary" name="project_summary" rows="5" placeholder="Goals, users, must-have features, competitors you admire…" data-required></textarea>
-              <label class="feedback-label" for="contact_name">Your name</label>
-              <input class="feedback-input" type="text" id="contact_name" name="contact_name" autocomplete="name" data-required>
-              <label class="feedback-label" for="contact_company">Company / studio (optional)</label>
-              <input class="feedback-input" type="text" id="contact_company" name="contact_company" autocomplete="organization">
-              <label class="feedback-label" for="contact_email">Email</label>
-              <input class="feedback-input" type="email" id="contact_email" name="contact_email" autocomplete="email" data-required>
-              <label class="feedback-label" for="contact_phone">Phone (optional)</label>
-              <input class="feedback-input" type="tel" id="contact_phone" name="contact_phone" autocomplete="tel">
-            </fieldset>
-
-            <p class="feedback-error" data-intake-error hidden></p>
-
-            <div class="intake-actions">
-              <button type="button" class="btn btn-secondary" data-intake-back hidden>Back</button>
-              <button type="button" class="btn btn-primary" data-intake-next data-magnetic>Continue</button>
-              <button type="submit" class="btn btn-primary" data-intake-submit hidden data-magnetic>Send inquiry via email</button>
+        <section class="oja-intake-calendly" data-reveal>
+          <div class="card calendly-card">
+            <h2>Prefer a discovery call?</h2>
+            <p class="oja-muted">Pick a time below, or email us at <a href="mailto:support@orangejuiceapplications.com?subject=Discovery%20call%20request">support@orangejuiceapplications.com</a> with your timezone and we&rsquo;ll arrange a slot.</p>
+            <div class="calendly-embed-wrap" data-calendly-embed hidden>
+              <iframe class="calendly-iframe" title="Book a discovery call" data-calendly-frame loading="lazy"></iframe>
             </div>
-            <p class="intake-footnote" data-intake-footnote>Submitting opens your email app with your project details ready to send to <strong>support@orangejuiceapplications.com</strong>. Send the message to start the conversation.</p>
-          </form>
+            <p data-calendly-fallback><a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com?subject=Discovery%20call%20request">Email to schedule</a></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <section class="oja-cta-band" data-reveal>
+      <div class="oja-cta-band-inner">
+        <div>
+          <h2>Not ready for the wizard?</h2>
+          <p>Email us directly — we reply within about two business days.</p>
+        </div>
+        <div class="oja-cta-band-actions">
+          <a class="btn btn-primary" href="mailto:support@orangejuiceapplications.com" data-magnetic>Email support</a>
+          <a class="btn btn-secondary" href="/contact/" data-magnetic>Contact page</a>
         </div>
       </div>
-
-      <section class="section-wide" data-reveal style="margin-top: 2rem;">
-        <div class="card calendly-card">
-          <h2>Prefer a discovery call?</h2>
-          <p class="oja-muted">Pick a time below, or email us at <a href="mailto:support@orangejuiceapplications.com?subject=Discovery%20call%20request">support@orangejuiceapplications.com</a> with your timezone and we&rsquo;ll arrange a slot.</p>
-          <div class="calendly-embed-wrap" data-calendly-embed hidden>
-            <iframe class="calendly-iframe" title="Book a discovery call" data-calendly-frame loading="lazy"></iframe>
-          </div>
-          <p data-calendly-fallback><a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com?subject=Discovery%20call%20request">Email to schedule</a></p>
-        </div>
-      </section>
-    </main>
+    </section>
 
     <footer class="site-footer">
       <p>&copy; Orange Juice Applications.</p>
@@ -221,6 +246,8 @@
         <a href="/legal/">Legal hub</a>
         &middot;
         <a href="/company/privacy/">Website privacy</a>
+        &middot;
+        <a href="/company/services/">Project inquiry terms</a>
         &middot;
         <a href="/contact/">Contact</a>
       </p>
@@ -237,9 +264,5 @@
       </p>
     </footer>
   </div>
-
-  <style>
-    .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-  </style>
 </body>
 </html>
