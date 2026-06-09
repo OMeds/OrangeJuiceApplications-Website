@@ -331,6 +331,7 @@
   function initCanvas() {
     var canvas = qs("#oja-canvas");
     if (!canvas || prefersReducedMotion) return;
+    if (document.documentElement.classList.contains("page-intake")) return;
 
     var ctx = canvas.getContext("2d");
     var particles = [];
@@ -422,6 +423,7 @@
   /* --- Cursor glow follows pointer --- */
   function initCursorGlow() {
     if (prefersReducedMotion || !document.documentElement.classList.contains("oja-site")) return;
+    if (document.documentElement.classList.contains("page-intake")) return;
     var glow = document.createElement("div");
     glow.className = "oja-cursor-glow";
     glow.setAttribute("aria-hidden", "true");

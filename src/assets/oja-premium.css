@@ -847,6 +847,70 @@ html.oja-site body {
   }
 }
 
+/* --- Start a project: calm backgrounds (wizard readability) --- */
+html.oja-site.page-intake #oja-canvas {
+  display: none;
+}
+
+html.oja-site.page-intake .oja-cursor-glow {
+  display: none !important;
+}
+
+html.oja-site.page-intake .page-hero {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+html.oja-site.page-intake .page-hero.is-compact {
+  padding-bottom: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+html.oja-site.page-intake .page-hero.is-compact::before {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% -15%, rgba(232, 93, 4, 0.12), transparent 58%),
+    linear-gradient(180deg, #fff9f4 0%, var(--oja-page-bg) 100%);
+}
+
+html.oja-site.page-intake .page-hero.is-compact .hero-orbs .hero-orb-1 {
+  width: min(180px, 38vw);
+  height: min(180px, 38vw);
+  opacity: 0.2;
+  top: 0;
+  left: 4%;
+  filter: blur(48px);
+}
+
+html.oja-site.page-intake .page-hero.is-compact .hero-orbs .hero-orb-2 {
+  width: min(130px, 30vw);
+  height: min(130px, 30vw);
+  opacity: 0.16;
+  bottom: 8%;
+  right: 6%;
+  filter: blur(44px);
+}
+
+html.oja-site.page-intake main {
+  background: var(--oja-page-bg);
+}
+
+html.oja-site.page-intake .oja-intake-page,
+html.oja-site.page-intake .oja-cta-band {
+  position: relative;
+  z-index: 2;
+}
+
+html.oja-site.page-intake .intake-aside,
+html.oja-site.page-intake .intake-panel,
+html.oja-site.page-intake .oja-intake-calendly .calendly-card {
+  background: var(--card);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.oja-site.page-intake .page-hero.is-compact .hero-orbs .hero-orb {
+    opacity: 0.12;
+  }
+}
+
 /* --- Legal hub --- */
 .legal-hub-grid {
   display: grid;
