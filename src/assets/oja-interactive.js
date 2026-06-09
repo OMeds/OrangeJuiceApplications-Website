@@ -556,6 +556,73 @@
     });
   }
 
+  var FM_TAB_ORDER = ["overview", "review", "privacy", "guides"];
+
+  function setFmTab(preview, tabId, fromUser) {
+    if (!preview || FM_TAB_ORDER.indexOf(tabId) < 0) return;
+    if (fromUser) preview.dataset.userTab = "true";
+    qsa("[data-fm-tab]", preview).forEach(function (btn) {
+      var on = btn.getAttribute("data-fm-tab") === tabId;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    qsa("[data-fm-screen]", preview).forEach(function (screen) {
+      var on = screen.getAttribute("data-fm-screen") === tabId;
+      screen.classList.toggle("is-active", on);
+      screen.hidden = !on;
+    });
+    var chapter = preview.closest("[data-story-chapter]");
+    if (chapter && fromUser) {
+      qsa("[data-story-step]", chapter).forEach(function (step) {
+        step.classList.toggle("is-active", step.getAttribute("data-fm-step") === tabId);
+      });
+    }
+  }
+
+  function initFacematchPreview() {
+    qsa("[data-fm-preview]").forEach(function (preview) {
+      var tabs = qsa("[data-fm-tab]", preview);
+      var viewport = qs(".oja-fm-preview-viewport", preview);
+      if (!tabs.length) return;
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          setFmTab(preview, tab.getAttribute("data-fm-tab"), true);
+        });
+      });
+
+      if (viewport) {
+        viewport.addEventListener("keydown", function (e) {
+          var current = tabs.find(function (t) {
+            return t.classList.contains("is-active");
+          });
+          if (!current) return;
+          var idx = FM_TAB_ORDER.indexOf(current.getAttribute("data-fm-tab"));
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            setFmTab(preview, FM_TAB_ORDER[(idx + 1) % FM_TAB_ORDER.length], true);
+          }
+          if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            setFmTab(
+              preview,
+              FM_TAB_ORDER[(idx - 1 + FM_TAB_ORDER.length) % FM_TAB_ORDER.length],
+              true
+            );
+          }
+        });
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (preview.dataset.userTab) preview.dataset.userTab = "";
+        },
+        { passive: true }
+      );
+    });
+  }
+
   /* --- Scroll story (home): pinned chapters + step reveals --- */
   function initScrollStory() {
     var story = qs("[data-scroll-story]");
@@ -595,6 +662,15 @@
         if (preview && stepEl && !preview.dataset.userTab) {
           var tabId = stepEl.getAttribute("data-ycda-step");
           if (tabId) setYcdaTab(preview, tabId, false);
+        }
+      }
+
+      if (chapter.getAttribute("data-story-chapter") === "facematch") {
+        var fmPreview = qs("[data-fm-preview]", chapter);
+        var fmStep = steps[idx];
+        if (fmPreview && fmStep && !fmPreview.dataset.userTab) {
+          var fmTab = fmStep.getAttribute("data-fm-step");
+          if (fmTab) setFmTab(fmPreview, fmTab, false);
         }
       }
     }
@@ -679,6 +755,7 @@
     initChips();
     initNavScroll();
     initYcdaPreview();
+    initFacematchPreview();
     initScrollStory();
   });
 })();

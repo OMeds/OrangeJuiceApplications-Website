@@ -30,6 +30,8 @@ ErrorDocument 500 /500.html
 
   RewriteRule ^about$ /about/index.html [L]
   RewriteRule ^work$ /work/index.html [L]
+  RewriteRule ^services$ /services/index.html [L]
+  RewriteRule ^accessibility$ /accessibility/index.html [L]
   RewriteRule ^contact$ /contact/index.html [L]
   RewriteRule ^updates$ /updates/index.html [L]
   RewriteRule ^facematch$ /facematch/index.html [L]

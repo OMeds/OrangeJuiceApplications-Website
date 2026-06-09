@@ -31,6 +31,7 @@ def marketing_nav(nav_id: str = "main-nav", extra_links: str = "", *, cta: bool 
     links = f"""
       <a href="/#projects">Projects</a>
       <a href="/about/">About</a>
+      <a href="/services/">Services</a>
       <a href="/work/">Work</a>
       <a href="/ycda/">YCDA</a>
       <a href="/facematch/">FaceMatch</a>

@@ -16,6 +16,7 @@ from website_components import (  # noqa: E402
     contact_channels,
     cta_band as cta_band_block,
     work_case_studies,
+    work_case_study_details,
 )
 
 PAGES = ROOT / "docs" / "pages"
@@ -58,7 +59,11 @@ def render_md_page(
     html_body = convert(md)
 
     if slug == "work":
-        html_body = work_case_studies() + f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
+        html_body = (
+            work_case_studies()
+            + work_case_study_details()
+            + f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
+        )
     elif slug == "about":
         html_body = (
             f'<div class="oja-content-prose" data-reveal>{html_body}</div>'
@@ -206,6 +211,34 @@ def main() -> None:
         sys.exit(1)
     out = Path(sys.argv[1])
 
+    render_md_page(
+        out,
+        "services",
+        "services.md",
+        "Services — Orange Juice Applications",
+        "Web apps, mobile apps, integrations, codebase rescue, and privacy-conscious products from a UK software studio.",
+        "/services/",
+        "Services",
+        "Web, mobile, integrations, and rescue — one team.",
+        "What we build",
+        hero_actions=(
+            '<a class="btn btn-primary" href="/start-a-project/" data-magnetic>Start a project</a>'
+            '<a class="btn btn-secondary" href="/work/" data-magnetic>See our work</a>'
+        ),
+        cinematic_hero=True,
+    )
+    render_md_page(
+        out,
+        "accessibility",
+        "accessibility.md",
+        "Accessibility — Orange Juice Applications",
+        "Our WCAG commitment, known limitations, and how to report accessibility issues on orangejuiceapplications.com.",
+        "/accessibility/",
+        "Accessibility",
+        "Inclusive by intent — tell us if we miss the mark.",
+        "Accessibility statement",
+        cinematic_hero=True,
+    )
     render_md_page(
         out,
         "about",

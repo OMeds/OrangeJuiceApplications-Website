@@ -2595,3 +2595,348 @@ html.oja-site.page-home-story .oja-scroll-hint {
   flex-wrap: wrap;
   gap: 0.75rem;
 }
+
+/* Visually hidden (accessible labels) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Process band (home) */
+.oja-process-band {
+  padding: 1.25rem 1.25rem 0;
+  max-width: var(--max-wide);
+  margin: 0 auto;
+}
+
+.oja-process-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--oja-section-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--oja-card-shadow);
+}
+
+.oja-process-steps li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.oja-process-steps strong {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.oja-process-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0 auto 0.25rem;
+  border-radius: 999px;
+  background: var(--orange-soft);
+  color: var(--orange-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 800px) {
+  .oja-process-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .oja-process-steps {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .oja-process-steps li {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+  }
+  .oja-process-num {
+    margin: 0;
+  }
+}
+
+/* Industries strip */
+.oja-industries-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.oja-industries-strip span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 140, 0, 0.1);
+  color: var(--orange-dark);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+/* FaceMatch preview (home) */
+.oja-story-pin--fm {
+  align-items: start;
+}
+
+.oja-fm-preview-frame {
+  min-height: 22rem;
+}
+
+.oja-fm-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--oja-section-border);
+  font-weight: 700;
+}
+
+.oja-fm-preview-header img {
+  border-radius: 12px;
+}
+
+.oja-fm-preview-viewport {
+  padding: 1.25rem;
+  min-height: 14rem;
+  outline: none;
+}
+
+.oja-fm-preview-panel {
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.oja-fm-preview-panel.is-active {
+  display: flex;
+}
+
+.oja-fm-preview-panel h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.oja-fm-preview-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.oja-story-chapter--fm .oja-story-step:not(.is-active) {
+  opacity: 0.28;
+  transform: translateY(12px);
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .oja-story-chapter--fm .oja-story-step:not(.is-active) {
+    display: none;
+  }
+}
+
+/* Studio testimonial (YCDA parent quote) */
+.oja-studio-testimonial {
+  padding: clamp(2rem, 5vw, 3.5rem) 1.25rem;
+}
+
+.oja-studio-testimonial-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+
+.oja-studio-testimonial-inner h2 {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  margin: 0 0 1rem;
+}
+
+.oja-studio-testimonial blockquote {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: none;
+}
+
+.oja-studio-testimonial blockquote p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+.oja-studio-testimonial-cite {
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.oja-studio-testimonial .oja-muted {
+  margin: 0;
+  font-size: 0.82rem;
+}
+
+/* Intake: examples, next steps, FAQ, glossary, restore */
+.oja-intake-examples {
+  margin-bottom: 1.25rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.oja-intake-examples h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.oja-intake-examples-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.oja-intake-prefill {
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.oja-intake-next {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.oja-intake-next h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.oja-intake-next-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.65;
+}
+
+.oja-intake-next-steps li + li {
+  margin-top: 0.5rem;
+}
+
+.oja-intake-faq {
+  margin-top: 1.5rem;
+}
+
+.oja-intake-faq h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.oja-intake-faq-item {
+  border: 1px solid var(--oja-section-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.oja-intake-faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.oja-intake-faq-item p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.oja-glossary-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--orange-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.oja-glossary-btn:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.oja-glossary-tip {
+  display: block;
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  background: var(--orange-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+}
+
+.oja-glossary-tip[hidden] {
+  display: none;
+}
+
+.oja-intake-restore {
+  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.oja-intake-restore-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.footer-cookie-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* Work case study detail blocks (generated pages) */
+.oja-work-case-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.oja-work-case-block h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--orange-dark);
+}
+
+.oja-work-case-block p {
+  margin: 0;
+  line-height: 1.65;
+}

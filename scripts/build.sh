@@ -22,7 +22,7 @@ fi
 
 rm -rf "$OUT"
 mkdir -p "$OUT/assets" "$OUT/facematch/beta" "$OUT/ycda" "$OUT/start-a-project" "$OUT/legal" \
-  "$OUT/about" "$OUT/work" "$OUT/contact" "$OUT/updates" "$OUT/press" "$OUT/company/privacy" \
+  "$OUT/about" "$OUT/work" "$OUT/contact" "$OUT/updates" "$OUT/press" "$OUT/services" "$OUT/accessibility" "$OUT/company/privacy" \
   "$OUT/company/services" \
   "$OUT/contact-profile-picture-sync/privacy" \
   "$OUT/contact-profile-picture-sync/terms" \

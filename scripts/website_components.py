@@ -150,13 +150,39 @@ def work_case_studies() -> str:
         <p>SwiftUI, on-device Vision matching, OAuth bridges — privacy-first contact photos for iPhone and iPad.</p>
         <span class="showcase-cta showcase-cta-fm">FaceMatch preview {icon("arrow-right")}</span>
       </a>
-      <a class="oja-work-card oja-work-card-custom" href="/start-a-project/" data-tilt>
+      <a class="oja-work-card oja-work-card-custom" href="/services/" data-tilt>
         {icon_wrap("code", "orange")}
-        <h2>Custom apps</h2>
-        <p>Studios, SMBs, and Apple-first products — limited engagements per year with honest scoping.</p>
-        <span class="showcase-cta">Start a project {icon("arrow-right")}</span>
+        <h2>Custom software</h2>
+        <p>Studios, startups, charities, and in-house teams — web, mobile, integrations, and rescue projects.</p>
+        <span class="showcase-cta">Our services {icon("arrow-right")}</span>
       </a>
     </div>"""
+
+
+def work_case_study_details() -> str:
+    return """
+    <section class="oja-case-studies" data-reveal aria-label="Case study details">
+      <article class="oja-case-study card">
+        <span class="showcase-tag tag-live">Live</span>
+        <h2>You Can Dance Academy</h2>
+        <dl class="oja-case-study-grid">
+          <div><dt>Problem</dt><dd>Families needed one place to discover classes, book tasters, and manage member tasks without staff chasing email.</dd></div>
+          <div><dt>Solution</dt><dd>Public studio site, ClassManager hand-offs, taster flows, and a member portal — maintained by the same studio team that builds it.</dd></div>
+          <div><dt>Outcome</dt><dd>Less admin for staff; families spend more time on dance. Reference stack for studios and membership businesses.</dd></div>
+        </dl>
+        <p><a href="/ycda/">YCDA hub</a> · <a href="https://youcandanceacademy.co.uk" rel="noopener noreferrer">Live site</a></p>
+      </article>
+      <article class="oja-case-study card oja-case-study--fm">
+        <span class="showcase-tag tag-dev">In development</span>
+        <h2>FaceMatch</h2>
+        <dl class="oja-case-study-grid">
+          <div><dt>Problem</dt><dd>Updating contact photos manually is slow; cloud matchers raise privacy concerns.</dd></div>
+          <div><dt>Solution</dt><dd>On-device Vision matching, review queue before Contacts updates, OAuth/file import paths, published guides and legal.</dd></div>
+          <div><dt>Outcome</dt><dd>Privacy-first utility we ship to the same standard we offer clients — honest scoping and support before App Store.</dd></div>
+        </dl>
+        <p><a href="/facematch/">FaceMatch preview</a> · <a href="/contact-profile-picture-sync/guides/">Guides</a></p>
+      </article>
+    </section>"""
 
 
 def about_principles() -> str:

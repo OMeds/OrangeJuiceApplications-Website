@@ -26,10 +26,10 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css?v=10">
   <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=12">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=16">
   <script src="/assets/site-config.js" defer></script>
   <script src="/assets/site.js" defer></script>
-  <script src="/assets/oja-interactive.js?v=11" defer></script>
+  <script src="/assets/oja-interactive.js?v=13" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -51,6 +51,7 @@
     <div class="nav-links" id="main-nav" data-nav-panel>
       <a href="#story-studio">Story</a>
       <a href="/about/">About</a>
+      <a href="/services/">Services</a>
       <a href="/work/">Work</a>
       <a href="/ycda/">YCDA</a>
       <a href="/facematch/">FaceMatch</a>
@@ -85,6 +86,17 @@
       </div>
     </header>
 
+    <section class="oja-process-band section-wide" aria-labelledby="process-heading" data-reveal>
+      <h2 id="process-heading" class="visually-hidden">How we work</h2>
+      <ol class="oja-process-steps">
+        <li><span class="oja-process-num">1</span><strong>Discover</strong><span>Understand users and constraints</span></li>
+        <li><span class="oja-process-num">2</span><strong>Design</strong><span>Flows, UI, and scope you can trust</span></li>
+        <li><span class="oja-process-num">3</span><strong>Build</strong><span>Working slices, not endless decks</span></li>
+        <li><span class="oja-process-num">4</span><strong>Launch</strong><span>Deploy, App Store, or go-live support</span></li>
+        <li><span class="oja-process-num">5</span><strong>Support</strong><span>Maintain, iterate, integrate</span></li>
+      </ol>
+    </section>
+
     <main id="main-content" class="oja-scroll-story" data-scroll-story>
       <nav class="oja-story-rail" aria-label="Story chapters" data-story-rail>
         <a class="oja-story-rail-link is-active" href="#story-studio" data-story-rail-link="studio"><span class="oja-story-rail-dot"></span><span class="oja-story-rail-label">Studio</span></a>
@@ -104,6 +116,9 @@
             <li>Internal tools</li>
             <li>Consumer apps</li>
           </ul>
+          <div class="oja-industries-strip" aria-label="Industries we serve">
+            <span>Studios</span><span>Membership</span><span>Charities</span><span>Startups</span><span>Education</span><span>Retail &amp; hospitality</span><span>In-house teams</span>
+          </div>
         </div>
         <div class="oja-story-pin">
           <div class="oja-story-visual" aria-hidden="true">
@@ -257,59 +272,90 @@
         </div>
       </section>
 
-      <section class="oja-story-chapter oja-story-chapter--fm" id="story-facematch" data-story-chapter="facematch" style="--story-steps: 3">
+      <section class="oja-story-chapter oja-story-chapter--fm" id="story-facematch" data-story-chapter="facematch" style="--story-steps: 4">
         <div class="oja-story-chapter-label">
           <span class="oja-story-eyebrow">Chapter 3 · Our product</span>
           <h2>FaceMatch</h2>
+          <p class="oja-story-chapter-lead">Privacy-first contact photo matching — explore the product story below.</p>
         </div>
-        <div class="oja-story-pin">
-          <div class="oja-story-visual" aria-hidden="true">
-            <div class="oja-story-visual-slide is-active" data-story-visual="0">
-              <div class="oja-device oja-device-phone oja-device-phone--fm">
-                <div class="oja-device-screen oja-device-screen--fm">
-                  <img src="/assets/app-icon.png" width="80" height="80" alt="">
-                  <span class="oja-story-tag">In development</span>
+        <div class="oja-story-pin oja-story-pin--fm">
+          <div class="oja-fm-preview" data-fm-preview>
+            <div class="oja-ycda-preview-frame oja-fm-preview-frame">
+              <div class="oja-ycda-preview-bar">
+                <span class="oja-ycda-preview-traffic" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="oja-ycda-preview-url">FaceMatch · in development</span>
+                <span class="oja-story-tag oja-ycda-preview-live-tag">Preview</span>
+              </div>
+              <div class="oja-fm-preview-header">
+                <img src="/assets/app-icon.png" width="40" height="40" alt="">
+                <span>FaceMatch</span>
+              </div>
+              <nav class="oja-ycda-preview-tabs" role="tablist" aria-label="Preview FaceMatch">
+                <button type="button" class="oja-ycda-preview-tab is-active" role="tab" data-fm-tab="overview" aria-selected="true">Overview</button>
+                <button type="button" class="oja-ycda-preview-tab" role="tab" data-fm-tab="review" aria-selected="false">Review queue</button>
+                <button type="button" class="oja-ycda-preview-tab" role="tab" data-fm-tab="privacy" aria-selected="false">Privacy</button>
+                <button type="button" class="oja-ycda-preview-tab" role="tab" data-fm-tab="guides" aria-selected="false">Guides</button>
+              </nav>
+              <div class="oja-fm-preview-viewport" tabindex="0" aria-label="FaceMatch preview panels">
+                <div class="oja-fm-preview-panel is-active" data-fm-screen="overview" role="tabpanel">
+                  <img src="/assets/app-icon.png" width="72" height="72" alt="">
+                  <h3>Match photos to contacts</h3>
+                  <p>On-device matching for iPhone and iPad — social sign-in or file import.</p>
+                </div>
+                <div class="oja-fm-preview-panel" data-fm-screen="review" role="tabpanel" hidden>
+                  <h3>Review queue</h3>
+                  <p>Suggestions stay in a queue until you approve each contact update.</p>
+                </div>
+                <div class="oja-fm-preview-panel" data-fm-screen="privacy" role="tabpanel" hidden>
+                  <h3>On your device</h3>
+                  <p>Vision matching stays local. We do not upload your address book.</p>
+                </div>
+                <div class="oja-fm-preview-panel" data-fm-screen="guides" role="tabpanel" hidden>
+                  <h3>Guides live today</h3>
+                  <p>Ten how-to guides, security summary, and legal hub published before App Store.</p>
+                  <p><a href="/contact-profile-picture-sync/guides/">Browse guides →</a></p>
                 </div>
               </div>
             </div>
-            <div class="oja-story-visual-slide" data-story-visual="1">
-              <div class="oja-device oja-device-phone oja-device-phone--fm">
-                <div class="oja-device-screen oja-device-screen--queue">
-                  <p class="oja-story-queue-title">Review queue</p>
-                  <p>Approve every match before it reaches Contacts.</p>
-                </div>
-              </div>
-            </div>
-            <div class="oja-story-visual-slide" data-story-visual="2">
-              <div class="oja-device oja-device-phone oja-device-phone--fm">
-                <div class="oja-device-screen oja-device-screen--privacy">
-                  <p class="oja-story-privacy-title">On your device</p>
-                  <p>Vision matching stays local. No cloud address book.</p>
-                  <div class="dev-progress-track oja-story-progress">
-                    <div class="dev-progress-bar" data-dev-progress="72%" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <p class="oja-ycda-preview-footer">
+              <a class="oja-ycda-preview-open" href="/facematch/">FaceMatch preview ↗</a>
+              <span class="oja-ycda-preview-hint">App Store listing coming soon.</span>
+            </p>
           </div>
           <div class="oja-story-steps">
-            <article class="oja-story-step is-active" data-story-step>
+            <article class="oja-story-step is-active" data-story-step data-fm-step="overview">
               <span class="oja-story-step-num">01</span>
               <h3>Right photo, right contact</h3>
               <p>FaceMatch helps you find and apply the best profile photo for every person in Apple Contacts — built for iPhone and iPad.</p>
             </article>
-            <article class="oja-story-step" data-story-step>
+            <article class="oja-story-step" data-story-step data-fm-step="review">
               <span class="oja-story-step-num">02</span>
               <h3>You approve every match</h3>
               <p>Import from social sign-in or files, then review suggestions in a queue. Nothing is applied until you say so.</p>
             </article>
-            <article class="oja-story-step" data-story-step>
+            <article class="oja-story-step" data-story-step data-fm-step="privacy">
               <span class="oja-story-step-num">03</span>
               <h3>Privacy by design</h3>
               <p>On-device Vision matching. Guides, security summaries, and legal pages are live now — App Store listing coming soon.</p>
+            </article>
+            <article class="oja-story-step" data-story-step data-fm-step="guides">
+              <span class="oja-story-step-num">04</span>
+              <h3>Support before launch</h3>
+              <p>We publish guides and policies early — the same discipline we bring to client portals and apps.</p>
               <p class="oja-story-step-links"><a class="btn btn-primary" href="/facematch/" data-magnetic>FaceMatch preview</a></p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="oja-studio-testimonial section-wide" data-reveal aria-labelledby="studio-testimonial-heading">
+        <div class="oja-studio-testimonial-inner card">
+          <h2 id="studio-testimonial-heading">From our work with You Can Dance Academy</h2>
+          <blockquote>
+            <p>We love coming to the weekly dance classes! The lessons are well planned and Miss Abi and Miss Emma are excellent teachers. There&rsquo;s a really nice relaxed atmosphere and the teachers know how to keep the children engaged.</p>
+          </blockquote>
+          <p class="oja-studio-testimonial-cite">Parent at You Can Dance Academy — published on <a href="https://youcandanceacademy.co.uk" rel="noopener noreferrer">youcandanceacademy.co.uk</a></p>
+          <p class="oja-muted">We build the studio site and portal families use; this quote is about their classes, not OJA directly.</p>
         </div>
       </section>
 
@@ -354,6 +400,8 @@
         &middot;
         <a href="/company/privacy/">Website privacy</a>
         &middot;
+        <a href="/accessibility/">Accessibility</a>
+        &middot;
         <a href="/company/services/">Project inquiry terms</a>
         &middot;
         <a href="/contact-profile-picture-sync/privacy/">FaceMatch privacy</a>
@@ -368,6 +416,8 @@
       </p>
       <p>
         <a href="/about/">About</a>
+        &middot;
+        <a href="/services/">Services</a>
         &middot;
         <a href="/work/">Work</a>
         &middot;
@@ -395,6 +445,7 @@
         &middot;
         <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
       </p>
+      <p class="footer-cookie-note">This site uses minimal cookies; analytics (when enabled) is privacy-friendly. See <a href="/company/privacy/">website privacy</a>.</p>
     </footer>
   </div>
 

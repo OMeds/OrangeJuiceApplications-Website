@@ -96,6 +96,7 @@ NAV = """
   </a>
   <div class="nav-links">
     <a href="/about/">About</a>
+    <a href="/services/">Services</a>
     <a href="/work/">Work</a>
     <a href="/ycda/">YCDA</a>
     <a href="/facematch/">FaceMatch</a>
@@ -114,6 +115,8 @@ FOOTER_LINKS = """
     &middot;
     <a href="/company/privacy/">Website privacy</a>
     &middot;
+    <a href="/accessibility/">Accessibility</a>
+    &middot;
     <a href="/contact-profile-picture-sync/privacy/">FaceMatch privacy</a>
     &middot;
     <a href="/contact-profile-picture-sync/terms/">Terms</a>
@@ -126,6 +129,8 @@ FOOTER_LINKS = """
   </p>
   <p>
     <a href="/about/">About</a>
+    &middot;
+    <a href="/services/">Services</a>
     &middot;
     <a href="/work/">Work</a>
     &middot;
@@ -156,7 +161,8 @@ FOOTER_LINKS = """
     <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>
     &middot;
     <a href="mailto:privacy@orangejuiceapplications.com">privacy@orangejuiceapplications.com</a>
-  </p>"""
+  </p>
+  <p class="footer-cookie-note">This site uses minimal cookies; analytics (when enabled) is privacy-friendly. See <a href="/company/privacy/">website privacy</a>.</p>"""
 
 FOOTER = f"""
 <footer class="site-footer">
