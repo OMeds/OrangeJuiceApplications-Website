@@ -102,7 +102,7 @@ cp "$SRC/assets/oauth-bridge.js" "$OUT/assets/oauth-bridge.js"
 for asset in company-logo.png company-logo-header.png company-logo.svg company-logo-header.svg \
   company-logo-mark.svg favicon.svg favicon.png app-icon.png apple-touch-icon.png \
   og-image.png og-facematch.png og-ycda.png \
-  ycda-logo.png ycda-logo-transparent.png ycda-logo-header.png ycda-logo-card.png ycda-logo-hero.png; do
+  ycda-logo.png ycda-logo-transparent.png ycda-logo-header.png ycda-logo-header-nav.png ycda-logo-card.png ycda-logo-hero.png; do
   cp "$SRC/assets/$asset" "$OUT/assets/$asset"
 done
 mkdir -p "$OUT/assets/ycda-screenshots"

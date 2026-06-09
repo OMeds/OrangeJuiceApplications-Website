@@ -259,9 +259,9 @@
     if (footnote) {
       footnote.innerHTML = online
         ? "Submitting sends your answers securely to our inbox. We never sell your details. See our <a href=\"/company/privacy/\">website privacy policy</a>."
-        : "Submitting opens your mail app with a pre-filled message to <strong>" +
+        : "Submitting opens your email app with your project details ready to send to <strong>" +
           supportEmail() +
-          "</strong>. Configure Formspree in <code>site-config.js</code> for one-click submit.";
+          "</strong>. Send the message to start the conversation.";
     }
   }
 

@@ -12,8 +12,8 @@ from website_chrome import wrap_page  # noqa: E402
 BODY = """
 <h1>Send feedback</h1>
 <p class="guide-intro">
-  Report a website bug, app issue, or share feedback. When Formspree is configured, feedback is sent
-  from this page; otherwise your email app opens with a subject like <strong>Web - Bug - Page not loading</strong>.
+  Report a website bug, app issue, or share feedback. Submit from this page when available; otherwise
+  your email app opens with a subject like <strong>Web - Bug - Page not loading</strong>.
 </p>
 
 <form id="feedback-form" class="feedback-form" novalidate>

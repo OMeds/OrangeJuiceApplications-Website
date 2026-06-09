@@ -75,7 +75,7 @@ def render_md_page(
         html_body = f'<div class="section-wide oja-content-page" data-reveal>{html_body}</div>'
 
     if slug == "contact":
-        body = f'<div class="section-wide">{html_body}</div>'
+        body = f'<div class="section-wide oja-contact-page">{html_body}</div>'
     elif slug in ("work", "about"):
         body = f'<div class="section-wide">{html_body}</div>'
     else:

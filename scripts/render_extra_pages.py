@@ -65,11 +65,11 @@ def render_press(out: Path) -> None:
 def render_beta(out: Path) -> None:
     body = """
     <div class="section-wide oja-content-page" data-reveal>
-      <p>FaceMatch is in active development. When TestFlight is open, a join link appears below (configured in <code>site-config.js</code>).</p>
+      <p>FaceMatch is in active development. When TestFlight opens, a join link appears below.</p>
       <div class="card beta-card">
         <img class="app-icon-img" src="/assets/app-icon.png" width="88" height="88" alt="">
         <h2>TestFlight</h2>
-        <p data-testflight-soon>TestFlight link not configured yet — check back or email <a href="mailto:support@orangejuiceapplications.com">support</a>.</p>
+        <p data-testflight-soon>TestFlight is not open yet — check back soon or email <a href="mailto:support@orangejuiceapplications.com">support</a>.</p>
         <a class="btn btn-primary is-hidden" data-testflight-link href="#" rel="noopener" hidden>Join TestFlight</a>
       </div>
       <p><a href="/facematch/">FaceMatch preview</a> · <a href="/contact-profile-picture-sync/guides/">Guides</a> · <a href="/contact-profile-picture-sync/feedback/">Send feedback</a></p>

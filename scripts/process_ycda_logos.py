@@ -59,6 +59,7 @@ def main() -> None:
     img = Image.open(src).convert("RGBA")
     save_max(img, ASSETS / "ycda-logo.png", 640)
     save_max_height(img, ASSETS / "ycda-logo-header.png", 64)
+    save_max_height(img, ASSETS / "ycda-logo-header-nav.png", 80)
     save_max_height(img, ASSETS / "ycda-logo-card.png", 80)
     save_max_height(img, ASSETS / "ycda-logo-hero.png", 112)
 

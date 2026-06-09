@@ -890,8 +890,8 @@ html.oja-site body {
 /* --- Calendly --- */
 .calendly-card {
   max-width: 40rem;
-  margin: 0 auto 3rem;
-  padding: 1.5rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 .calendly-embed-wrap {
@@ -899,13 +899,24 @@ html.oja-site body {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
+}
+
+.calendly-embed-wrap:not([hidden]) {
   min-height: 620px;
+}
+
+.calendly-embed-wrap[hidden] {
+  display: none;
 }
 
 .calendly-iframe {
   width: 100%;
   height: 620px;
   border: 0;
+}
+
+[data-calendly-fallback] {
+  margin: 1rem 0 0;
 }
 
 /* --- App Store --- */
@@ -1174,8 +1185,8 @@ html.oja-site.page-facematch .page-hero::before {
 
 /* CTA band */
 .oja-cta-band {
+  margin: var(--space-xl) 0 0;
   padding: clamp(2.5rem, 6vw, 4rem) 1.25rem;
-  margin: 0;
   background: linear-gradient(135deg, var(--oja-bg-deep) 0%, #1a1a22 100%);
   color: #f5f5f5;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -1279,8 +1290,68 @@ html.oja-site.page-facematch .page-hero::before {
 .oja-contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 1rem;
-  margin-bottom: var(--space-2xl);
+  gap: 1.25rem;
+  margin-bottom: 0;
+}
+
+.oja-contact-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.oja-contact-page .oja-contact-grid {
+  margin-bottom: 0;
+}
+
+.oja-contact-page .oja-content-prose {
+  max-width: 42rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--oja-section-border);
+}
+
+.oja-contact-page .oja-content-prose > :first-child {
+  margin-top: 0;
+}
+
+.oja-contact-page .oja-content-prose h2 {
+  margin-top: var(--space-lg);
+}
+
+.oja-contact-page .oja-content-prose h2:first-of-type {
+  margin-top: 0;
+}
+
+.oja-contact-calendly {
+  max-width: 42rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--oja-section-border);
+}
+
+.oja-contact-calendly .calendly-card {
+  max-width: none;
+  margin: 0;
+}
+
+.oja-contact-calendly .calendly-card h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .oja-contact-page {
+    gap: var(--space-lg);
+  }
+
+  .oja-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .oja-contact-card {
@@ -2118,6 +2189,46 @@ html.oja-site.page-home-story .oja-scroll-hint {
   background: #2a2a2e;
   font-size: 0.68rem;
   color: rgba(255, 255, 255, 0.55);
+}
+
+.oja-ycda-preview-site-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--ycda-blue);
+  border-bottom: 1px solid rgba(97, 164, 184, 0.45);
+}
+
+.oja-ycda-preview-site-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.oja-ycda-preview-site-name {
+  font-family: var(--oja-font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 480px) {
+  .oja-ycda-preview-site-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .oja-ycda-preview-site-name {
+    font-size: 0.9rem;
+  }
 }
 
 .oja-ycda-preview-traffic {
