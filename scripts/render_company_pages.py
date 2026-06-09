@@ -115,14 +115,14 @@ def render_md_page(
 
 def contact_extras() -> str:
     return """
-      <section class="section-wide" data-reveal>
+      <section class="oja-contact-calendly" data-reveal>
         <div class="card calendly-card">
-          <h2>Discovery call</h2>
-          <p class="oja-muted">When Calendly is configured in <code>site-config.js</code>, your booking widget appears here.</p>
+          <h2>Book a discovery call</h2>
+          <p class="oja-muted">Pick a time below, or email us with your timezone and we&rsquo;ll suggest slots.</p>
           <div class="calendly-embed-wrap" data-calendly-embed hidden>
             <iframe class="calendly-iframe" title="Book a discovery call" data-calendly-frame loading="lazy"></iframe>
           </div>
-          <p data-calendly-fallback><a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com">Email to schedule</a></p>
+          <p data-calendly-fallback><a class="btn btn-secondary" href="mailto:support@orangejuiceapplications.com?subject=Discovery%20call%20request">Email to schedule</a></p>
         </div>
       </section>"""
 
