@@ -1661,7 +1661,21 @@ html.oja-site.page-facematch .page-hero::before {
 
 /* --- Home scroll story (Apple-style chapters) --- */
 html.oja-site.page-home-story #oja-canvas {
-  opacity: 0.5;
+  opacity: 0.38;
+}
+
+html.oja-site.page-home-story .oja-story-chapter--studio {
+  background: linear-gradient(180deg, rgba(255, 252, 248, 0.92) 0%, rgba(255, 252, 248, 0.78) 40%, transparent 100%);
+}
+
+html.oja-site.page-home-story .oja-story-chapter--studio .oja-story-pin {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--oja-card-radius);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 0.5rem;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
 }
 
 html.oja-site.page-home-story .oja-cursor-glow {
@@ -1843,6 +1857,93 @@ html.oja-site.page-home-story .oja-scroll-hint-icon {
   margin: 0 auto;
   padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem;
   text-align: center;
+}
+
+.oja-story-chapter--studio {
+  border-top: none;
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.oja-story-chapter--studio .oja-story-chapter-label {
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0 1rem;
+  max-width: 38rem;
+}
+
+.oja-story-chapter-meta {
+  margin: 0.85rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+.oja-meta-etc {
+  color: var(--orange-dark);
+  font-weight: 600;
+}
+
+.oja-process-inline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.oja-process-inline li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.oja-process-inline li:not(:last-child)::after {
+  content: "→";
+  margin-left: 0.5rem;
+  font-weight: 400;
+  color: rgba(15, 23, 42, 0.28);
+}
+
+.oja-process-inline strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.oja-story-step-tags {
+  margin: 0.75rem 0 0 !important;
+  font-size: 0.82rem !important;
+  font-weight: 600;
+  color: var(--orange-dark) !important;
+  line-height: 1.5 !important;
+}
+
+.oja-story-chapter--studio .oja-story-step:not(.is-active) {
+  display: none;
+}
+
+.oja-story-chapter--studio .oja-story-steps {
+  justify-content: center;
+  min-height: 16rem;
+}
+
+.oja-story-pin--studio {
+  align-items: center;
+}
+
+.oja-story-chapter--studio .oja-story-visual {
+  min-height: 20rem;
+  padding: 0.5rem;
+}
+
+.oja-story-chapter--studio .oja-device {
+  width: min(100%, 20rem);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.14);
 }
 
 .oja-story-eyebrow {
@@ -2231,6 +2332,11 @@ html.oja-site.page-home-story .oja-scroll-hint-icon {
     min-height: calc(100dvh - var(--oja-nav-offset) - 1rem);
   }
 
+  .oja-story-chapter--studio .oja-story-pin {
+    margin-top: 0;
+    padding: 1.25rem;
+  }
+
   .oja-story-visual {
     min-height: 14rem;
     order: -1;
@@ -2609,93 +2715,9 @@ html.oja-site.page-home-story .oja-scroll-hint {
   border: 0;
 }
 
-/* Process band (home) */
+/* Process inline (chapter 1 label) — legacy band styles removed */
 .oja-process-band {
-  padding: 1.25rem 1.25rem 0;
-  max-width: var(--max-wide);
-  margin: 0 auto;
-}
-
-.oja-process-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0.75rem 1rem;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid var(--oja-section-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--oja-card-shadow);
-}
-
-.oja-process-steps li {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  font-size: 0.82rem;
-  color: var(--muted);
-  text-align: center;
-}
-
-.oja-process-steps strong {
-  color: var(--text);
-  font-size: 0.9rem;
-}
-
-.oja-process-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 0 auto 0.25rem;
-  border-radius: 999px;
-  background: var(--orange-soft);
-  color: var(--orange-dark);
-  font-weight: 700;
-  font-size: 0.75rem;
-}
-
-@media (max-width: 800px) {
-  .oja-process-steps {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .oja-process-steps {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-  .oja-process-steps li {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: left;
-  }
-  .oja-process-num {
-    margin: 0;
-  }
-}
-
-/* Industries strip */
-.oja-industries-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.oja-industries-strip span {
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 0.35rem 0.65rem;
-  border-radius: 999px;
-  background: rgba(255, 140, 0, 0.1);
-  color: var(--orange-dark);
-  border: 1px solid rgba(255, 140, 0, 0.2);
+  display: none;
 }
 
 /* FaceMatch preview (home) */
