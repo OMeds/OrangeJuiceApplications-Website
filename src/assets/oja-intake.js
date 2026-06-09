@@ -97,8 +97,13 @@
   function validateStep() {
     var step = steps[current];
     if (!step) return true;
+    var checkboxGroup = step.getAttribute("data-validate-checkboxes");
+    if (checkboxGroup && !selectedValues(checkboxGroup).length) {
+      showError('Select at least one option, or choose "Help me decide".');
+      return false;
+    }
     if (step.hasAttribute("data-validate-platforms") && !selectedValues("platforms").length) {
-      showError("Select at least one platform.");
+      showError('Select at least one option, or choose "Not sure yet".');
       return false;
     }
     var required = step.querySelectorAll("[data-required]");
@@ -138,15 +143,20 @@
   }
 
   function buildPayload() {
+    var goal = sanitizeMultiline(fieldValue("project_goal"), 2000);
+    var extra = sanitizeMultiline(fieldValue("project_extra"), 1500);
     return {
-      project_type: fieldValue("project_type"),
+      customer_type: fieldValue("customer_type"),
+      request_types: selectedValues("request_types").join(", ") || "Not specified",
+      project_goal: goal,
+      project_extra: extra,
+      platforms: selectedValues("platforms").join(", ") || "Not specified",
       technical_level: fieldValue("technical_level"),
       github_url: sanitize(fieldValue("github_url"), 200),
       languages: selectedValues("languages").join(", ") || "Not specified",
-      platforms: selectedValues("platforms").join(", ") || "Not specified",
       timeline: fieldValue("timeline"),
       budget: fieldValue("budget"),
-      project_summary: sanitizeMultiline(fieldValue("project_summary"), 2000),
+      project_summary: [goal, extra].filter(Boolean).join("\n\n") || "(none)",
       contact_name: sanitize(fieldValue("contact_name"), 80),
       contact_company: sanitize(fieldValue("contact_company"), 120),
       contact_email: sanitize(fieldValue("contact_email"), 120),
@@ -154,7 +164,7 @@
       page: window.location.href,
       _subject:
         "Project inquiry - " +
-        (fieldValue("project_type") || "General") +
+        (fieldValue("customer_type") || "General") +
         (sanitize(fieldValue("contact_name"), 80)
           ? " - " + sanitize(fieldValue("contact_name"), 80)
           : ""),
@@ -166,21 +176,27 @@
     var body = [
       "Orange Juice Applications — project intake",
       "",
-      "Project type: " + p.project_type,
-      "Technical level: " + p.technical_level,
+      "Who they are: " + p.customer_type,
+      "What they need help with: " + p.request_types,
+      "",
+      "Goal (in their words):",
+      p.project_goal || "(none)",
+      "",
+      "Kind of solution: " + p.platforms,
+      "Starting point: " + p.technical_level,
       "",
       "GitHub / repo: " + (p.github_url || "None provided"),
-      "Languages / stack: " + p.languages,
-      "Platforms: " + p.platforms,
+      "Languages / stack (if known): " + p.languages,
+      "",
       "Timeline: " + p.timeline,
       "Budget band: " + p.budget,
       "",
-      "Summary:",
-      p.project_summary || "(none)",
+      "Anything else:",
+      p.project_extra || "(none)",
       "",
       "---",
       "Contact: " + p.contact_name,
-      "Company: " + (p.contact_company || "—"),
+      "Organisation: " + (p.contact_company || "—"),
       "Email: " + p.contact_email,
       "Phone: " + (p.contact_phone || "—"),
       "Page: " + p.page,
@@ -240,13 +256,14 @@
   }
 
   function toggleTechnicalFields() {
-    var level = fieldValue("technical_level");
+    var picked = form.querySelector('[name="technical_level"]:checked');
     var repoBlock = qs("[data-intake-repo-fields]");
     var langBlock = qs("[data-intake-lang-fields]");
     if (!repoBlock) return;
-    var showTech = level === "existing_repo" || level === "existing_team";
-    repoBlock.hidden = !showTech;
-    if (langBlock) langBlock.hidden = level === "non_technical";
+    var showRepo = picked && picked.hasAttribute("data-shows-repo");
+    var showLang = picked && picked.hasAttribute("data-shows-lang");
+    repoBlock.hidden = !showRepo;
+    if (langBlock) langBlock.hidden = !showLang;
   }
 
   function updateSubmitLabel() {

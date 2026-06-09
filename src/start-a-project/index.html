@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Start a project — Orange Juice Applications</title>
-  <meta name="description" content="Tell us about your app idea, existing GitHub repo, tech stack, and timeline. Orange Juice Applications builds focused Apple and web products for studios and SMBs.">
+  <meta name="description" content="Plain-language project intake for studios, startups, and small teams — web apps, mobile, portals, and integrations. Takes about 3–5 minutes.">
   <link rel="canonical" href="https://www.orangejuiceapplications.com/start-a-project/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon.png" type="image/png" sizes="32x32">
@@ -17,11 +17,11 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/style.css?v=10">
   <link rel="stylesheet" href="/assets/oja-icons.css?v=1">
-  <link rel="stylesheet" href="/assets/oja-premium.css?v=14">
+  <link rel="stylesheet" href="/assets/oja-premium.css?v=15">
   <script src="/assets/site-config.js" defer></script>
   <script src="/assets/site.js" defer></script>
   <script src="/assets/oja-interactive.js?v=12" defer></script>
-  <script src="/assets/oja-intake.js?v=3" defer></script>
+  <script src="/assets/oja-intake.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -60,8 +60,8 @@
         <span class="hero-badge">Project intake</span>
         <h1>Build something with us</h1>
         <p class="tagline">
-          Whether you have a GitHub repo, a napkin sketch, or an existing studio — answer a few questions
-          and we will open a structured email so nothing gets lost.
+          A short, plain-language wizard — about 3–5 minutes. No jargon required.
+          Your answers become a structured email so we can reply within two business days.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#intake-form" data-magnetic>Start the wizard</a>
@@ -75,11 +75,11 @@
         <div class="intake-layout" id="intake-form" data-reveal>
           <aside class="intake-aside card">
             <h2>What we need to know</h2>
-            <p>A short qualification flow before a discovery call — project type, technical maturity, stack, timeline, and budget band. Same discipline as top studios, without locking you into a CRM on day one.</p>
+            <p>Who you are, what you are trying to achieve, and how you would like to work together — in everyday language. Technical details are optional.</p>
             <ul class="intake-aside-list">
+              <li>Takes about <strong>3–5 minutes</strong></li>
               <li>Typical reply within <strong>2 business days</strong></li>
-              <li>No spam list — your answers go straight to our inbox</li>
-              <li>Web, mobile, integrations, and studio portals</li>
+              <li>Studios, startups, charities, and in-house teams welcome</li>
             </ul>
             <p class="intake-aside-note">Prefer email? <a href="mailto:support@orangejuiceapplications.com">support@orangejuiceapplications.com</a>. Inquiries are covered by our <a href="/company/services/">project inquiry terms</a>.</p>
           </aside>
@@ -90,92 +90,138 @@
                 <div class="intake-progress-fill" data-intake-progress-fill></div>
               </div>
               <p class="intake-progress-meta">
-                <span class="intake-progress-label" data-intake-step-label>Step 1 of 6</span>
+                <span class="intake-progress-label" data-intake-step-label>Step 1 of 7</span>
               </p>
             </div>
 
             <form class="intake-form" data-intake-form novalidate>
               <fieldset class="intake-step is-active" data-intake-step>
-                <legend>What are you looking to build?</legend>
-                <p class="intake-hint">We start with outcome — not technology.</p>
+                <legend>Who are you?</legend>
+                <p class="intake-hint">Pick the closest match — we work with small teams, not enterprise procurement.</p>
                 <label class="intake-option">
-                  <input type="radio" name="project_type" value="New app" data-required>
-                  <span><strong>New app</strong> — idea to MVP on App Store, web, or both</span>
+                  <input type="radio" name="customer_type" value="Dance, fitness or activity studio" data-required>
+                  <span><strong>Dance, fitness or activity studio</strong> — classes, members, parents, bookings</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="project_type" value="Improve existing" data-required>
-                  <span><strong>Improve existing</strong> — features, redesign, or performance on live product</span>
+                  <input type="radio" name="customer_type" value="Membership organisation" data-required>
+                  <span><strong>Membership organisation</strong> — club, gym, association, or society</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="project_type" value="Studio / member portal" data-required>
-                  <span><strong>Studio or member portal</strong> — classes, bookings, parents (like YCDA)</span>
+                  <input type="radio" name="customer_type" value="Startup or new product" data-required>
+                  <span><strong>Startup or new product</strong> — idea stage through first launch</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="project_type" value="Not sure yet" data-required>
-                  <span><strong>Not sure yet</strong> — need help scoping</span>
-                </label>
-              </fieldset>
-
-              <fieldset class="intake-step" data-intake-step hidden>
-                <legend>What is your technical starting point?</legend>
-                <label class="intake-option">
-                  <input type="radio" name="technical_level" value="existing_repo" data-required>
-                  <span><strong>We have a GitHub (or other) repo</strong> — code exists, need a partner</span>
+                  <input type="radio" name="customer_type" value="Small business" data-required>
+                  <span><strong>Small business</strong> — retail, hospitality, trades, or professional services</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="technical_level" value="existing_team" data-required>
-                  <span><strong>We have developers</strong> — need design, Apple expertise, or delivery help</span>
+                  <input type="radio" name="customer_type" value="In-house team" data-required>
+                  <span><strong>In-house team</strong> — need dashboards, tools, or internal apps</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="technical_level" value="non_technical" data-required>
-                  <span><strong>Non-technical founder</strong> — product vision, need full build partner</span>
+                  <input type="radio" name="customer_type" value="Charity or community group" data-required>
+                  <span><strong>Charity or community group</strong> — volunteers, members, or beneficiaries</span>
                 </label>
                 <label class="intake-option">
-                  <input type="radio" name="technical_level" value="exploring" data-required>
-                  <span><strong>Exploring options</strong> — comparing agencies and freelancers</span>
+                  <input type="radio" name="customer_type" value="Education or training provider" data-required>
+                  <span><strong>Education or training provider</strong> — courses, learners, or parents</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="customer_type" value="Other — help me decide" data-required>
+                  <span><strong>Other — help me decide</strong> — not sure which box fits</span>
                 </label>
               </fieldset>
 
-              <fieldset class="intake-step" data-intake-step hidden>
-                <legend>Existing code &amp; languages</legend>
-                <div data-intake-repo-fields hidden>
-                  <label class="feedback-label" for="github_url">Repository URL (optional)</label>
-                  <input class="feedback-input" type="url" id="github_url" name="github_url" placeholder="https://github.com/your-org/your-app" inputmode="url" autocomplete="off">
+              <fieldset class="intake-step" data-intake-step hidden data-validate-checkboxes="request_types">
+                <legend>What do you need help with?</legend>
+                <p class="intake-hint">Select everything that applies — or choose &ldquo;Help me decide&rdquo; if you are unsure.</p>
+                <div class="intake-check-grid intake-check-grid--stack">
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Brand-new app or website"> <span><strong>Brand-new app or website</strong> — from idea to first version</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Improve something live"> <span><strong>Improve something live</strong> — redesign, new features, or better performance</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Member or customer portal"> <span><strong>Member or customer portal</strong> — logins, bookings, account area</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Mobile app"> <span><strong>Mobile app</strong> — iPhone, iPad, or Android for customers or staff</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Connect our systems"> <span><strong>Connect our systems</strong> — booking, payments, CRM, or APIs</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Rescue existing code"> <span><strong>Rescue existing code</strong> — stuck project or codebase that needs momentum</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Ongoing support"> <span><strong>Ongoing support</strong> — keep shipping after launch</span></label>
+                  <label class="intake-check"><input type="checkbox" name="request_types" value="Help me decide"> <span><strong>Help me decide</strong> — not sure yet</span></label>
                 </div>
-                <div data-intake-lang-fields>
-                  <p class="intake-hint">Select any that apply — or skip if unknown.</p>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>What are you trying to achieve?</legend>
+                <p class="intake-hint">In your own words — we will not expect technical terms.</p>
+                <p class="intake-example">e.g. &ldquo;A parent portal for my dance school so families can book tasters and see class videos.&rdquo;</p>
+                <p class="intake-example">e.g. &ldquo;An iPhone app to match contact photos privately, like our FaceMatch project.&rdquo;</p>
+                <label class="feedback-label" for="project_goal">Your goal</label>
+                <textarea class="feedback-input feedback-textarea" id="project_goal" name="project_goal" rows="5" placeholder="Who is it for? What problem should it solve? What does success look like?" data-required></textarea>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step data-validate-platforms hidden>
+                <legend>What kind of solution might you need?</legend>
+                <p class="intake-hint">A rough shape is enough — we can recommend the rest on a call.</p>
+                <div class="intake-check-grid intake-check-grid--stack">
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Website or web app"> <span><strong>Website or web app</strong> — works in a browser</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="iPhone / iPad app"> <span><strong>iPhone / iPad app</strong> — App Store or internal</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Android app"> <span><strong>Android app</strong> — Google Play or internal</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Internal dashboard or admin tool"> <span><strong>Internal dashboard</strong> — for your team only</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Integrations with existing tools"> <span><strong>Integrations</strong> — link tools you already use</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Marketing / brochure site"> <span><strong>Marketing site</strong> — tell your story and capture leads</span></label>
+                  <label class="intake-check"><input type="checkbox" name="platforms" value="Not sure yet"> <span><strong>Not sure yet</strong> — help me choose</span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="intake-step" data-intake-step hidden>
+                <legend>Where are you starting from?</legend>
+                <p class="intake-hint">No wrong answers — this helps us suggest the right first step.</p>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="Idea only — no code yet" data-required>
+                  <span><strong>Idea only</strong> — no code yet, need a build partner</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="Live product needs improvement" data-required>
+                  <span><strong>Live product</strong> — website or app that needs work</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="We have code in GitHub or similar" data-shows-repo data-shows-lang data-required>
+                  <span><strong>We have code</strong> — GitHub, GitLab, or similar repository</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="We have developers — need extra help" data-shows-lang data-required>
+                  <span><strong>We have developers</strong> — need design, mobile, or delivery help</span>
+                </label>
+                <label class="intake-option">
+                  <input type="radio" name="technical_level" value="Help me decide" data-required>
+                  <span><strong>Help me decide</strong> — not sure where we sit</span>
+                </label>
+                <div data-intake-repo-fields hidden>
+                  <label class="feedback-label" for="github_url">Repository link (optional)</label>
+                  <input class="feedback-input" type="url" id="github_url" name="github_url" placeholder="https://github.com/your-org/your-app" inputmode="url" autocomplete="off">
+                  <p class="intake-hint">Private repos are fine — we will ask about access later if needed.</p>
+                </div>
+                <div data-intake-lang-fields hidden>
+                  <p class="intake-hint">If you know what your code is written in, tick any that apply. Otherwise skip.</p>
                   <div class="intake-check-grid">
                     <label class="intake-check"><input type="checkbox" name="languages" value="Swift / SwiftUI"> Swift / SwiftUI</label>
                     <label class="intake-check"><input type="checkbox" name="languages" value="Kotlin / Android"> Kotlin / Android</label>
                     <label class="intake-check"><input type="checkbox" name="languages" value="TypeScript / React / Next.js"> TypeScript / React / Next.js</label>
                     <label class="intake-check"><input type="checkbox" name="languages" value="Python"> Python</label>
                     <label class="intake-check"><input type="checkbox" name="languages" value="PHP / WordPress"> PHP / WordPress</label>
-                    <label class="intake-check"><input type="checkbox" name="languages" value="Not chosen yet"> Not chosen yet</label>
+                    <label class="intake-check"><input type="checkbox" name="languages" value="Don't know / not chosen yet"> Don't know yet</label>
                   </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="intake-step" data-intake-step data-validate-platforms hidden>
-                <legend>Where should it run?</legend>
-                <div class="intake-check-grid">
-                  <label class="intake-check"><input type="checkbox" name="platforms" value="iPhone / iPad"> iPhone / iPad</label>
-                  <label class="intake-check"><input type="checkbox" name="platforms" value="Android"> Android</label>
-                  <label class="intake-check"><input type="checkbox" name="platforms" value="Web app"> Web app</label>
-                  <label class="intake-check"><input type="checkbox" name="platforms" value="Marketing site"> Marketing site</label>
-                  <label class="intake-check"><input type="checkbox" name="platforms" value="Member portal"> Member / parent portal</label>
                 </div>
               </fieldset>
 
               <fieldset class="intake-step" data-intake-step hidden>
                 <legend>Timeline &amp; budget</legend>
-                <p class="intake-hint">Rough bands help us route you — no commitment.</p>
-                <label class="feedback-label" for="timeline">Target timeline</label>
+                <p class="intake-hint">Rough guesses are fine — this helps us prioritise, not invoice you.</p>
+                <label class="feedback-label" for="timeline">When would you like to start or launch?</label>
                 <select class="feedback-input" id="timeline" name="timeline" data-required>
                   <option value="">Choose…</option>
                   <option value="ASAP / under 3 months">ASAP / under 3 months</option>
                   <option value="3–6 months">3–6 months</option>
                   <option value="6–12 months">6–12 months</option>
-                  <option value="Flexible / exploring">Flexible / exploring</option>
+                  <option value="Flexible / exploring">Flexible — still exploring</option>
+                  <option value="Not sure yet">Not sure yet</option>
                 </select>
                 <label class="feedback-label" for="budget">Budget band (GBP, excl. VAT)</label>
                 <select class="feedback-input" id="budget" name="budget" data-required>
@@ -184,22 +230,24 @@
                   <option value="£10k – £25k">£10k – £25k</option>
                   <option value="£25k – £50k">£25k – £50k</option>
                   <option value="£50k+">£50k+</option>
-                  <option value="Prefer to discuss">Prefer to discuss</option>
+                  <option value="Prefer to discuss">Prefer to discuss on a call</option>
+                  <option value="Not sure yet">Not sure yet</option>
                 </select>
               </fieldset>
 
               <fieldset class="intake-step" data-intake-step hidden>
-                <legend>Tell us more &amp; how to reach you</legend>
-                <label class="feedback-label" for="project_summary">Project summary</label>
-                <textarea class="feedback-input feedback-textarea" id="project_summary" name="project_summary" rows="5" placeholder="Goals, users, must-have features, competitors you admire…" data-required></textarea>
+                <legend>Your details &amp; anything else</legend>
+                <p class="intake-hint">We use this only to reply to your inquiry — see our <a href="/company/privacy/">privacy policy</a>.</p>
                 <label class="feedback-label" for="contact_name">Your name</label>
                 <input class="feedback-input" type="text" id="contact_name" name="contact_name" autocomplete="name" data-required>
-                <label class="feedback-label" for="contact_company">Company / studio (optional)</label>
-                <input class="feedback-input" type="text" id="contact_company" name="contact_company" autocomplete="organization">
+                <label class="feedback-label" for="contact_company">Organisation (optional)</label>
+                <input class="feedback-input" type="text" id="contact_company" name="contact_company" autocomplete="organization" placeholder="Studio name, company, or charity">
                 <label class="feedback-label" for="contact_email">Email</label>
                 <input class="feedback-input" type="email" id="contact_email" name="contact_email" autocomplete="email" data-required>
                 <label class="feedback-label" for="contact_phone">Phone (optional)</label>
                 <input class="feedback-input" type="tel" id="contact_phone" name="contact_phone" autocomplete="tel">
+                <label class="feedback-label" for="project_extra">Anything else? (optional)</label>
+                <textarea class="feedback-input feedback-textarea" id="project_extra" name="project_extra" rows="3" placeholder="Links, competitors you like, constraints, or questions for us…"></textarea>
               </fieldset>
 
               <p class="feedback-error" data-intake-error hidden role="alert"></p>

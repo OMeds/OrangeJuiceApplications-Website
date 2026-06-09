@@ -728,6 +728,32 @@ html.oja-site body {
   line-height: 1.5;
 }
 
+.intake-example {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0 0 0.45rem;
+  line-height: 1.45;
+  padding-left: 0.75rem;
+  border-left: 3px solid rgba(232, 93, 4, 0.35);
+}
+
+.intake-example + .intake-example {
+  margin-bottom: 1rem;
+}
+
+.intake-check-grid--stack {
+  grid-template-columns: 1fr;
+}
+
+.intake-check-grid--stack .intake-check {
+  align-items: flex-start;
+  padding: 0.75rem 0.85rem;
+}
+
+.intake-check-grid--stack .intake-check span {
+  line-height: 1.4;
+}
+
 .intake-option {
   display: flex;
   gap: 0.85rem;
